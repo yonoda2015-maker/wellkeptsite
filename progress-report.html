@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>WellKeptSite — Progress Report</title>
+<style>
+  @page { size: Letter; margin: 20mm 18mm; }
+  :root{
+    --fg:#0B0B0C; --muted:#5F6169; --accent:#5B4FE8; --accent2:#FF6B4A;
+    --line:#E5E4E1; --ok-bg:#DCFCE7; --ok-fg:#166534; --pend-bg:#FFF7ED; --pend-fg:#9A3412;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Helvetica Neue",Arial,sans-serif;color:var(--fg);
+    font-size:10pt;line-height:1.6;margin:0}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13pt;font-family:Georgia,serif}
+  .brand .dot{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-block}
+  .doc-title{font-size:20pt;font-weight:700;margin:18px 0 3px;font-family:Georgia,serif}
+  .doc-sub{color:var(--muted);font-size:9.5pt;margin-bottom:20px}
+  h2{font-size:12pt;font-family:Georgia,serif;margin:22px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--fg)}
+  h3{font-size:10.5pt;margin:14px 0 4px}
+  p{margin:0 0 6px}
+  table{width:100%;border-collapse:collapse;font-size:9pt;margin:6px 0 4px}
+  th{text-align:left;padding:5px 6px;border-bottom:1px solid var(--fg);font-size:8pt;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  .badge{display:inline-block;font-size:7.5pt;font-weight:700;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .badge.done{background:var(--ok-bg);color:var(--ok-fg)}
+  .badge.pending{background:var(--pend-bg);color:var(--pend-fg)}
+  .flow{background:#F6F5F3;border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+    font-size:8.7pt;margin:8px 0 4px;white-space:pre-wrap;font-family:"SF Mono",Menlo,monospace;line-height:1.7}
+  .stat-row{display:flex;gap:14px;margin:10px 0}
+  .stat{flex:1;background:var(--surface,#F6F5F3);border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;text-align:center}
+  .stat .num{font-family:Georgia,serif;font-size:17pt;font-weight:700;color:var(--accent)}
+  .stat .lbl{font-size:7.5pt;color:var(--muted);margin-top:2px}
+  .note{background:#F6F5F3;border-left:3px solid var(--accent2);padding:7px 11px;font-size:8.7pt;
+    color:var(--muted);margin:8px 0}
+  .cols{display:flex;gap:18px}
+  .col{flex:1}
+  footer{margin-top:22px;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font-size:7.8pt}
+</style>
+</head>
+<body>
+
+<div class="brand"><span class="dot"></span>WellKeptSite</div>
+<div class="doc-title">Progress Report</div>
+<div class="doc-sub">WordPress保守サービス事業 — 進捗まとめ / 作成日 2026-08-29</div>
+
+<div class="stat-row">
+  <div class="stat"><div class="num">4</div><div class="lbl">実装完了モジュール</div></div>
+  <div class="stat"><div class="num">1</div><div class="lbl">稼働中の実クライアント案件</div></div>
+  <div class="stat"><div class="num">1</div><div class="lbl">修正した実脆弱性（自社サイト）</div></div>
+  <div class="stat"><div class="num">2</div><div class="lbl">human_queue待ち（あなたの作業）</div></div>
+</div>
+
+<h2>1. サイト・インフラ</h2>
+<table>
+  <tr><th>項目</th><th>状態</th><th>詳細</th></tr>
+  <tr><td>本体サイト</td><td><span class="badge done">完了</span></td><td>wellkeptsite.com / www.wellkeptsite.com — Vercel本番稼働、SSL正常</td></tr>
+  <tr><td>デザイン</td><td><span class="badge done">確定</span></td><td>明るい×格好いいトーン（Space Grotesk・紫グラデーション）で確定</td></tr>
+  <tr><td>料金ページ</td><td><span class="badge done">完了</span></td><td>Redesign $997（一括）/ Essential $99 / Complete $149（月額）の3枚</td></tr>
+  <tr><td>Terms of Service</td><td><span class="badge pending">要穴埋め</span></td><td>作成済み。日付・事業住所が[ ]プレースホルダのまま</td></tr>
+  <tr><td>Privacy Policy</td><td><span class="badge pending">要穴埋め</span></td><td>同上</td></tr>
+  <tr><td>GitHub / CI</td><td><span class="badge done">完了</span></td><td>github.com/yonoda2015-maker/wellkeptsite、push→Vercel自動デプロイ確認済み</td></tr>
+</table>
+
+<h2>2. 営業機械（Build Spec B）— 実装済みモジュール</h2>
+<div class="flow">[リード発掘] → [無料監査] → [計測台帳/suppression] → [メール下書き・承認] → [送信・追客] → [クローズ]
+   ✅完了        ✅完了         ✅完了(G1)              ⬜未着手              ⬜未着手         ⬜未着手</div>
+
+<table>
+  <tr><th>モジュール</th><th>状態</th><th>検証内容</th></tr>
+  <tr><td><b>audit_engine.py</b><br/>無料サイト診断</td><td><span class="badge done">完了</span></td>
+    <td>非侵入6項目チェック。自社サイト(worldurbanlegend.com)で実在するディレクトリ露出を検出→修正実績あり</td></tr>
+  <tr><td><b>lead_gen.py</b><br/>リード発掘</td><td><span class="badge pending">APIキー待ち</span></td>
+    <td>Google Places API連携。業種・地域は完全自由記述（オハイオ×会計士に限定せず全展開可能な設計に変更済み）。テスト17件通過</td></tr>
+  <tr><td><b>ledger.py</b><br/>計測+suppression台帳</td><td><span class="badge done">完了</span></td>
+    <td>送信/返信/成約イベント記録、オプトアウト検知（false-positive対策込み）。テスト21件通過</td></tr>
+</table>
+
+<div class="note">全モジュールは実装後、Fable5が独立環境で再検証（コードの再レビュー・テスト再実行・スコープ外への逸脱チェック）を行った上で本体に反映しています。実装者の自己申告だけでは承認していません。</div>
+
+<h2>3. 実クライアント案件</h2>
+<table>
+  <tr><th>案件</th><th>状態</th></tr>
+  <tr><td>会計士サイト・リニューアル（$997）</td><td><span class="badge pending">聞き取り中</span></td></tr>
+  <tr><td>要件聞き取りフォーム</td><td><span class="badge done">作成済み</span></td></tr>
+  <tr><td>スコープ確認書PDFテンプレート</td><td><span class="badge done">作成済み</span></td></tr>
+</table>
+
+<div class="cols">
+  <div class="col">
+    <h2>4. あなたにお願いしたいこと</h2>
+    <p>① Google Cloud ConsoleでPlaces API (New)有効化→APIキー取得→<code>.env</code>設定</p>
+    <p>② Google Workspace契約（wellkeptsite.net、営業メール送信用）</p>
+    <p>③ Terms/Privacyに載せる事業住所の確定</p>
+  </div>
+  <div class="col">
+    <h2>5. 次のステップ</h2>
+    <p>Google Workspace設定後、Stage 3（メール下書き＋承認キュー）の実装に進む</p>
+    <p>APIキー設定後、初回リード発掘の実行</p>
+    <p>会計士案件の要件確定→スコープ確認書仕上げ→契約</p>
+  </div>
+</div>
+
+<footer>WellKeptSite Progress Report · 生成: Fable5 · 2026-08-29</footer>
+
+</body>
+</html>
