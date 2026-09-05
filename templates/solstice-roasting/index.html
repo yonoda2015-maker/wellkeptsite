@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solstice Roasting Co. — Single-Origin Coffee, Roasted in Small Batches</title>
+<meta name="description" content="Solstice Roasting Co. is an independent coffee roastery sourcing single-origin lots from seven countries and roasting them in small batches.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3ECE1;
+    --ink:#211A14;
+    --amber:#B5541E;
+    --line: rgba(33,26,20,0.14);
+    --surface: rgba(33,26,20,0.03);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Mulish', sans-serif;
+    font-size:1rem;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  h1,h2,h3{
+    font-family:'Lora', serif;
+    letter-spacing:-0.03em;
+    line-height:1.08;
+    margin:0;
+    font-weight:600;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* grain overlay */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:0.045;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--cream);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.1rem 0;
+  }
+  .logo{
+    font-family:'Lora', serif;
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:-0.02em;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-links{
+    display:flex;
+    gap:2.25rem;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.95rem;
+    position:relative;
+    padding-bottom:2px;
+  }
+  .nav-links a:hover{ opacity:0.7; }
+  .nav-right{ display:flex; align-items:center; gap:1.5rem; }
+  .cta-btn{
+    display:inline-block;
+    background:var(--amber);
+    color:#F8F2E9;
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.9rem;
+    padding:0.7rem 1.4rem;
+    border-radius:2px;
+    border:1px solid var(--amber);
+    transition:opacity .15s ease;
+  }
+  .cta-btn:hover{ opacity:0.85; }
+  .cta-btn.small{ padding:0.55rem 1.1rem; font-size:0.85rem; }
+
+  .hamburger{
+    display:none;
+    background:none;
+    border:1px solid var(--line);
+    border-radius:2px;
+    width:42px;
+    height:38px;
+    padding:0;
+    cursor:pointer;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+  }
+  .hamburger span{
+    display:block;
+    width:20px;
+    height:2px;
+    background:var(--ink);
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-drawer{
+    display:none;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid var(--line);
+    background:var(--cream);
+  }
+  .mobile-drawer.open{ display:flex; }
+  .mobile-drawer a{
+    text-decoration:none;
+    font-weight:600;
+    padding:1rem clamp(1.25rem,4vw,3rem);
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-drawer .cta-btn{
+    margin:1rem clamp(1.25rem,4vw,3rem);
+    text-align:center;
+  }
+
+  @media (max-width: 760px){
+    .nav-links{ display:none; }
+    .nav-right .cta-btn.desktop-only{ display:none; }
+    .hamburger{ display:flex; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:clamp(3rem,8vw,6rem) 0 clamp(2.5rem,6vw,4rem);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:clamp(2rem,5vw,4rem);
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem,6vw,5.5rem);
+    max-width:14ch;
+  }
+  .hero p{
+    margin-top:1.5rem;
+    max-width:38ch;
+    font-size:1.15rem;
+    color:rgba(33,26,20,0.75);
+  }
+  .hero-actions{
+    margin-top:2.25rem;
+    display:flex;
+    gap:1.25rem;
+    align-items:center;
+  }
+  .hero-note{ font-size:0.85rem; color:rgba(33,26,20,0.6); }
+  .hero-img-wrap{
+    aspect-ratio:4/5;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:var(--surface);
+  }
+  .hero-img-wrap img{ width:100%; height:100%; object-fit:cover; }
+
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-img-wrap{ order:-1; aspect-ratio:16/10; }
+  }
+
+  /* ---------- STATS STRIP ---------- */
+  .stats{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:clamp(2rem,4vw,2.75rem) 0;
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:2rem;
+  }
+  .stat-num{
+    font-family:'Lora', serif;
+    font-size:clamp(1.9rem,3.4vw,2.6rem);
+    color:var(--amber);
+    letter-spacing:-0.02em;
+    font-weight:700;
+  }
+  .stat-label{
+    margin-top:0.35rem;
+    font-size:0.9rem;
+    color:rgba(33,26,20,0.65);
+  }
+  @media (max-width:760px){
+    .stats-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding:clamp(3.5rem,7vw,6rem) 0; }
+  .section-head{
+    max-width:46ch;
+    margin-bottom:clamp(2rem,4vw,3rem);
+  }
+  .section-head .eyebrow{
+    font-weight:700;
+    color:var(--amber);
+    font-size:0.9rem;
+    margin-bottom:0.6rem;
+    display:block;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem,3.6vw,2.75rem);
+  }
+  .section-head p{
+    margin-top:0.9rem;
+    color:rgba(33,26,20,0.7);
+  }
+
+  /* ---------- ORIGIN ARCHIVE ---------- */
+  .origin-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .origin-card{
+    background:var(--cream);
+    padding:1.75rem;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    gap:0.7rem;
+  }
+  .origin-card:hover{ background:rgba(181,84,30,0.05); }
+  .origin-card:focus-visible{ outline:2px solid var(--amber); outline-offset:-2px; }
+  .origin-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; }
+  .origin-name{ font-family:'Lora', serif; font-weight:600; font-size:1.15rem; letter-spacing:-0.02em; }
+  .origin-year{ font-size:0.85rem; color:rgba(33,26,20,0.55); white-space:nowrap; }
+  .origin-region{ font-size:0.9rem; color:rgba(33,26,20,0.6); }
+  .origin-process{
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--amber);
+    width:fit-content;
+    border:1px solid var(--amber);
+    padding:0.2rem 0.55rem;
+    border-radius:20px;
+  }
+  .origin-detail{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    font-size:0.92rem;
+    color:rgba(33,26,20,0.75);
+  }
+  .origin-card[aria-expanded="true"] .origin-detail{ max-height:12rem; padding-top:0.4rem; }
+  .origin-toggle-icon{ font-size:1.1rem; color:var(--amber); line-height:1; }
+
+  @media (max-width:900px){
+    .origin-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:600px){
+    .origin-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- HOW WE ROAST ---------- */
+  .roast-steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:clamp(1.5rem,3vw,2.5rem);
+  }
+  .roast-step{
+    border-top:1px solid var(--amber);
+    padding-top:1.25rem;
+  }
+  .roast-step .num{
+    font-family:'Lora', serif;
+    font-size:1rem;
+    color:var(--amber);
+    font-weight:700;
+    display:block;
+    margin-bottom:0.75rem;
+  }
+  .roast-step h3{
+    font-size:1.3rem;
+    margin-bottom:0.6rem;
+  }
+  .roast-step p{
+    color:rgba(33,26,20,0.7);
+    font-size:0.95rem;
+  }
+  @media (max-width:760px){
+    .roast-steps{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- SHOP BENTO ---------- */
+  .bento{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:150px;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .bento-item{
+    background:var(--cream);
+    padding:1.5rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    position:relative;
+  }
+  .bento-item.b1{ grid-column:span 3; grid-row:span 2; }
+  .bento-item.b2{ grid-column:span 3; grid-row:span 1; }
+  .bento-item.b3{ grid-column:span 2; grid-row:span 1; }
+  .bento-item.b4{ grid-column:span 2; grid-row:span 2; }
+  .bento-item.b5{ grid-column:span 2; grid-row:span 1; }
+  .bento-item.b6{ grid-column:span 6; grid-row:span 1; }
+
+  .prod-name{ font-family:'Lora', serif; font-weight:600; font-size:1.1rem; letter-spacing:-0.02em; }
+  .prod-desc{ font-size:0.85rem; color:rgba(33,26,20,0.6); margin-top:0.3rem; }
+  .prod-price{ color:var(--amber); font-weight:800; margin-top:0.5rem; font-size:1.05rem; }
+
+  @media (max-width:860px){
+    .bento{ grid-template-columns:repeat(2,1fr); grid-auto-rows:auto; }
+    .bento-item{ grid-column:span 1 !important; grid-row:span 1 !important; min-height:170px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:clamp(3rem,7vw,5rem) 0 2.5rem;
+  }
+  .footer-brand{
+    font-family:'Lora', serif;
+    font-weight:700;
+    letter-spacing:-0.04em;
+    font-size:clamp(3rem,13vw,9rem);
+    line-height:0.92;
+    margin:0 0 2.5rem;
+  }
+  .footer-bottom{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:1.5rem;
+    border-top:1px solid var(--line);
+    padding-top:1.75rem;
+  }
+  .footer-links{
+    display:flex;
+    gap:1.75rem;
+    list-style:none;
+    padding:0;
+    margin:0;
+    flex-wrap:wrap;
+  }
+  .footer-links a{ text-decoration:none; font-weight:600; font-size:0.9rem; }
+  .footer-links a:hover{ color:var(--amber); }
+  .footer-meta{ font-size:0.85rem; color:rgba(33,26,20,0.55); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">Solstice Roasting Co.</a>
+      <ul class="nav-links">
+        <li><a href="#shop">Beans</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#shop" class="cta-btn small desktop-only">Cart · 0</a>
+        <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#shop">Beans</a>
+    <a href="#story">Our Story</a>
+    <a href="#visit">Visit</a>
+    <a href="#shop" class="cta-btn small">Cart · 0</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Coffee roasted in small batches, traced back to one farm.</h1>
+        <p>We buy directly from growers across seven countries, roast in runs under twenty kilos, and put the harvest year on every bag — no blends hiding where it came from.</p>
+        <div class="hero-actions">
+          <a href="#shop" class="cta-btn">Shop Beans</a>
+          <span class="hero-note">Free shipping over $40</span>
+        </div>
+      </div>
+      <div class="hero-img-wrap">
+        <img src="assets/beans-closeup.jpg" alt="Close-up of freshly roasted coffee beans with visible oil sheen"
+             onerror="this.onerror=null;this.src='';this.style.background='#3B2A1E';">
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap stats-grid">
+      <div>
+        <div class="stat-num">18,400kg</div>
+        <div class="stat-label">roasted this year</div>
+      </div>
+      <div>
+        <div class="stat-num">7</div>
+        <div class="stat-label">origin countries</div>
+      </div>
+      <div>
+        <div class="stat-num">86.4</div>
+        <div class="stat-label">avg. cupping score</div>
+      </div>
+      <div>
+        <div class="stat-num">11</div>
+        <div class="stat-label">years roasting</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGIN ARCHIVE -->
+  <section id="origins">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Origin Archive</span>
+        <h2>Every lot, traced to its farm.</h2>
+        <p>Click a lot to see the full profile — region, processing, and how it tastes in the cup. New arrivals are added as each harvest lands.</p>
+      </div>
+
+      <div class="origin-grid" id="originGrid">
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Finca Alto Cielo</div>
+              <div class="origin-region">Huila, Colombia</div>
+            </div>
+            <div class="origin-year">2025</div>
+          </div>
+          <span class="origin-process">Washed</span>
+          <div class="origin-detail">Grown at 1,850m on volcanic soil. Notes of red plum, brown sugar, and a clean citrus finish. Fermented 36 hours before washing.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Yirgamora Highlands</div>
+              <div class="origin-region">Sidama, Ethiopia</div>
+            </div>
+            <div class="origin-year">2025</div>
+          </div>
+          <span class="origin-process">Natural</span>
+          <div class="origin-detail">Heirloom varietals dried on raised beds for 21 days. Bright jasmine, blueberry, and a wine-like body.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Cerro Luna Estate</div>
+              <div class="origin-region">Tarrazú, Costa Rica</div>
+            </div>
+            <div class="origin-year">2024</div>
+          </div>
+          <span class="origin-process">Honey</span>
+          <div class="origin-detail">Mucilage left on during drying for extra sweetness. Caramel, orange peel, and a syrupy mouthfeel.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-name-wrap">
+          </div>
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Rio Salto Cooperative</div>
+              <div class="origin-region">Minas Gerais, Brazil</div>
+            </div>
+            <div class="origin-year">2025</div>
+          </div>
+          <span class="origin-process">Natural</span>
+          <div class="origin-detail">A blend of forty smallholder plots pooled and dried together. Milk chocolate, roasted hazelnut, low acidity.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Kirinyaga Ridgeline</div>
+              <div class="origin-region">Kirinyaga, Kenya</div>
+            </div>
+            <div class="origin-year">2024</div>
+          </div>
+          <span class="origin-process">Washed</span>
+          <div class="origin-detail">Double-fermented and soaked, grown on the slopes of Mount Kenya. Blackcurrant, tomato, and grapefruit acidity.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Bukit Selatan Gardens</div>
+              <div class="origin-region">Aceh, Sumatra</div>
+            </div>
+            <div class="origin-year">2024</div>
+          </div>
+          <span class="origin-process">Wet-hulled</span>
+          <div class="origin-detail">Traditional Giling Basah processing. Full body, cedar and dark cocoa, earthy and low in acidity.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Valle Escondido</div>
+              <div class="origin-region">Chiriquí, Panama</div>
+            </div>
+            <div class="origin-year">2025</div>
+          </div>
+          <span class="origin-process">Honey</span>
+          <div class="origin-detail">A small geisha block, hand-picked in three passes. Bergamot, peach, and floral tea notes.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+        <div class="origin-card" role="button" tabindex="0" aria-expanded="false" aria-pressed="false">
+          <div class="origin-top">
+            <div>
+              <div class="origin-name">Monte Alegre Reserve</div>
+              <div class="origin-region">Boquete, Panama</div>
+            </div>
+            <div class="origin-year">2024</div>
+          </div>
+          <span class="origin-process">Washed</span>
+          <div class="origin-detail">Shade-grown under banana canopy at 1,600m. Green apple, honey, and a delicate floral aroma.</div>
+          <span class="origin-toggle-icon" aria-hidden="true">+</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE ROAST -->
+  <section id="story">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How We Roast</span>
+        <h2>From green seed to your cup, in three steps.</h2>
+      </div>
+      <div class="roast-steps">
+        <div class="roast-step">
+          <span class="num">01</span>
+          <h3>Select</h3>
+          <p>We cup every incoming lot blind before it's approved. Anything below 84 points doesn't make it onto a shelf.</p>
+        </div>
+        <div class="roast-step">
+          <span class="num">02</span>
+          <h3>Roast</h3>
+          <p>Batches stay under 20kg on our drum roaster, profiled per origin to bring out the lot's own character rather than a house flavor.</p>
+        </div>
+        <div class="roast-step">
+          <span class="num">03</span>
+          <h3>Cup</h3>
+          <p>Every roast is tasted again before release, and again seven days later, to confirm it peaked the way we planned.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS IMAGE STRIP -->
+  <section style="padding-top:0;">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);">
+      <div style="aspect-ratio:4/3;overflow:hidden;">
+        <img src="assets/pour-over.jpg" loading="lazy" alt="A hand pouring hot water over coffee grounds from a kettle into a mug on a wooden stool"
+             style="width:100%;height:100%;object-fit:cover;"
+             onerror="this.onerror=null;this.src='';this.style.background='#3B2A1E';">
+      </div>
+      <div style="aspect-ratio:4/3;overflow:hidden;">
+        <img src="assets/farm-landscape.jpg" loading="lazy" alt="Cluster of unripe green coffee cherries growing on the branch at origin"
+             style="width:100%;height:100%;object-fit:cover;"
+             onerror="this.onerror=null;this.src='';this.style.background='#3B2A1E';">
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Shop</span>
+        <h2>Take a bag home.</h2>
+        <p>Whole bean, 340g bags unless noted. Ground on request at checkout.</p>
+      </div>
+
+      <div class="bento">
+        <div class="bento-item b1" style="background-image:url('assets/beans-texture.jpg');background-size:cover;background-position:center;">
+          <div style="background:var(--cream);padding:0.9rem 1rem;border:1px solid var(--line);width:fit-content;">
+            <div class="prod-name">Solstice Blend</div>
+            <div class="prod-desc">Colombia + Brazil, our house cup</div>
+            <div class="prod-price">$18</div>
+          </div>
+        </div>
+        <div class="bento-item b2">
+          <div class="prod-name">Highland Reserve</div>
+          <div class="prod-desc">Yirgamora Highlands, natural</div>
+          <div class="prod-price">$24</div>
+        </div>
+        <div class="bento-item b3">
+          <div class="prod-name">Cerro Luna Honey</div>
+          <div class="prod-desc">Costa Rica, limited lot</div>
+          <div class="prod-price">$22</div>
+        </div>
+        <div class="bento-item b4" style="background-image:url('assets/espresso-detail.jpg');background-size:cover;background-position:center;">
+          <div style="background:var(--cream);padding:0.9rem 1rem;border:1px solid var(--line);width:fit-content;">
+            <div class="prod-name">Dark Horizon Espresso</div>
+            <div class="prod-desc">Sumatra + Brazil, syrupy body</div>
+            <div class="prod-price">$20</div>
+          </div>
+        </div>
+        <div class="bento-item b5">
+          <div class="prod-name">Kirinyaga Ridgeline</div>
+          <div class="prod-desc">Kenya, washed, single-origin</div>
+          <div class="prod-price">$26</div>
+        </div>
+        <div class="bento-item b6">
+          <div class="prod-name">Solstice Home Kit</div>
+          <div class="prod-desc">Pour-over dripper + 2 bags of your choice</div>
+          <div class="prod-price">$58</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT / CAFE -->
+  <section id="visit">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;">
+      <div>
+        <span class="eyebrow" style="color:var(--amber);font-weight:700;display:block;margin-bottom:0.6rem;">Visit</span>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.75rem);">Come sit at the roastery.</h2>
+        <p style="margin-top:1rem;color:rgba(33,26,20,0.7);max-width:36ch;">Our tasting room is open daily. Pull up a stool at the bar, watch a roast run, and take a fresh bag home.</p>
+        <p style="margin-top:1.5rem;font-weight:600;">142 Kiln Street, Portland, OR<br>Mon–Sun, 7am–5pm</p>
+        <a href="#shop" class="cta-btn" style="margin-top:1.5rem;">Shop Beans</a>
+      </div>
+      <div style="aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);border-radius:4px;">
+        <img src="assets/cafe-interior.jpg" loading="lazy" alt="Warmly lit café dining area with wooden tables, chairs, and fresh flowers"
+             style="width:100%;height:100%;object-fit:cover;"
+             onerror="this.onerror=null;this.src='';this.style.background='#3B2A1E';">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand">Solstice<br>Roasting Co.</div>
+    <div class="footer-bottom">
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#shop">Beans</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <div class="footer-meta">© 2026 Solstice Roasting Co. — 142 Kiln Street, Portland, OR</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger / mobile drawer
+  var hamburgerBtn = document.getElementById('hamburgerBtn');
+  var mobileDrawer = document.getElementById('mobileDrawer');
+  hamburgerBtn.addEventListener('click', function(){
+    var expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+    hamburgerBtn.setAttribute('aria-expanded', String(!expanded));
+    mobileDrawer.classList.toggle('open', !expanded);
+  });
+  mobileDrawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      mobileDrawer.classList.remove('open');
+    });
+  });
+
+  // Origin Archive expandable cards
+  var originCards = document.querySelectorAll('.origin-card');
+  originCards.forEach(function(card){
+    function toggle(){
+      var expanded = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', String(!expanded));
+      card.setAttribute('aria-pressed', String(!expanded));
+    }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

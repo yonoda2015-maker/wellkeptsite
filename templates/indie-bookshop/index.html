@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understory Books — Used &amp; Loved Books, Sorted by Hand</title>
+<meta name="description" content="Understory Books is an independent used bookstore. Browse this week's shelves, trade in your own books, and find your next read — sorted by hand, every week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,560;0,9..144,650;1,9..144,450;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ===== Monochrome forest-green scale + one warm cream ===== */
+    --cream: #F4EFE3;         /* page background only */
+    --ink: #0F2E1D;           /* deepest green, primary text */
+    --forest-900: #14351F;
+    --forest-800: #1B4332;
+    --forest-700: #26543D;
+    --forest-600: #396850;
+    --forest-500: #517E67;
+    --forest-400: #6F9581;
+    --forest-300: #9BB6A5;
+    --forest-200: #C3D3C6;
+    --forest-100: #DCE6DC;
+    --forest-050: #E8EDE5;    /* near-white */
+    --line: #C3D3C6;
+
+    --serif-display: "Fraunces", "Iowan Old Style", serif;
+    --serif-body: "Newsreader", "Iowan Old Style", serif;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+
+  html{ background: var(--cream); }
+
+  body{
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--serif-body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img{ max-width: 100%; display: block; }
+
+  a{ color: inherit; }
+
+  h1,h2,h3,h4{
+    font-family: var(--serif-display);
+    font-weight: 560;
+    line-height: 1.12;
+    margin: 0;
+    color: var(--forest-900);
+    letter-spacing: -0.01em;
+  }
+
+  p{ margin: 0 0 1em; }
+  p:last-child{ margin-bottom: 0; }
+
+  .visually-hidden{
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+  }
+
+  .skip-link{
+    position: absolute; left: 1rem; top: -3rem;
+    background: var(--ink); color: var(--forest-050);
+    padding: 0.6rem 1rem; z-index: 100; font-family: var(--serif-body);
+  }
+  .skip-link:focus{ top: 1rem; }
+
+  :focus-visible{
+    outline: 2px solid var(--forest-800);
+    outline-offset: 2px;
+  }
+
+  /* ===================== TOP BAR (thin nav only — no hero) ===================== */
+  .topbar{
+    position: sticky; top: 0; z-index: 50;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width: 1240px; margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand{
+    display: flex; align-items: baseline; gap: 0.55rem;
+    font-family: var(--serif-display);
+    font-weight: 650;
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand .mark{
+    font-size: 1rem; font-weight: 450; font-style: italic;
+    color: var(--forest-600);
+  }
+  nav.primary-nav ul{
+    list-style: none; display: flex; gap: 1.75rem;
+    margin: 0; padding: 0;
+  }
+  nav.primary-nav a{
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    color: var(--forest-800);
+    padding: 0.3rem 0.1rem;
+    border-bottom: 1px solid transparent;
+  }
+  nav.primary-nav a:hover,
+  nav.primary-nav a:focus-visible{
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .topbar-cta{
+    font-size: 0.85rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 0.4rem 0.85rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .topbar-cta:hover,
+  .topbar-cta:focus-visible{
+    background: var(--ink);
+    color: var(--forest-050);
+  }
+
+  @media (max-width: 720px){
+    nav.primary-nav ul{ gap: 1rem; }
+    nav.primary-nav a:nth-child(3),
+    nav.primary-nav a:nth-child(4){ display: none; }
+  }
+  @media (max-width: 520px){
+    .topbar-cta{ display: none; }
+  }
+
+  /* ===================== Shelf category chips ===================== */
+  .shelf-nav{
+    background: var(--forest-050);
+    border-bottom: 1px solid var(--line);
+  }
+  .shelf-nav-inner{
+    max-width: 1240px; margin: 0 auto; padding: 0.6rem 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem; align-items: center;
+  }
+  .shelf-nav-label{
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--forest-600); margin-right: 0.35rem;
+  }
+  .chip{
+    font-family: var(--serif-body);
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--forest-800);
+    border: 1px solid var(--forest-300);
+    background: var(--cream);
+    padding: 0.3rem 0.75rem;
+  }
+  .chip:hover,
+  .chip:focus-visible{
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--forest-050);
+  }
+
+  /* ===================== Main / intro line above grid ===================== */
+  main{ display: block; }
+
+  .grid-intro{
+    max-width: 1240px; margin: 0 auto;
+    padding: 2rem 1.5rem 1rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+  .grid-intro h1{ font-size: clamp(1.5rem, 2.6vw, 2rem); }
+  .grid-intro p{
+    color: var(--forest-700);
+    max-width: 34ch;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* ===================== Masonry shelf grid ===================== */
+  .shelf-section{
+    max-width: 1240px; margin: 0 auto;
+    padding: 0.5rem 1.5rem 3rem;
+  }
+  .masonry{
+    column-count: 4;
+    column-gap: 1.1rem;
+  }
+  @media (max-width: 1080px){ .masonry{ column-count: 3; } }
+  @media (max-width: 760px){ .masonry{ column-count: 2; } }
+  @media (max-width: 480px){ .masonry{ column-count: 1; } }
+
+  .book-card{
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin: 0 0 1.1rem;
+    border: 1px solid var(--line);
+    background: var(--forest-050);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+  }
+  .book-card .spine{
+    height: 0.5rem;
+    background: var(--forest-500);
+  }
+  .book-card .card-body{
+    padding: 1.1rem 1.1rem 1.2rem;
+  }
+  .book-card .kicker{
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--forest-600);
+    margin-bottom: 0.5rem;
+  }
+  .book-card h3{
+    font-size: 1.12rem;
+    margin-bottom: 0.2rem;
+  }
+  .book-card .author{
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--forest-700);
+    margin-bottom: 0.65rem;
+  }
+  .book-card .note{
+    font-size: 0.9rem;
+    color: var(--forest-800);
+    font-style: italic;
+  }
+  .book-card .meta{
+    margin-top: 0.85rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.82rem;
+    border-top: 1px solid var(--line);
+    padding-top: 0.6rem;
+    color: var(--forest-700);
+  }
+  .book-card .price{
+    font-family: var(--serif-display);
+    font-weight: 560;
+    color: var(--ink);
+  }
+  .book-card .badge{
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--forest-600);
+    padding: 0.12rem 0.4rem;
+    color: var(--forest-700);
+  }
+
+  /* darker card variant for shelf rhythm — text flips to light */
+  .book-card.deep{
+    background: var(--forest-800);
+    border-color: var(--forest-800);
+    color: var(--forest-050);
+  }
+  .book-card.deep .spine{ background: var(--forest-300); }
+  .book-card.deep h3{ color: var(--forest-050); }
+  .book-card.deep .author{ color: var(--forest-200); }
+  .book-card.deep .note{ color: var(--forest-100); }
+  .book-card.deep .kicker{ color: var(--forest-300); }
+  .book-card.deep .meta{ border-top-color: var(--forest-600); color: var(--forest-200); }
+  .book-card.deep .price{ color: var(--forest-050); }
+  .book-card.deep .badge{ border-color: var(--forest-300); color: var(--forest-100); }
+
+  .book-card.mid{
+    background: var(--forest-100);
+  }
+  .book-card.mid .spine{ background: var(--forest-700); }
+
+  /* ===================== Content sections below grid ===================== */
+  .section{
+    padding: 3.5rem 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .section-inner{
+    max-width: 1240px; margin: 0 auto;
+  }
+  .section.tinted{ background: var(--forest-050); }
+  .section.deep{ background: var(--ink); color: var(--forest-100); }
+  .section.deep h2{ color: var(--forest-050); }
+  .section.deep .lede{ color: var(--forest-200); }
+
+  .section h2{
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    margin-bottom: 1.1rem;
+  }
+  .section .eyebrow{
+    display: block;
+    font-family: var(--serif-body);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--forest-600);
+    margin-bottom: 0.4rem;
+  }
+  .section.deep .eyebrow{ color: var(--forest-300); }
+  .lede{
+    max-width: 62ch;
+    color: var(--forest-700);
+    font-size: 1.02rem;
+  }
+
+  .two-col{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    margin-top: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 760px){ .two-col{ grid-template-columns: 1fr; gap: 2rem; } }
+
+  .stat-list{
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+  @media (max-width: 640px){ .stat-list{ grid-template-columns: 1fr; } }
+  .stat-list li{ border-left: 2px solid var(--forest-500); padding-left: 1rem; }
+  .stat-list .num{
+    display: block;
+    font-family: var(--serif-display);
+    font-size: 1.9rem;
+    font-weight: 560;
+    color: var(--forest-900);
+  }
+  .section.deep .stat-list .num{ color: var(--forest-050); }
+  .stat-list .label{ font-size: 0.88rem; color: var(--forest-700); }
+  .section.deep .stat-list li{ border-left-color: var(--forest-400); }
+  .section.deep .stat-list .label{ color: var(--forest-300); }
+
+  .list-plain{ list-style: none; margin: 1.5rem 0 0; padding: 0; }
+  .list-plain li{
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+  .list-plain li:last-child{ border-bottom: 1px solid var(--line); }
+  .list-plain .when{
+    font-size: 0.85rem; color: var(--forest-600); min-width: 9ch;
+  }
+  .list-plain .what{ flex: 1; min-width: 220px; }
+  .list-plain .what strong{ display: block; font-family: var(--serif-display); font-weight: 560; }
+  .list-plain .what span{ font-size: 0.9rem; color: var(--forest-700); }
+
+  .cta-row{
+    margin-top: 1.75rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn{
+    display: inline-block;
+    font-family: var(--serif-body);
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--ink);
+  }
+  .btn.primary{ background: var(--ink); color: var(--forest-050); }
+  .btn.primary:hover, .btn.primary:focus-visible{ background: var(--forest-700); border-color: var(--forest-700); }
+  .btn.ghost{ background: transparent; color: var(--ink); }
+  .btn.ghost:hover, .btn.ghost:focus-visible{ background: var(--ink); color: var(--forest-050); }
+  .section.deep .btn.ghost{ color: var(--forest-050); border-color: var(--forest-050); }
+  .section.deep .btn.ghost:hover, .section.deep .btn.ghost:focus-visible{ background: var(--forest-050); color: var(--ink); }
+
+  form.newsletter{
+    margin-top: 1.75rem;
+    display: flex; gap: 0.6rem; flex-wrap: wrap;
+    max-width: 480px;
+  }
+  form.newsletter input[type="email"]{
+    flex: 1; min-width: 200px;
+    font-family: var(--serif-body);
+    font-size: 0.95rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--forest-400);
+    background: var(--cream);
+    color: var(--ink);
+  }
+  form.newsletter input[type="email"]::placeholder{ color: var(--forest-500); }
+  form.newsletter button{
+    font-family: var(--serif-body);
+    font-size: 0.9rem;
+    padding: 0.65rem 1.2rem;
+    background: var(--ink);
+    color: var(--forest-050);
+    border: 1px solid var(--ink);
+    cursor: pointer;
+  }
+  form.newsletter button:hover, form.newsletter button:focus-visible{
+    background: var(--forest-700); border-color: var(--forest-700);
+  }
+  .form-note{ font-size: 0.8rem; color: var(--forest-500); margin-top: 0.6rem; }
+
+  address{ font-style: normal; }
+
+  /* ===================== Footer ===================== */
+  footer.site-footer{
+    background: var(--forest-900);
+    color: var(--forest-100);
+    padding: 3rem 1.5rem 2rem;
+  }
+  .footer-inner{
+    max-width: 1240px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 2.5rem;
+  }
+  @media (max-width: 760px){ .footer-inner{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px){ .footer-inner{ grid-template-columns: 1fr; } }
+  footer.site-footer h3{
+    color: var(--forest-050);
+    font-size: 1rem;
+    margin-bottom: 0.9rem;
+  }
+  footer.site-footer .foot-brand{
+    font-family: var(--serif-display);
+    font-size: 1.3rem;
+    font-weight: 650;
+    color: var(--forest-050);
+    margin-bottom: 0.6rem;
+  }
+  footer.site-footer p{ color: var(--forest-300); font-size: 0.92rem; }
+  footer.site-footer ul{ list-style: none; margin: 0; padding: 0; }
+  footer.site-footer li{ margin-bottom: 0.55rem; }
+  footer.site-footer a{
+    color: var(--forest-200);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+  footer.site-footer a:hover, footer.site-footer a:focus-visible{ color: var(--forest-050); }
+  .footer-bottom{
+    max-width: 1240px; margin: 2.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--forest-700);
+    font-size: 0.8rem;
+    color: var(--forest-400);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+  }
+
+  /* ===================== Zero-motion guarantee ===================== */
+  *{
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#main">Understory <span class="mark">Books</span></a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#shelves">Shelves</a></li>
+        <li><a href="#curate">Trade-Ins</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <a class="topbar-cta" href="#visit">Store Hours</a>
+  </div>
+  <div class="shelf-nav">
+    <div class="shelf-nav-inner">
+      <span class="shelf-nav-label">Browse:</span>
+      <a class="chip" href="#shelves">Fiction</a>
+      <a class="chip" href="#shelves">Poetry</a>
+      <a class="chip" href="#shelves">Philosophy</a>
+      <a class="chip" href="#shelves">Local Authors</a>
+      <a class="chip" href="#shelves">Story Collections</a>
+      <a class="chip" href="#shelves">Staff Picks</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="grid-intro">
+    <h1>On the Shelves This Week</h1>
+    <p>Every book below passed through a staff member's hands before it reached the shelf — reread, priced, and shelved with a note.</p>
+  </div>
+
+  <section class="shelf-section" id="shelves" aria-label="This week's used books">
+    <div class="masonry">
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Fiction</span><span>Hardcover</span></div>
+          <h3>The Living Room</h3>
+          <p class="author">Marguerite Osei</p>
+          <p class="note">Underlined twice on page 40, in pencil, by someone who clearly needed to hear it too.</p>
+          <div class="meta"><span class="badge">Very Good</span><span class="price">$9</span></div>
+        </div>
+      </article>
+
+      <article class="book-card deep">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Poetry</span><span>Chapbook</span></div>
+          <h3>Low Tide Almanac</h3>
+          <p class="author">Ren Faust</p>
+          <p class="note">Twenty-six pages. We've sold four copies this month and reordered from the small press twice — that's a record for us.</p>
+          <div class="meta"><span class="badge">Like New</span><span class="price">$7</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Philosophy</span><span>Paperback</span></div>
+          <h3>On Waiting Rooms</h3>
+          <p class="author">Idris Halvorsen</p>
+          <p class="note">A slim, strange little argument for boredom. Not for everyone. For the right person, everything.</p>
+          <div class="meta"><span class="badge">Good</span><span class="price">$6</span></div>
+        </div>
+      </article>
+
+      <article class="book-card mid">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Mystery</span><span>Mass Market</span></div>
+          <h3>The Quiet Ledger</h3>
+          <p class="author">Constance Vane</p>
+          <p class="note">Spine is soft from being read on a beach somewhere. The ending still holds up.</p>
+          <div class="meta"><span class="badge">Fair</span><span class="price">$4</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Local Author</span><span>Trade Paper</span></div>
+          <h3>Mill Hollow Winters</h3>
+          <p class="author">Pearl Adeyemi — signed at our counter, March</p>
+          <p class="note">She wrote most of it three tables from where you're probably standing. Ask us about the launch night — it rained, and nobody left.</p>
+          <div class="meta"><span class="badge">Signed</span><span class="price">$14</span></div>
+        </div>
+      </article>
+
+      <article class="book-card deep">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Essays</span><span>Hardcover</span></div>
+          <h3>A Shorter Life</h3>
+          <p class="author">Tomas Ferreira</p>
+          <p class="note">Three staff members have bought their own copy of this after reading the store's.</p>
+          <div class="meta"><span class="badge">Very Good</span><span class="price">$11</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Story Collection</span><span>Paperback</span></div>
+          <h3>Nine Small Fires</h3>
+          <p class="author">Odalys Kwan</p>
+          <p class="note">Read one story at a time. Do not binge it. We learned this the hard way.</p>
+          <div class="meta"><span class="badge">Good</span><span class="price">$8</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Nature</span><span>Hardcover, DJ torn</span></div>
+          <h3>Field Notes from a Wet Year</h3>
+          <p class="author">Halvard Skog</p>
+          <p class="note">Dust jacket has a tear along the spine fold, priced down for it. The photographs inside are untouched.</p>
+          <div class="meta"><span class="badge">Good</span><span class="price">$10</span></div>
+        </div>
+      </article>
+
+      <article class="book-card mid">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Poetry</span><span>Paperback</span></div>
+          <h3>Small Weather</h3>
+          <p class="author">June Okonkwo-Reyes</p>
+          <p class="note">Only one copy left. We keep meaning to order more and keep forgetting.</p>
+          <div class="meta"><span class="badge">Last Copy</span><span class="price">$6</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>History</span><span>Hardcover</span></div>
+          <h3>The Long Coastline</h3>
+          <p class="author">Bartholomew Nace</p>
+          <p class="note">Six hundred pages on shipping routes. Somehow it moves fast. A customer returned to argue with us about chapter twelve for forty minutes, and we'd do it again.</p>
+          <div class="meta"><span class="badge">Very Good</span><span class="price">$13</span></div>
+        </div>
+      </article>
+
+      <article class="book-card deep">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Children's</span><span>Board Book</span></div>
+          <h3>Where the Ferns Sleep</h3>
+          <p class="author">Anouk Bissette</p>
+          <p class="note">Corners chewed by someone's toddler, sold as-is at half price. Still a favorite for storytime.</p>
+          <div class="meta"><span class="badge">Well-Loved</span><span class="price">$3</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Fiction</span><span>Paperback</span></div>
+          <h3>The Understudy's Ledger</h3>
+          <p class="author">Marisol Quenneville</p>
+          <p class="note">A former staff pick, three years running. It keeps coming back to us in trade-ins, which we take as a good sign.</p>
+          <div class="meta"><span class="badge">Good</span><span class="price">$7</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Philosophy</span><span>Paperback</span></div>
+          <h3>Notes Toward Patience</h3>
+          <p class="author">Gideon Marsh</p>
+          <p class="note">Margin notes throughout, in three different hands. We left them in on purpose.</p>
+          <div class="meta"><span class="badge">Fair</span><span class="price">$5</span></div>
+        </div>
+      </article>
+
+      <article class="book-card mid">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Memoir</span><span>Hardcover</span></div>
+          <h3>What the Orchard Kept</h3>
+          <p class="author">Petra Lindqvist</p>
+          <p class="note">Came in as part of an estate sale. The previous owner dated every reading in the front cover — eleven times since 1994.</p>
+          <div class="meta"><span class="badge">Very Good</span><span class="price">$12</span></div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <div class="spine" aria-hidden="true"></div>
+        <div class="card-body">
+          <div class="kicker"><span>Local Author</span><span>Paperback</span></div>
+          <h3>Ferry Schedule</h3>
+          <p class="author">Owen Castellanos</p>
+          <p class="note">His first novel, set two streets from here. He still stops by to sign stock when he's in town.</p>
+          <div class="meta"><span class="badge">New Arrival</span><span class="price">$10</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="section-inner">
+      <span class="eyebrow">Who's shelving your books</span>
+      <h2 id="about-heading">A used bookstore, run like one</h2>
+      <div class="two-col">
+        <div>
+          <p class="lede">Understory opened in 1998 in the basement of a hardware store that has since become three other things. We moved upstairs in 2011 and have stayed put since — same creaky floor, same argument about whether the poetry section should live near the front door (poetry won).</p>
+          <p class="lede">We don't sort by algorithm. Every book that comes through the door is read, or skimmed, or at minimum flipped through by someone on staff before it's priced and shelved. If a book doesn't earn its shelf space, it goes to the discount cart out front instead of the recycling bin — someone always takes it home.</p>
+        </div>
+        <ul class="stat-list">
+          <li><span class="num">27</span><span class="label">years open, same neighborhood</span></li>
+          <li><span class="num">6,400+</span><span class="label">books currently on the shelves</span></li>
+          <li><span class="num">180</span><span class="label">trade-ins accepted most months</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="curate" aria-labelledby="curate-heading">
+    <div class="section-inner">
+      <span class="eyebrow">Selling us your books</span>
+      <h2 id="curate-heading">Trade-ins &amp; buybacks</h2>
+      <div class="two-col">
+        <div>
+          <p class="lede">Bring in a box, a shelf's worth, or a single book you're ready to let go of. We look through everything on the spot — no appointment needed during open hours. You can take store credit (worth 30% more than cash) or cash on the counter.</p>
+          <p class="lede">We're currently buying deep in poetry, story collections, and anything by a writer from this region. We're overstocked on business bestsellers and diet books, so those may get a pass — no hard feelings.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#visit">Bring in a box</a>
+            <a class="btn ghost" href="#events">See what we're low on</a>
+          </div>
+        </div>
+        <ul class="list-plain">
+          <li>
+            <span class="when">Step 1</span>
+            <span class="what"><strong>We sort on the spot</strong><span>Most boxes are looked through in fifteen minutes or less while you browse.</span></span>
+          </li>
+          <li>
+            <span class="when">Step 2</span>
+            <span class="what"><strong>You get an offer</strong><span>Priced per book, with the reasoning — condition, demand, how many copies we already have.</span></span>
+          </li>
+          <li>
+            <span class="when">Step 3</span>
+            <span class="what"><strong>Credit or cash</strong><span>Store credit doesn't expire. It's the better deal, but the choice is yours.</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="events" aria-labelledby="events-heading">
+    <div class="section-inner">
+      <span class="eyebrow">In the store, most weeks</span>
+      <h2 id="events-heading">Reading nights &amp; small events</h2>
+      <p class="lede">We hold twenty folding chairs and a bad microphone. That's turned out to be enough for a decade of these.</p>
+      <ul class="list-plain">
+        <li>
+          <span class="when">First Tue.</span>
+          <span class="what"><strong>Understory Reading Series</strong><span>Two local writers, twelve minutes each, then questions until we run out of them.</span></span>
+        </li>
+        <li>
+          <span class="when">Every Sat.</span>
+          <span class="what"><strong>Morning Trade-In Hours</strong><span>Extra staff on the counter 9–11am specifically for boxes of books — shorter wait than weekday afternoons.</span></span>
+        </li>
+        <li>
+          <span class="when">Last Thu.</span>
+          <span class="what"><strong>Quiet Book Club</strong><span>We pick something short. Nobody has to have finished it to show up.</span></span>
+        </li>
+        <li>
+          <span class="when">Seasonal</span>
+          <span class="what"><strong>Sidewalk Dollar Cart Sale</strong><span>The overflow gets a table on the sidewalk and a coffee can for change. First come, first served.</span></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section deep" id="visit" aria-labelledby="visit-heading">
+    <div class="section-inner">
+      <span class="eyebrow">Come find the poetry section</span>
+      <h2 id="visit-heading">Visit us</h2>
+      <div class="two-col">
+        <div>
+          <address>
+            Understory Books<br>
+            214 Birchwood Lane<br>
+            Mill Hollow<br>
+            Open Tue–Sun, 10am–7pm · Closed Mondays
+          </address>
+          <p class="lede" style="margin-top:1rem;">Street parking after 6pm, or the lot behind the bakery two doors down — they don't mind if you're quick about it.</p>
+        </div>
+        <div>
+          <p class="lede">Want first look at what's new before it hits the shelf? We send a short note once a month — new arrivals, upcoming events, and whatever the discount cart is doing.</p>
+          <form class="newsletter" action="#" method="post">
+            <label class="visually-hidden" for="newsletter-email">Email address</label>
+            <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" required>
+            <button type="submit">Join the list</button>
+          </form>
+          <p class="form-note">One email a month. No trading your address to anyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="foot-brand">Understory Books</div>
+      <p>An independent used bookstore in Mill Hollow, open since 1998. Sorted by hand, every week, by people who read the stock.</p>
+    </div>
+    <div>
+      <h3>Visit</h3>
+      <ul>
+        <li>214 Birchwood Lane, Mill Hollow</li>
+        <li>Tue–Sun, 10am–7pm</li>
+        <li>Closed Mondays</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Elsewhere</h3>
+      <ul>
+        <li><a href="#shelves">This week's shelves</a></li>
+        <li><a href="#curate">Trade-ins &amp; buybacks</a></li>
+        <li><a href="#events">Events calendar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 1998–2026 Understory Books. All used, all read.</span>
+    <span>Mill Hollow, est. 1998</span>
+  </div>
+</footer>
+
+</body>
+</html>

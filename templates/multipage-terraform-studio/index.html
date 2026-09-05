@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terraform Studio — Landscape Architecture</title>
+  <meta name="description" content="Terraform Studio is a landscape architecture practice designing public grounds, working wetlands, and resilient urban terrain.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Terraform Studio</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="studio.html">Studio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Landscape Architecture · Portland &amp; Sapporo</p>
+        <h1>Ground that works as hard as the buildings on it.</h1>
+        <p class="lede">We design public landscapes that manage stormwater, cool their neighborhoods, and hold up to daily use — parks, campuses, wetlands, and the leftover terrain in between.</p>
+        <div class="hero-meta">
+          <span>Founded 2014</span>
+          <span>62 built projects</span>
+          <span>ASLA Firm Award, 2024</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Three projects, three kinds of ground</h2>
+        </div>
+        <div class="project-grid">
+          <a class="project-card" href="projects.html#kestrel-marsh-commons">
+            <div class="project-thumb thumb-marsh" role="img" aria-label="Site plan gradient for Kestrel Marsh Commons"></div>
+            <h3>Kestrel Marsh Commons</h3>
+            <p class="project-meta">Tacoma, WA · Constructed wetland &amp; boardwalk park · 2025</p>
+          </a>
+          <a class="project-card" href="projects.html#alder-line-terraces">
+            <div class="project-thumb thumb-terrace" role="img" aria-label="Site plan gradient for Alder Line Terraces"></div>
+            <h3>Alder Line Terraces</h3>
+            <p class="project-meta">Portland, OR · Transit corridor streetscape · 2024</p>
+          </a>
+          <a class="project-card" href="projects.html#odori-pocket-court">
+            <div class="project-thumb thumb-court" role="img" aria-label="Site plan gradient for Odori Pocket Court"></div>
+            <h3>Odori Pocket Court</h3>
+            <p class="project-meta">Sapporo, JP · Snow-country civic plaza · 2023</p>
+          </a>
+        </div>
+        <p style="margin-top: 2.5rem;"><a class="btn ghost" href="projects.html">See all projects</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Approach</p>
+          <h2>We start with the water, then the soil, then the plan.</h2>
+        </div>
+        <div>
+          <p>Every site drains somewhere. Before we draw a single path, we map where the water wants to go and design the landscape to slow it, clean it, and put it to work. Soil comes second — most of our budgets go underground, where nobody photographs them but everything depends on them.</p>
+          <p style="margin-top: 1rem;">The visible design — the terraces, the groves, the long benches — is the last ten percent. It is also the part people fall in love with, so we take it just as seriously.</p>
+          <p style="margin-top: 2rem;"><a class="btn" href="contact.html">Start a project</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="stat-row">
+          <div class="stat"><b>14M</b><span>gallons of stormwater detained annually across built work</span></div>
+          <div class="stat"><b>96%</b><span>of specified plantings surviving past year three</span></div>
+          <div class="stat"><b>11</b><span>municipal clients with repeat commissions</span></div>
+          <div class="stat"><b>2</b><span>studios — Portland and Sapporo — one shared model library</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <small>&copy; 2026 Terraform Studio LLP · 1140 NW Marshall St, Portland, OR</small>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile drawer toggle — the only script-driven behavior besides form validation.
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    })();
+  </script>
+</body>
+</html>

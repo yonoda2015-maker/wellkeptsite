@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PULSE — Three Nights, One Frequency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0A0014; --fg:#FFFFFF; --accent:#FF2E92; --accent2:#33F5FF; --muted:#9C8CB5; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;}
+  h1,h2,.display{font-family:'Archivo Black',sans-serif;line-height:0.95;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+
+  #particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+  header{position:relative;z-index:10;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:'Archivo Black',sans-serif;font-size:1.3rem;letter-spacing:0.02em;}
+  nav{display:flex;gap:2rem;font-size:0.9rem;font-weight:600;}
+  .btn-tix{background:var(--accent);color:#0A0014;padding:0.7rem 1.6rem;border-radius:100px;font-weight:700;font-size:0.9rem;box-shadow:0 0 24px rgba(255,46,146,0.5);}
+
+  .hero{position:relative;z-index:5;min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:2rem;max-width:1400px;margin:0 auto;}
+  .hero-date{color:var(--accent2);font-weight:700;letter-spacing:0.15em;font-size:0.9rem;margin-bottom:1.2rem;text-shadow:0 0 12px rgba(51,245,255,0.6);}
+  h1.hero-title{font-size:clamp(3.5rem,11vw,10rem);}
+  h1.hero-title .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .hero-sub{max-width:560px;color:var(--muted);font-size:1.15rem;margin-top:1.5rem;}
+  .hero-ctas{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;}
+  .btn-primary{background:var(--fg);color:var(--bg);padding:1.1rem 2.2rem;border-radius:100px;font-weight:700;}
+  .btn-outline{border:2px solid var(--accent2);padding:1rem 2rem;border-radius:100px;font-weight:700;color:var(--accent2);}
+
+  section{position:relative;z-index:5;max-width:1400px;margin:0 auto;padding:5rem 2rem;}
+  .lineup h2{font-size:clamp(2.2rem,5vw,4rem);margin-bottom:2.5rem;}
+  .lineup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;}
+  .act-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.8rem;transition:all 0.3s;}
+  .act-card:hover{border-color:var(--accent);background:rgba(255,46,146,0.08);transform:translateY(-4px);}
+  .act-tag{font-size:0.75rem;color:var(--accent2);font-weight:700;letter-spacing:0.08em;margin-bottom:0.6rem;}
+  .act-name{font-family:'Archivo Black',sans-serif;font-size:1.5rem;}
+
+  .stages{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  @media(max-width:800px){.stages{grid-template-columns:1fr;}}
+  .stage-card{border-radius:20px;padding:2.5rem 2rem;position:relative;overflow:hidden;}
+  .stage-card h3{font-family:'Archivo Black',sans-serif;font-size:1.8rem;margin-bottom:0.8rem;}
+  .stage-card p{color:rgba(255,255,255,0.75);font-size:0.95rem;}
+  .stage-1{background:linear-gradient(160deg,#FF2E92,#7A0057);}
+  .stage-2{background:linear-gradient(160deg,#33F5FF,#0057A6);}
+  .stage-3{background:linear-gradient(160deg,#FFD93D,#B8600A);}
+
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;text-align:center;padding:3rem 0;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);}
+  .info-num{font-family:'Archivo Black',sans-serif;font-size:2.6rem;color:var(--accent);}
+  .info-label{color:var(--muted);font-size:0.9rem;margin-top:0.4rem;}
+
+  .cta-final{text-align:center;padding:6rem 2rem;}
+  .cta-final h2{font-size:clamp(2.5rem,8vw,6rem);margin-bottom:1.5rem;}
+
+  footer{position:relative;z-index:5;border-top:1px solid rgba(255,255,255,0.1);padding:3rem 2rem;text-align:center;color:var(--muted);font-size:0.9rem;}
+</style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<header>
+  <div class="logo">PULSE</div>
+  <nav><a href="#lineup">Lineup</a><a href="#stages">Stages</a><a href="#info">Info</a></nav>
+  <a href="#tickets" class="btn-tix">Get Tickets</a>
+</header>
+
+<section class="hero">
+  <div class="hero-date">AUG 14–16, 2026 · DESERT VALLEY</div>
+  <h1 class="hero-title">THREE NIGHTS.<br><span class="grad">ONE FREQUENCY.</span></h1>
+  <p class="hero-sub">40+ artists across 3 stages. Electronic, bass, and everything between. This is not a festival you watch — it's one you feel.</p>
+  <div class="hero-ctas">
+    <a href="#tickets" class="btn-primary">Get Tickets →</a>
+    <a href="#lineup" class="btn-outline">See Lineup</a>
+  </div>
+</section>
+
+<section class="lineup" id="lineup">
+  <h2>Headliners</h2>
+  <div class="lineup-grid">
+    <div class="act-card"><div class="act-tag">FRI · MAIN STAGE</div><div class="act-name">NEON WOLF</div></div>
+    <div class="act-card"><div class="act-tag">FRI · MAIN STAGE</div><div class="act-name">KILOHERTZ</div></div>
+    <div class="act-card"><div class="act-tag">SAT · MAIN STAGE</div><div class="act-name">VELVET STATIC</div></div>
+    <div class="act-card"><div class="act-tag">SAT · BASS TENT</div><div class="act-name">SUBSONIC</div></div>
+    <div class="act-card"><div class="act-tag">SUN · MAIN STAGE</div><div class="act-name">ECHOPLEX</div></div>
+    <div class="act-card"><div class="act-tag">SUN · SUNRISE STAGE</div><div class="act-name">AMBER GROVE</div></div>
+  </div>
+</section>
+
+<section class="stages" id="stages">
+  <div class="stage-card stage-1"><h3>Main Stage</h3><p>Our flagship stage — 200ft of LED, cannon-grade pyro, and the acts that close each night.</p></div>
+  <div class="stage-card stage-2"><h3>Bass Tent</h3><p>The heaviest sound system on site. Not for the faint of chest.</p></div>
+  <div class="stage-card stage-3"><h3>Sunrise Stage</h3><p>Melodic sets timed to the actual sunrise. Bring a blanket.</p></div>
+</section>
+
+<section id="info">
+  <div class="info-grid">
+    <div><div class="info-num">40+</div><div class="info-label">Artists</div></div>
+    <div><div class="info-num">3</div><div class="info-label">Days</div></div>
+    <div><div class="info-num">3</div><div class="info-label">Stages</div></div>
+    <div><div class="info-num">18+</div><div class="info-label">Age minimum</div></div>
+  </div>
+</section>
+
+<section class="cta-final" id="tickets">
+  <h2>DON'T WATCH<br>FROM THE OUTSIDE.</h2>
+  <a href="#" class="btn-primary">Get Tickets — From $189 →</a>
+</section>
+
+<footer>© 2026 PULSE Festival. Desert Valley, CA. All rights reserved.</footer>
+
+<script>
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const COLORS = ['#FF2E92','#33F5FF','#FFD93D'];
+  const COUNT = Math.min(70, Math.floor((w*h)/18000));
+
+  function makeParticle(){
+    return {
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*2.2+0.8,
+      vx: (Math.random()-0.5)*0.3,
+      vy: (Math.random()-0.5)*0.3,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha: Math.random()*0.5+0.3
+    };
+  }
+  particles = Array.from({length: COUNT}, makeParticle);
+
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=w; if(p.x>w) p.x=0;
+      if(p.y<0) p.y=h; if(p.y>h) p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = p.color;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    if(!reduceMotion) requestAnimationFrame(step);
+  }
+  if(!reduceMotion){ requestAnimationFrame(step); } else { step(); }
+</script>
+
+</body>
+</html>

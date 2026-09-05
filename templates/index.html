@@ -85,6 +85,21 @@
   @media(min-width:640px){ .tpl-card.small{grid-column:span 3} }
   @media(min-width:960px){ .tpl-card.small{grid-column:span 2} }
 
+  /* ---- more-styles showcase: grouped by type, horizontal scroll once a group hits 5+ ---- */
+  .showcase-head{margin-bottom:2.2rem;max-width:64ch}
+  .type-group{margin-bottom:2.6rem}
+  .type-group:last-child{margin-bottom:0}
+  .type-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:1rem}
+  .type-head h3{font-size:1.15rem}
+  .type-head .type-count{color:var(--muted);font-size:.85rem;font-weight:600}
+  .grid-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.25rem}
+  .hscroll{display:flex;gap:1.25rem;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding-bottom:.6rem;margin-inline:calc(-1*clamp(1.25rem,4vw,2.5rem));
+    padding-inline:clamp(1.25rem,4vw,2.5rem)}
+  .hscroll .tpl-card{flex:0 0 260px;scroll-snap-align:start}
+  .hscroll::-webkit-scrollbar{height:8px}
+  .hscroll::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:8px}
+
   .cta-box{border:2px solid var(--fg);border-radius:20px;padding:clamp(2rem,5vw,3rem);
     background:var(--surface);position:relative;overflow:hidden;text-align:center}
   .cta-box::after{content:"";position:absolute;width:380px;height:380px;border-radius:50%;
@@ -124,6 +139,8 @@
 
   <section class="sec" style="padding-top:1.5rem">
     <div class="wrap">
+      <p class="eyebrow">Industry starting points</p>
+      <h2 style="margin:.7rem 0 1.8rem">Five industries, five live examples</h2>
       <div class="gallery">
 
         <article class="tpl-card feature">
@@ -186,6 +203,110 @@
           </div>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="showcase-head">
+        <p class="eyebrow">More styles we've built</p>
+        <h2 style="margin-top:.7rem">Every layout below is a real, working build</h2>
+        <p class="lede" style="margin-top:.9rem">Beyond the five industries above, here's the range of styles we've shipped — SaaS dashboards, e-commerce, agency sites, and a few we just wanted to see if we could build. Scroll a row sideways to see more of a group.</p>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>SaaS</h3><span class="type-count">5</span></div>
+        <div class="hscroll">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/minimalist-tech.png" alt="NEXUS minimal tech platform example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">SaaS</span><h3>NEXUS</h3><p>A stripped-back platform landing page — one message per screen, generous whitespace.</p><a class="view" href="/templates/minimalist-tech/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/online-academy.png" alt="LearnFlow Academy example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">SaaS</span><h3>LearnFlow Academy</h3><p>Course-platform layout built around course cards, progress, and a clear enrol CTA.</p><a class="view" href="/templates/online-academy/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/realtor-pro.png" alt="RealtorPro example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">SaaS</span><h3>RealtorPro</h3><p>A listings-platform homepage — search-first hero, featured properties, agent trust signals.</p><a class="view" href="/templates/realtor-pro/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/saas-darktech.png" alt="VELOCE API platform example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">SaaS</span><h3>VELOCE</h3><p>Dark, developer-facing API product page — code samples, terminal styling, dense feature grid.</p><a class="view" href="/templates/saas-darktech/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/saastrust-lp.png" alt="SaaStrust landing page example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">SaaS</span><h3>SaaStrust</h3><p>A classic B2B SaaS landing page — logos, feature triplets, pricing tiers, and an FAQ.</p><a class="view" href="/templates/saastrust-lp/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Agency &amp; Studio</h3><span class="type-count">4</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/arch-monolith.png" alt="MONOLITH architecture studio example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Agency &amp; Studio</span><h3>MONOLITH</h3><p>A raw, concrete-toned architecture studio site built for a portfolio of finished projects.</p><a class="view" href="/templates/arch-monolith/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/creative-agency.png" alt="NEXUS Creative digital agency example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Agency &amp; Studio</span><h3>NEXUS Creative</h3><p>A digital agency portfolio — case studies, capabilities, and a bold work-with-us CTA.</p><a class="view" href="/templates/creative-agency/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/modern-studio-2026.png" alt="VOLT design studio example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Agency &amp; Studio</span><h3>VOLT</h3><p>A design studio that leans into loud color and type instead of the usual muted portfolio look.</p><a class="view" href="/templates/modern-studio-2026/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/multipage-terraform-studio.png" alt="Terraform Studio landscape architecture example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Agency &amp; Studio</span><h3>Terraform Studio</h3><p>A landscape-architecture studio site with a separate projects, studio, and contact page.</p><a class="view" href="/templates/multipage-terraform-studio/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Portfolio</h3><span class="type-count">2</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/dev-portfolio-spotlight.png" alt="Frontend engineer portfolio example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Portfolio</span><h3>Frontend Engineer</h3><p>A developer portfolio — project case studies, a stack list, and a resume download.</p><a class="view" href="/templates/dev-portfolio-spotlight/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/nova-kess-rally.png" alt="Nova Kess rally driver portfolio example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Portfolio</span><h3>Nova Kess — Rally Driver</h3><p>An athlete profile site — season results, sponsor logos, and a career-highlights timeline.</p><a class="view" href="/templates/nova-kess-rally/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>E-commerce</h3><span class="type-count">7</span></div>
+        <div class="hscroll">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/analog-tone-shop.png" alt="Kestrel Modular synthesizer shop example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>Kestrel Modular</h3><p>A boutique hardware shop — one hero product, spec sheet, and a short waitlist form.</p><a class="view" href="/templates/analog-tone-shop/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/ec-kiln-ceramics.png" alt="KILN small-batch ceramics store example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>KILN</h3><p>A small-batch ceramics store with product, cart, and checkout pages built out.</p><a class="view" href="/templates/ec-kiln-ceramics/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/fashion-boutique.png" alt="ALTA luxury fashion example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>ALTA</h3><p>A luxury fashion collective — editorial imagery treatment and a minimal product grid.</p><a class="view" href="/templates/fashion-boutique/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/horizontal-meridian-watches.png" alt="Meridian 1908 watch brand example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>Meridian 1908</h3><p>A watch brand page built as a left-to-right scrolling story instead of a vertical scroll.</p><a class="view" href="/templates/horizontal-meridian-watches/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/indie-bookshop.png" alt="Understory Books indie bookshop example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>Understory Books</h3><p>A used-bookshop site — hand-picked shelves, staff picks, and an in-store events list.</p><a class="view" href="/templates/indie-bookshop/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/forme-foundry.png" alt="FORME type foundry example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>FORME</h3><p>An independent type foundry selling font families, with big live type specimens.</p><a class="view" href="/templates/forme-foundry/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/ferro-expeditions.png" alt="Ferro &amp; Co. expedition travel example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">E-commerce</span><h3>Ferro &amp; Co.</h3><p>A remote-expedition travel operator with tour detail, booking, and confirmation pages.</p><a class="view" href="/templates/ferro-expeditions/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Restaurant &amp; Cafe</h3><span class="type-count">2</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/coffee-shop-proto.png" alt="CAFÉMARK coffee shop example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Restaurant &amp; Cafe</span><h3>CAFÉMARK</h3><p>A specialty-coffee hideaway — menu-forward hero, hours, and a map embed.</p><a class="view" href="/templates/coffee-shop-proto/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/solstice-roasting.png" alt="Solstice Roasting Co. example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Restaurant &amp; Cafe</span><h3>Solstice Roasting Co.</h3><p>A single-origin coffee roaster site with farm-to-cup storytelling and a photo-led menu.</p><a class="view" href="/templates/solstice-roasting/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Health &amp; Wellness</h3><span class="type-count">3</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/boulder-collective.png" alt="Boulder Collective bouldering gym example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Health &amp; Wellness</span><h3>Boulder Collective</h3><p>A bouldering gym site — class schedule, membership tiers, and a day-pass CTA.</p><a class="view" href="/templates/boulder-collective/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/calm-therapy-practice.png" alt="Bloom Therapy Collective example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Health &amp; Wellness</span><h3>Bloom Therapy Collective</h3><p>A therapy practice site built to feel calm and low-pressure for a first-time visitor.</p><a class="view" href="/templates/calm-therapy-practice/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/clinic-smile.png" alt="SmileCare Dental example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Health &amp; Wellness</span><h3>SmileCare Dental</h3><p>A second dental-practice layout — brighter and more clinical than the Willowbrook example above.</p><a class="view" href="/templates/clinic-smile/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Community &amp; Nonprofit</h3><span class="type-count">1</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/nonprofit-roots.png" alt="ROOTS community gardens nonprofit example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Community &amp; Nonprofit</span><h3>ROOTS</h3><p>A community-gardens nonprofit — impact numbers, chapter map, and a donate CTA.</p><a class="view" href="/templates/nonprofit-roots/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Events &amp; Entertainment</h3><span class="type-count">3</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/esports-vanta.png" alt="VANTA esports organization example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Events &amp; Entertainment</span><h3>VANTA</h3><p>An esports org site — roster, match schedule, and merch, styled like a broadcast overlay.</p><a class="view" href="/templates/esports-vanta/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/festival-pulse.png" alt="PULSE music festival example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Events &amp; Entertainment</span><h3>PULSE</h3><p>A three-night music festival page — lineup, single-day passes, and a countdown.</p><a class="view" href="/templates/festival-pulse/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/podcast-lowfi.png" alt="LOW/FI podcast example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Events &amp; Entertainment</span><h3>LOW/FI</h3><p>A podcast homepage — episode list, subscribe links, and a quiet, editorial tone.</p><a class="view" href="/templates/podcast-lowfi/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Docs &amp; Product</h3><span class="type-count">1</span></div>
+        <div class="grid-wrap">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/docs-relay-sdk.png" alt="Relay SDK documentation example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Docs &amp; Product</span><h3>Relay SDK Docs</h3><p>Developer documentation for a realtime messaging SDK — sidebar nav, code blocks, and search.</p><a class="view" href="/templates/docs-relay-sdk/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
+      </div>
+
+      <div class="type-group">
+        <div class="type-head"><h3>Bold &amp; Experimental</h3><span class="type-count">6</span></div>
+        <div class="hscroll">
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/aureole-acoustics.png" alt="Aureole audio product experiment example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Bold &amp; Experimental</span><h3>Aureole</h3><p>A single-product speaker showcase built around scroll-driven 3D and animation.</p><a class="view" href="/templates/aureole-acoustics/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/brutalist-raw.png" alt="CONSTRUCT brutalist web design example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Bold &amp; Experimental</span><h3>CONSTRUCT</h3><p>Raw, brutalist-web styling — thick borders, monospace type, zero rounded corners.</p><a class="view" href="/templates/brutalist-raw/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/glass-morphism.png" alt="AURA glassmorphism design system example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Bold &amp; Experimental</span><h3>AURA</h3><p>A glassmorphism design-system demo — frosted panels over a gradient backdrop.</p><a class="view" href="/templates/glass-morphism/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/magazine-fold-culture.png" alt="FOLD culture magazine example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Bold &amp; Experimental</span><h3>FOLD</h3><p>An independent culture magazine with an editorial, print-inspired layout and a full article page.</p><a class="view" href="/templates/magazine-fold-culture/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/retro-90s.png" alt="RADICAL 90s-style web design example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Bold &amp; Experimental</span><h3>RADICAL</h3><p>An unapologetic 90s-web pastiche — tiled backgrounds, marquee energy, loud color.</p><a class="view" href="/templates/retro-90s/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+          <article class="tpl-card"><div class="thumb"><img src="screenshots/vibrant-gradient.png" alt="PRISMA vibrant gradient design studio example" loading="lazy" width="1280" height="800" /></div><div class="body"><span class="tag">Bold &amp; Experimental</span><h3>PRISMA</h3><p>A design studio built around saturated gradients instead of the usual muted portfolio palette.</p><a class="view" href="/templates/vibrant-gradient/" target="_blank" rel="noopener">View live example &rarr;</a></div></article>
+        </div>
       </div>
     </div>
   </section>

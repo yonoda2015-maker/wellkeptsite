@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RADICAL — 90s Vibes Web</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Comic Sans MS', 'Arial', sans-serif; background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffff00, #00ff00); background-size: 400% 400%; animation: gradientShift 8s ease infinite; color: #1a1a1a; }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+    header { background: #ff1493; padding: 1.5rem 2rem; border: 5px dashed #00d4ff; box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3); }
+    .header-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 2.5rem; font-weight: 900; color: #ffff00; text-shadow: 3px 3px 0 #00d4ff, 6px 6px 0 rgba(0, 0, 0, 0.3); }
+    nav { display: flex; gap: 1rem; }
+    nav a { background: #00d4ff; color: #1a1a1a; padding: 0.75rem 1.5rem; border: 3px solid #1a1a1a; text-decoration: none; font-weight: 900; font-size: 1rem; transform: rotate(-2deg); transition: all 0.1s; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2); }
+    nav a:hover { transform: rotate(2deg) scale(1.1); box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3); }
+
+    .hero { max-width: 1000px; margin: 2rem auto; padding: 3rem 2rem; background: #ffff00; border: 5px solid #ff1493; box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.2); transform: rotate(-1deg); }
+    .hero h1 { font-size: 3.5rem; font-weight: 900; color: #ff1493; text-shadow: 2px 2px 0 #00d4ff, 4px 4px 0 #00ff00; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: 700; }
+
+    .btn-radical { background: #00ff00; color: #ff1493; padding: 1rem 2.5rem; border: 4px solid #1a1a1a; font-size: 1.1rem; font-weight: 900; cursor: pointer; transform: rotate(1deg); transition: all 0.1s; box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3); text-decoration: none; display: inline-block; }
+    .btn-radical:hover { transform: rotate(-1deg) scale(1.1); box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4); }
+
+    .content { max-width: 1000px; margin: 2rem auto; padding: 0 2rem; }
+    h2 { font-size: 2.5rem; font-weight: 900; color: #ff1493; text-shadow: 2px 2px 0 #00d4ff; margin-bottom: 2rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .rad-box { background: #00d4ff; border: 4px solid #1a1a1a; padding: 1.5rem; transform: rotate(calc(-2deg + (var(--i) * 1deg))); box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2); transition: all 0.2s; }
+    .rad-box:nth-child(1) { background: #ff1493; }
+    .rad-box:nth-child(2) { background: #00ff00; }
+    .rad-box:nth-child(3) { background: #ffff00; }
+    .rad-box:hover { transform: rotate(3deg) scale(1.05); box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3); }
+    .rad-box h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.75rem; }
+    .rad-box p { line-height: 1.5; font-weight: 600; }
+
+    footer { background: #00d4ff; padding: 2rem; text-align: center; border-top: 5px dashed #ff1493; font-weight: 700; box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">RADICAL</div>
+    <nav>
+      <a href="#about">ABOUT</a>
+      <a href="#vibes">VIBES</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>🎨 TOTALLY<br>AWESOME<br>90s ENERGY 🎨</h1>
+  <p>❌ No boring designs ❌<br>✅ Pure retro chaos ✅</p>
+  <a href="#" class="btn-radical">👉 CLICK HERE 👈</a>
+</section>
+
+<section class="content" id="about">
+  <h2>🌈 Why 90s Rules 🌈</h2>
+  <div class="grid">
+    <div class="rad-box">
+      <h3>🎪 Bold Colors</h3>
+      <p>Neon vibes. No apologies. Every color screams personality.</p>
+    </div>
+    <div class="rad-box">
+      <h3>🎯 Rad Typography</h3>
+      <p>Thick, chunky fonts. Comic Sans all day. Maximum attitude.</p>
+    </div>
+    <div class="rad-box">
+      <h3>🚀 Pure Fun</h3>
+      <p>Rotated elements. Dashed borders. Everything is a bit wonky and we love it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="vibes">
+  <h2>📺 The Vibe Checklist 📺</h2>
+  <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">✓ Animated gradients<br>✓ Rotation effects<br>✓ Dashed borders<br>✓ Comic Sans eternal<br>✓ Box shadows for days<br>✓ MAXIMUM CHAOS</p>
+</section>
+
+<footer>
+  © 1999–2026 RADICAL. Still awesome. Visit my geocities! 🌐
+</footer>
+
+</body>
+</html>

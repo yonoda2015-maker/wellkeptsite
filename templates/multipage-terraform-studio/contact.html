@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Terraform Studio</title>
+  <meta name="description" content="Start a project with Terraform Studio, or reach the Portland and Sapporo offices directly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Terraform Studio</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="studio.html">Studio</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h1>Tell us about your site.</h1>
+        <p class="lede">A paragraph is plenty to start. We reply within three business days, and a principal joins the first call.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+
+        <div>
+          <ul class="contact-details">
+            <li>
+              <b>Portland</b>
+              1140 NW Marshall St, Suite 300<br>
+              Portland, OR 97209<br>
+              <a href="tel:+15035550172">+1 (503) 555-0172</a>
+            </li>
+            <li>
+              <b>Sapporo</b>
+              2-4-1 Odori Nishi, Chuo-ku<br>
+              Sapporo, Hokkaido 060-0042<br>
+              <a href="tel:+81115550138">+81 11-555-0138</a>
+            </li>
+            <li>
+              <b>New projects</b>
+              <a href="mailto:hello@terraformstudio.example">hello@terraformstudio.example</a>
+            </li>
+            <li>
+              <b>Press &amp; speaking</b>
+              <a href="mailto:press@terraformstudio.example">press@terraformstudio.example</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="form-status" id="form-status" role="status">Thanks — your inquiry is in. We'll reply within three business days from hello@terraformstudio.example.</p>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="field" data-field>
+              <label for="cf-name">Your name</label>
+              <input type="text" id="cf-name" name="name" autocomplete="name" required>
+              <p class="error" id="cf-name-error">Please tell us your name.</p>
+            </div>
+
+            <div class="field" data-field>
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" required>
+              <p class="error" id="cf-email-error">That doesn't look like a valid email address.</p>
+            </div>
+
+            <div class="field" data-field>
+              <label for="cf-type">Project type</label>
+              <select id="cf-type" name="type" required>
+                <option value="">Select one…</option>
+                <option value="park">Park or public open space</option>
+                <option value="streetscape">Streetscape or corridor</option>
+                <option value="campus">Campus or institutional grounds</option>
+                <option value="stormwater">Stormwater or wetland</option>
+                <option value="other">Something else</option>
+              </select>
+              <p class="error" id="cf-type-error">Please choose the closest project type.</p>
+            </div>
+
+            <div class="field" data-field>
+              <label for="cf-message">About the site</label>
+              <textarea id="cf-message" name="message" required minlength="30" placeholder="Where is it, roughly how big, and what's wrong with it today?"></textarea>
+              <p class="error" id="cf-message-error">Give us at least a sentence or two (30+ characters) about the site.</p>
+            </div>
+
+            <div>
+              <button class="btn" type="submit">Send inquiry</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <small>&copy; 2026 Terraform Studio LLP · 1140 NW Marshall St, Portland, OR</small>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile drawer toggle (shared across pages).
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    })();
+
+    // Client-side validation: .invalid class drives the error styles in
+    // styles.css. Fields validate on submit, then re-validate on blur/input
+    // once they have been touched, so errors clear as the user fixes them.
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form) return;
+
+      function validateField(field) {
+        var control = field.querySelector('input, select, textarea');
+        var ok = control.checkValidity();
+        field.classList.toggle('invalid', !ok);
+        control.setAttribute('aria-invalid', String(!ok));
+        return ok;
+      }
+
+      var fields = Array.prototype.slice.call(form.querySelectorAll('[data-field]'));
+
+      fields.forEach(function (field) {
+        var control = field.querySelector('input, select, textarea');
+        control.addEventListener('blur', function () {
+          if (field.dataset.touched) validateField(field);
+        });
+        control.addEventListener('input', function () {
+          if (field.classList.contains('invalid')) validateField(field);
+        });
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var firstInvalid = null;
+        fields.forEach(function (field) {
+          field.dataset.touched = 'true';
+          if (!validateField(field) && !firstInvalid) firstInvalid = field;
+        });
+        if (firstInvalid) {
+          status.classList.remove('visible');
+          firstInvalid.querySelector('input, select, textarea').focus();
+          return;
+        }
+        // Static site: no backend. Show the success state and reset.
+        form.reset();
+        fields.forEach(function (field) {
+          delete field.dataset.touched;
+          field.classList.remove('invalid');
+        });
+        status.classList.add('visible');
+        status.setAttribute('tabindex', '-1');
+        status.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

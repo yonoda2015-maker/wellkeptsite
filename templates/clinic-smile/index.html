@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmileCare Dental — Modern Dentistry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #0F766E;      /* Teal trust */
+      --accent: #06B6D4;       /* Cyan */
+      --success: #10B981;      /* Green */
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #1f2937; background: white; }
+    h1, h2 { font-weight: 700; }
+    .btn-primary { background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-white border-b">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold" style="color: var(--primary);">SmileCare</div>
+    <nav class="hidden md:flex gap-8 text-sm"><a href="#services">Services</a><a href="#doctors">Our Team</a><a href="#appointment">Book</a></nav>
+    <button class="btn-primary text-sm">Schedule Exam</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="py-20 px-6" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white;">
+  <div class="max-w-4xl mx-auto text-center">
+    <h1 class="text-5xl font-bold mb-6">Your Smile, Our Priority</h1>
+    <p class="text-xl mb-12 opacity-95">Advanced dental care with a personal touch. Painless procedures. Friendly staff. Results you'll love.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="btn-primary" style="background: white; color: var(--primary);">Book Appointment</button>
+      <button style="border: 2px solid white; background: transparent; color: white;" class="px-8 py-3 font-semibold rounded-lg">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES BY TYPE -->
+<section id="services" class="py-20 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-center" style="color: var(--primary);">Our Services</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-8 rounded-lg border-l-4" style="border-color: var(--primary);">
+        <h3 class="text-xl font-bold mb-3">General Dentistry</h3>
+        <p class="text-gray-600 mb-4">Cleanings, exams, fillings, and preventive care to keep your teeth healthy.</p>
+        <ul class="space-y-2 text-sm text-gray-700"><li>✓ Regular Checkups</li><li>✓ Professional Cleaning</li><li>✓ Cavity Treatment</li></ul>
+      </div>
+      <div class="bg-white p-8 rounded-lg border-l-4" style="border-color: var(--accent);">
+        <h3 class="text-xl font-bold mb-3">Cosmetic Dentistry</h3>
+        <p class="text-gray-600 mb-4">Brighten your smile with our cosmetic treatments designed to enhance your appearance.</p>
+        <ul class="space-y-2 text-sm text-gray-700"><li>✓ Teeth Whitening</li><li>✓ Veneers</li><li>✓ Bonding</li></ul>
+      </div>
+      <div class="bg-white p-8 rounded-lg border-l-4" style="border-color: var(--success);">
+        <h3 class="text-xl font-bold mb-3">Advanced Treatment</h3>
+        <p class="text-gray-600 mb-4">Complex procedures performed by our experienced specialists with latest technology.</p>
+        <ul class="space-y-2 text-sm text-gray-700"><li>✓ Root Canals</li><li>✓ Implants</li><li>✓ Orthodontics</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-center" style="color: var(--primary);">Meet Our Team</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="w-24 h-24 rounded-full bg-gray-300 mx-auto mb-4 flex items-center justify-center text-gray-500">👨‍⚕️</div>
+        <h3 class="text-xl font-bold mb-1">Dr. Dr. James</h3>
+        <p class="text-sm text-accent font-semibold mb-3">DDS, 15+ years</p>
+        <p class="text-gray-600 text-sm">General Dentistry & Orthodontics specialist. Caring for families since 2008.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-24 h-24 rounded-full bg-gray-300 mx-auto mb-4 flex items-center justify-center text-gray-500">👨‍⚕️</div>
+        <h3 class="text-xl font-bold mb-1">Dr. Dr. Sarah</h3>
+        <p class="text-sm text-accent font-semibold mb-3">DDS, Prosthodontics</p>
+        <p class="text-gray-600 text-sm">Cosmetic & implant specialist. Graduate of NYU College of Dentistry.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-24 h-24 rounded-full bg-gray-300 mx-auto mb-4 flex items-center justify-center text-gray-500">👩‍⚕️</div>
+        <h3 class="text-xl font-bold mb-1">Dr. Dr. Maria</h3>
+        <p class="text-sm text-accent font-semibold mb-3">DDS, Endodontics</p>
+        <p class="text-gray-600 text-sm">Root canal specialist. Board-certified. Passion for patient comfort.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT CTA -->
+<section id="appointment" class="py-20 px-6" style="background: var(--primary-light);">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6" style="color: var(--primary);">Ready for Your Best Smile?</h2>
+    <p class="text-lg text-gray-700 mb-10">Schedule your appointment today. New patients welcome.</p>
+    <button class="btn-primary">Book Now</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: var(--primary); color: white;" class="py-12 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div><p class="font-bold mb-2">SmileCare Dental</p><p class="text-sm opacity-75">Quality care for the whole family.</p></div>
+      <div><p class="font-bold mb-2">Hours</p><p class="text-sm opacity-75">Mon-Fri: 9am-6pm<br>Sat: 10am-2pm</p></div>
+      <div><p class="font-bold mb-2">Contact</p><p class="text-sm opacity-75">(XXX) XXX-XXXX<br>hello@clinic.example</p></div>
+    </div>
+    <div class="border-t border-opacity-25 border-white pt-8 text-center text-sm opacity-75">© 2026 SmileCare Dental.</div>
+  </div>
+</footer>
+
+</body>
+</html>

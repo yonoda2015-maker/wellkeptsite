@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ALTA — Luxury Fashion Collective</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #8B4513;      /* Brown luxury */
+      --accent: #D4AF37;       /* Gold */
+      --bg: #FAF8F3;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; color: #1a1a1a; background: var(--bg); }
+    h1, h2 { font-family: 'Georgia', serif; font-weight: 700; }
+    .btn { background: var(--primary); color: white; padding: 1rem 2rem; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-white border-b">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-3xl font-bold" style="color: var(--primary);">ALTA</div>
+    <nav class="hidden md:flex gap-8 font-semibold"><a href="#collection">Collection</a><a href="#about">Story</a><a href="#contact">Contact</a></nav>
+    <button class="btn text-sm">Shop Now</button>
+  </div>
+</header>
+
+<!-- HERO LOOKBOOK -->
+<section class="h-screen bg-gray-700 flex items-center justify-center text-white text-6xl font-bold">
+  Lookbook 2026
+</section>
+
+<!-- COLLECTION GRID -->
+<section id="collection" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl font-bold mb-16 text-center">Spring / Summer Collection</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-gray-300 aspect-square flex items-center justify-center text-gray-600">High-res Product Photo</div>
+      <div class="flex flex-col justify-center">
+        <p class="text-sm text-accent font-semibold mb-2">NEW ARRIVAL</p>
+        <h3 class="text-4xl font-bold mb-6">Signature Silk Dress</h3>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">Hand-stitched Italian silk. Designed for the modern woman who values craftsmanship.</p>
+        <p class="text-3xl font-bold mb-8" style="color: var(--accent);">$1,250</p>
+        <div class="flex gap-4"><button class="btn">Add to Cart</button><button style="border: 2px solid var(--primary); background: transparent; color: var(--primary);" class="px-8 py-4">Details</button></div>
+      </div>
+
+      <div class="flex flex-col justify-center order-2 md:order-1">
+        <p class="text-sm text-accent font-semibold mb-2">BESTSELLER</p>
+        <h3 class="text-4xl font-bold mb-6">Tailored Blazer</h3>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">Perfect for every occasion. Premium wool blend with timeless silhouette.</p>
+        <p class="text-3xl font-bold mb-8" style="color: var(--accent);">$895</p>
+        <div class="flex gap-4"><button class="btn">Add to Cart</button><button style="border: 2px solid var(--primary); background: transparent; color: var(--primary);" class="px-8 py-4">Details</button></div>
+      </div>
+      <div class="bg-gray-300 aspect-square flex items-center justify-center text-gray-600 order-1 md:order-2">High-res Product Photo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-20 px-6" style="background: var(--primary); color: white;">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6">Crafted for Life</h2>
+    <p class="text-lg leading-relaxed">ALTA celebrates timeless design and exceptional craftsmanship. Each piece is sourced globally and refined locally, honoring tradition while embracing modernity.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #2a2a2a; color: white;" class="py-12 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <p>© 2026 ALTA. Handcrafted Excellence.</p>
+  </div>
+</footer>
+
+</body>
+</html>

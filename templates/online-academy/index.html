@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnFlow Academy — Master Digital Skills Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #9A6B84;      /* Dusty mauve */
+      --primary-light: #E8D5E3; /* Pale lavender */
+      --accent: #D4845E;       /* Dusty peach */
+      --accent-light: #F5E4D8;
+      --success: #7BA88F;      /* Sage green */
+      --text: #2D2D2D;
+      --text-light: #6B6B6B;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: #FAFAF8;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-primary {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .badge-success {
+      background: rgba(123, 168, 143, 0.1);
+      color: var(--success);
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Hero gradient background */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(212, 132, 94, 0.15);
+      pointer-events: none;
+    }
+
+    /* Curriculum cards */
+    .curriculum-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .curriculum-card:hover {
+      transform: translateX(8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-left-color: var(--accent);
+    }
+
+    .curriculum-card .number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary-light);
+      line-height: 1;
+    }
+
+    /* Instructor avatar */
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    /* Pricing card */
+    .pricing-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      border: 2px solid #E5E5E5;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--primary);
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(154, 107, 132, 0.15);
+    }
+
+    .pricing-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 16px 32px rgba(212, 132, 94, 0.1);
+    }
+
+    /* CTA button styles */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(154, 107, 132, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Testimonial cards */
+    .testimonial {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      border-top: 4px solid var(--accent);
+    }
+
+    .stars {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Stats section */
+    .stat {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+
+    /* Stagger animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stagger-item {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold tracking-tight" style="color: var(--primary);">LearnFlow</div>
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="#curriculum" class="hover:text-accent transition" style="color: var(--text-light);">Curriculum</a>
+      <a href="#instructor" class="hover:text-accent transition" style="color: var(--text-light);">Instructor</a>
+      <a href="#testimonials" class="hover:text-accent transition" style="color: var(--text-light);">Reviews</a>
+      <a href="#pricing" class="hover:text-accent transition" style="color: var(--text-light);">Pricing</a>
+    </nav>
+    <button class="btn btn-primary">Enroll Now</button>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section py-20 md:py-32 px-6 relative z-10">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="mb-6">
+      <span class="badge badge-primary">🚀 Learn at Your Own Pace</span>
+    </div>
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight" style="color: var(--primary);">
+      Master Digital Design<br>in 8 Weeks
+    </h1>
+    <p class="text-xl text-gray-700 mb-4 max-w-2xl mx-auto leading-relaxed">
+      From zero to portfolio-ready. Learn from industry experts. Get mentored. Land your first gig.
+    </p>
+    <p class="text-sm text-gray-600 mb-10">✓ 40+ hours of video content  ✓ Live Q&A sessions  ✓ Career guidance included</p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="btn btn-primary">Start Learning Today</button>
+      <button class="btn btn-secondary">Watch Free Preview</button>
+    </div>
+
+    <div class="mt-12 grid grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="text-3xl font-bold" style="color: var(--primary);">2,400+</div>
+        <p class="text-sm text-gray-600 mt-2">Students Graduated</p>
+      </div>
+      <div>
+        <div class="text-3xl font-bold" style="color: var(--accent);">4.9/5</div>
+        <p class="text-sm text-gray-600 mt-2">Course Rating</p>
+      </div>
+      <div>
+        <div class="text-3xl font-bold" style="color: var(--success);">89%</div>
+        <p class="text-sm text-gray-600 mt-2">Job Placement Rate</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CURRICULUM ===== -->
+<section id="curriculum" class="py-20 px-6 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">What You'll Learn</h2>
+      <p class="text-lg text-gray-600">8-week structured journey from fundamentals to advanced</p>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Week 1-2 -->
+      <div class="curriculum-card stagger-item stagger-1">
+        <div class="flex gap-6">
+          <div class="flex-shrink-0">
+            <div class="number">01-02</div>
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-2xl font-bold mb-2">Design Fundamentals</h3>
+            <p class="text-gray-600 mb-3">
+              Color theory, typography, grid systems, and composition principles. Build the foundation every designer needs.
+            </p>
+            <p class="text-sm text-gray-500">8 hours of video • 5 design exercises • 1 live session</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 3-4 -->
+      <div class="curriculum-card stagger-item stagger-2">
+        <div class="flex gap-6">
+          <div class="flex-shrink-0">
+            <div class="number">03-04</div>
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-2xl font-bold mb-2">Figma Mastery</h3>
+            <p class="text-gray-600 mb-3">
+              Deep dive into Figma. Create components, build design systems, collaborate with developers.
+            </p>
+            <p class="text-sm text-gray-500">10 hours of video • 3 real-world projects • 2 live sessions</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 5-6 -->
+      <div class="curriculum-card stagger-item stagger-3">
+        <div class="flex gap-6">
+          <div class="flex-shrink-0">
+            <div class="number">05-06</div>
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-2xl font-bold mb-2">Advanced Web Design</h3>
+            <p class="text-gray-600 mb-3">
+              Responsive design, interaction design, accessibility. Design for real-world constraints.
+            </p>
+            <p class="text-sm text-gray-500">12 hours of video • 4 portfolio projects • 2 live sessions</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 7-8 -->
+      <div class="curriculum-card stagger-item stagger-4">
+        <div class="flex gap-6">
+          <div class="flex-shrink-0">
+            <div class="number">07-08</div>
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-2xl font-bold mb-2">Portfolio & Career</h3>
+            <p class="text-gray-600 mb-3">
+              Polish your portfolio, interview prep, freelancing 101. Launch your design career.
+            </p>
+            <p class="text-sm text-gray-500">6 hours of video • 1 capstone project • 3 career sessions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTOR ===== -->
+<section id="instructor" class="py-20 px-6" style="background: var(--primary-light);">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-16" style="color: var(--primary);">Learn From an Expert</h2>
+
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+      <div class="flex-shrink-0">
+        <div class="avatar text-6xl">👩‍🏫</div>
+      </div>
+      <div class="flex-grow">
+        <h3 class="text-3xl font-bold mb-2" style="color: var(--primary);">Lead Designer</h3>
+        <p class="text-lg text-gray-700 mb-4" style="color: var(--accent);">Lead Designer at Tesla • 10+ years experience</p>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          Sarah has led design teams at Fortune 500 companies and founded two successful design agencies. Her mentorship has helped over 2,400 designers land their dream jobs. She's passionate about practical design education.
+        </p>
+        <div class="space-y-2 text-sm text-gray-700">
+          <p>✓ Designed for 50+ million users worldwide</p>
+          <p>✓ Speaker at Design conferences (UX London, Interaction Design Association)</p>
+          <p>✓ Regular contributor to design publications</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" class="py-20 px-6 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-16">Student Success Stories</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          "I went from complete beginner to landing a junior designer role. The portfolio projects are real-world level and Sarah's feedback was invaluable. Highly recommend!"
+        </p>
+        <p class="font-semibold text-gray-900">Student Name</p>
+        <p class="text-sm text-gray-600">Junior Product Designer @ Airbnb</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          "The structure of this course is perfect. I could learn at my pace while working full-time. The live Q&A sessions really helped me stay motivated."
+        </p>
+        <p class="font-semibold text-gray-900">Dr. Maria</p>
+        <p class="text-sm text-gray-600">Freelance UX Designer</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          "Best investment I've made. Not just learned design, but got real mentorship on how to think like a designer. Priceless."
+        </p>
+        <p class="font-semibold text-gray-900">Student Name</p>
+        <p class="text-sm text-gray-600">Product Designer @ Figma</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          "The portfolio guidance alone was worth it. I got 5 job offers after completing this course. Sarah's network is incredible."
+        </p>
+        <p class="font-semibold text-gray-900">Student Name</p>
+        <p class="text-sm text-gray-600">Senior Designer @ Adobe</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="pricing" class="py-20 px-6 bg-gray-50">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Simple Pricing</h2>
+      <p class="text-lg text-gray-600">Choose the path that fits your goals</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Basic -->
+      <div class="pricing-card">
+        <h3 class="text-2xl font-bold mb-2">Self-Paced</h3>
+        <p class="text-gray-600 mb-4">For independent learners</p>
+        <div class="text-4xl font-bold mb-2" style="color: var(--primary);">$199</div>
+        <p class="text-gray-600 text-sm mb-8">One-time payment</p>
+        <ul class="space-y-3 text-sm text-gray-700 mb-8 text-left">
+          <li>✓ 40+ hours of video</li>
+          <li>✓ All project files</li>
+          <li>✓ Lifetime access</li>
+          <li>✗ No mentorship</li>
+          <li>✗ No live sessions</li>
+        </ul>
+        <button class="btn btn-secondary w-full">Enroll Self-Paced</button>
+      </div>
+
+      <!-- Pro (Featured) -->
+      <div class="pricing-card featured">
+        <div class="mb-4">
+          <span class="badge badge-primary">Most Popular</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2" style="color: var(--primary);">Pro</h3>
+        <p class="text-gray-600 mb-4">Full mentorship included</p>
+        <div class="text-4xl font-bold mb-2" style="color: var(--primary);">$499</div>
+        <p class="text-gray-600 text-sm mb-8">Pay once, learn forever</p>
+        <ul class="space-y-3 text-sm text-gray-700 mb-8 text-left">
+          <li>✓ Everything in Self-Paced</li>
+          <li>✓ 1:1 mentorship (4 sessions)</li>
+          <li>✓ Weekly live Q&A</li>
+          <li>✓ Private community</li>
+          <li>✓ Career guidance</li>
+        </ul>
+        <button class="btn btn-primary w-full">Enroll Pro Track</button>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card">
+        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+        <p class="text-gray-600 mb-4">For serious career changers</p>
+        <div class="text-4xl font-bold mb-2" style="color: var(--accent);">$999</div>
+        <p class="text-gray-600 text-sm mb-8">Pay once, lifetime access</p>
+        <ul class="space-y-3 text-sm text-gray-700 mb-8 text-left">
+          <li>✓ Everything in Pro</li>
+          <li>✓ Unlimited 1:1 mentorship</li>
+          <li>✓ Job placement assistance</li>
+          <li>✓ Portfolio review sessions</li>
+          <li>✓ Interview prep included</li>
+        </ul>
+        <button class="btn btn-accent w-full">Enroll Premium</button>
+      </div>
+    </div>
+
+    <p class="text-center text-gray-600 text-sm mt-12">30-day money-back guarantee. No questions asked.</p>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="py-20 px-6" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white;">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Career?</h2>
+    <p class="text-lg mb-10 opacity-95">
+      Join 2,400+ designers who've already made the leap. Your design journey starts today.
+    </p>
+    <button class="btn" style="background: white; color: var(--primary); font-weight: 600;">Start Your Free Trial (7 Days)</button>
+    <p class="text-sm opacity-75 mt-6">No credit card required. Cancel anytime.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background: #2D2D2D; color: #AAAAAA;" class="py-12 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-gray-700">
+      <div>
+        <p class="text-white font-bold text-lg mb-4">LearnFlow</p>
+        <p class="text-sm leading-relaxed">
+          Democratizing design education. Everyone deserves quality mentorship.
+        </p>
+      </div>
+      <div>
+        <p class="text-white font-bold mb-4">Course</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white">Curriculum</a></li>
+          <li><a href="#" class="hover:text-white">Instructor</a></li>
+          <li><a href="#" class="hover:text-white">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-bold mb-4">Company</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white">About</a></li>
+          <li><a href="#" class="hover:text-white">Blog</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-bold mb-4">Legal</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white">Privacy</a></li>
+          <li><a href="#" class="hover:text-white">Terms</a></li>
+          <li><a href="#" class="hover:text-white">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-sm">
+      <p>© 2026 LearnFlow Academy. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Intersection observer for stagger items
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+      }
+    });
+  });
+
+  document.querySelectorAll('.stagger-item').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

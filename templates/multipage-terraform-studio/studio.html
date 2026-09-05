@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio — Terraform Studio</title>
+  <meta name="description" content="About Terraform Studio: our people, our principles, and why we run two studios eight time zones apart.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Terraform Studio</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="studio.html" aria-current="page">Studio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">About</p>
+        <h1>A landscape practice with mud on its boots.</h1>
+        <p class="lede">Terraform Studio is nineteen people across Portland and Sapporo. We stay small on purpose: every project gets a principal on site, not just on the title block.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Principles</p>
+          <h2>Four rules we don't break</h2>
+        </div>
+        <ol class="value-list">
+          <li>
+            <div>
+              <h3>Hydrology before geometry</h3>
+              <p>The drainage plan is the design. If the water diagram doesn't work, the prettiest planting plan is a future maintenance ticket.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Design for year ten, not opening day</h3>
+              <p>We specify plantings for what they become, budget for establishment care, and write maintenance manuals the grounds crew can actually use.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Local material, local labor</h3>
+              <p>Stone from within 200 miles, plants from regional nurseries, and contractors who will still be nearby when the warranty period ends.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>The public is the client</h3>
+              <p>Committees sign our contracts, but the people who cut through the site at 7 a.m. are who we design for. We prototype with plywood and ask them.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">People</p>
+          <h2>Principals &amp; leads</h2>
+        </div>
+        <div class="team-grid">
+          <article class="team-card">
+            <div class="portrait portrait-1" role="img" aria-label="Portrait placeholder for Maren Okafor"></div>
+            <h3>Maren Okafor</h3>
+            <p class="role">Founding Principal</p>
+            <p>Licensed landscape architect, ex-hydraulic engineer. Started the practice after a decade designing detention basins nobody was allowed to enjoy.</p>
+          </article>
+          <article class="team-card">
+            <div class="portrait portrait-2" role="img" aria-label="Portrait placeholder for Kenji Hasebe"></div>
+            <h3>Kenji Hasebe</h3>
+            <p class="role">Principal, Sapporo</p>
+            <p>Leads the Hokkaido studio and everything involving snow. Author of our cold-climate planting standard, now adopted by three prefectures.</p>
+          </article>
+          <article class="team-card">
+            <div class="portrait portrait-3" role="img" aria-label="Portrait placeholder for Ruth Callender"></div>
+            <h3>Ruth Callender</h3>
+            <p class="role">Director of Soils &amp; Planting</p>
+            <p>Soil scientist. Signs off on every planting plan and rejects roughly a third of them the first time. The 96% survival rate is mostly her doing.</p>
+          </article>
+          <article class="team-card">
+            <div class="portrait portrait-4" role="img" aria-label="Portrait placeholder for Diego Marchetti"></div>
+            <h3>Diego Marchetti</h3>
+            <p class="role">Construction Lead</p>
+            <p>Twenty years in heavy civil before joining us. Translates our drawings into things contractors can bid without padding, and walks every pour.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Recognition</p>
+          <h2>Selected honors</h2>
+        </div>
+        <div>
+          <ul class="contact-details">
+            <li><b>2024</b>ASLA National Firm Award</li>
+            <li><b>2023</b>Good Design Award (Japan) — Odori Pocket Court</li>
+            <li><b>2022</b>WASLA Honor Award — Two Creeks Detention Basin</li>
+            <li><b>2020</b>Landscape Architecture Foundation Case Study Investigation — Hollow Meadow Schoolyard</li>
+          </ul>
+          <p style="margin-top: 2rem;"><a class="btn ghost" href="projects.html">See the work behind them</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <small>&copy; 2026 Terraform Studio LLP · 1140 NW Marshall St, Portland, OR</small>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    })();
+  </script>
+</body>
+</html>

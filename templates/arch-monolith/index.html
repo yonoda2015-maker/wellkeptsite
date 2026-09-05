@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MONOLITH — Architecture Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#EFEDE7; --fg:#1C1B18; --muted:#726E64; --line:rgba(28,27,24,0.14); --concrete:#B9B3A5; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);}
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:400;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img,.ph{display:block;width:100%;}
+
+  header{padding:1.6rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:50;}
+  .logo{font-family:'Fraunces',serif;font-size:1.4rem;}
+  nav{display:flex;gap:2.2rem;font-size:0.88rem;}
+
+  .hero{max-width:1500px;margin:0 auto;padding:clamp(3rem,8vw,6rem) 2.5rem;}
+  .hero-label{font-size:0.85rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1.5rem;}
+  h1.hero-title{font-size:clamp(2.6rem,7vw,6rem);max-width:16ch;}
+  .hero-meta{display:flex;justify-content:space-between;margin-top:2.5rem;flex-wrap:wrap;gap:1rem;color:var(--muted);font-size:0.95rem;max-width:700px;}
+
+  /* ===== SCROLL-DRIVEN REVEAL (view() timeline) ===== */
+  @keyframes fade-rise{ from{opacity:0; transform:translateY(60px);} to{opacity:1; transform:translateY(0);} }
+  .sd-reveal{
+    animation: fade-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 35%;
+  }
+  @keyframes pan-image{ from{ transform:scale(1.15) translateY(-3%);} to{ transform:scale(1.0) translateY(0);} }
+  .sd-pan{
+    animation: pan-image linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 60%;
+  }
+  @supports not (animation-timeline: view()){
+    .sd-reveal, .sd-pan{ animation:none; opacity:1; transform:none; }
+  }
+  @media (prefers-reduced-motion: reduce){ .sd-reveal,.sd-pan{ animation:none !important; opacity:1; transform:none; } }
+
+  .project-block{max-width:1500px;margin:0 auto;padding:clamp(3rem,7vw,5rem) 2.5rem;display:grid;grid-template-columns:0.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center;border-top:1px solid var(--line);}
+  .project-block:nth-child(even){grid-template-columns:1.1fr 0.9fr;}
+  .project-block:nth-child(even) .project-visual{order:2;}
+  @media(max-width:900px){.project-block{grid-template-columns:1fr !important;}.project-block:nth-child(even) .project-visual{order:0;}}
+  .project-visual{aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:var(--concrete);position:relative;}
+  .project-visual .ph{height:100%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;color:rgba(28,27,24,0.3);font-size:1.2rem;}
+  .p1{background:linear-gradient(160deg,#C7C1B3,#A39C8B);}
+  .p2{background:linear-gradient(160deg,#8E8A80,#4A473F);}
+  .p3{background:linear-gradient(160deg,#D8D2C0,#B9B3A5);}
+  .project-info .index{color:var(--muted);font-size:0.85rem;margin-bottom:1rem;}
+  .project-info h2{font-size:clamp(1.8rem,3.5vw,3rem);margin-bottom:1rem;}
+  .project-info p{color:var(--muted);max-width:48ch;line-height:1.7;margin-bottom:1.2rem;}
+  .project-tags{display:flex;gap:0.6rem;flex-wrap:wrap;font-size:0.8rem;}
+  .project-tags span{border:1px solid var(--line);padding:0.3rem 0.8rem;border-radius:100px;color:var(--muted);}
+
+  .philosophy{max-width:900px;margin:0 auto;padding:clamp(4rem,10vw,7rem) 2.5rem;text-align:center;border-top:1px solid var(--line);}
+  .philosophy p{font-family:'Fraunces',serif;font-size:clamp(1.5rem,3.5vw,2.4rem);line-height:1.4;}
+
+  .stats{max-width:1500px;margin:0 auto;padding:3rem 2.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  @media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat-num{font-family:'Fraunces',serif;font-size:2.4rem;}
+  .stat-label{color:var(--muted);font-size:0.85rem;margin-top:0.3rem;}
+
+  .cta{max-width:1500px;margin:0 auto;padding:clamp(4rem,10vw,7rem) 2.5rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;}
+  .cta h2{font-size:clamp(2rem,5vw,4rem);max-width:16ch;}
+  .btn{border:1px solid var(--fg);padding:1rem 2rem;border-radius:2px;font-size:0.9rem;white-space:nowrap;}
+  .btn:hover{background:var(--fg);color:var(--bg);}
+
+  footer{border-top:1px solid var(--line);padding:2.5rem;display:flex;justify-content:space-between;color:var(--muted);font-size:0.85rem;flex-wrap:wrap;gap:1rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MONOLITH</div>
+  <nav><a href="#work">Work</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav>
+</header>
+
+<section class="hero">
+  <div class="hero-label sd-reveal">ARCHITECTURE & INTERIORS — FOUNDED 2011</div>
+  <h1 class="hero-title sd-reveal">Buildings that argue with their surroundings, quietly.</h1>
+  <div class="hero-meta sd-reveal">
+    <span>Based in Zurich & Lisbon</span>
+    <span>34 completed projects</span>
+    <span>3 European design awards</span>
+  </div>
+</section>
+
+<div id="work">
+  <div class="project-block">
+    <div class="project-visual p1 sd-pan"><div class="ph">Casa Do Vento</div></div>
+    <div class="project-info">
+      <div class="index sd-reveal">01 — Residential</div>
+      <h2 class="sd-reveal">Casa do Vento</h2>
+      <p class="sd-reveal">A concrete residence built into a coastal slope in Sintra, oriented entirely around prevailing wind and afternoon light.</p>
+      <div class="project-tags sd-reveal"><span>Residential</span><span>Concrete</span><span>2024</span></div>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <div class="project-visual p2 sd-pan"><div class="ph">Halle Nord</div></div>
+    <div class="project-info">
+      <div class="index sd-reveal">02 — Cultural</div>
+      <h2 class="sd-reveal">Halle Nord</h2>
+      <p class="sd-reveal">Adaptive reuse of a 1970s freight depot into a public gallery, keeping the original steel trusses fully exposed.</p>
+      <div class="project-tags sd-reveal"><span>Cultural</span><span>Adaptive Reuse</span><span>2023</span></div>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <div class="project-visual p3 sd-pan"><div class="ph">Villa Serrata</div></div>
+    <div class="project-info">
+      <div class="index sd-reveal">03 — Residential</div>
+      <h2 class="sd-reveal">Villa Serrata</h2>
+      <p class="sd-reveal">Terraced volumes stepping down a vineyard slope near Lugano, each level with its own private outdoor room.</p>
+      <div class="project-tags sd-reveal"><span>Residential</span><span>Terraced</span><span>2022</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="philosophy">
+  <p class="sd-reveal">"We don't design objects. We design the relationship between a site and the people who'll spend decades inside it."</p>
+</section>
+
+<section class="stats">
+  <div><div class="stat-num sd-reveal">34</div><div class="stat-label">Completed projects</div></div>
+  <div><div class="stat-num sd-reveal">13</div><div class="stat-label">Years practicing</div></div>
+  <div><div class="stat-num sd-reveal">3</div><div class="stat-label">Design awards</div></div>
+  <div><div class="stat-num sd-reveal">2</div><div class="stat-label">Studio locations</div></div>
+</section>
+
+<section class="cta" id="contact">
+  <h2 class="sd-reveal">Have a site in mind?</h2>
+  <a href="mailto:studio@monolith-architecture.example" class="btn sd-reveal">studio@monolith-architecture.example</a>
+</section>
+
+<footer>
+  <span>© 2026 Monolith Studio</span>
+  <span>Zurich · Lisbon</span>
+</footer>
+
+</body>
+</html>

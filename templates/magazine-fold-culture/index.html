@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOLD — An Independent Culture Magazine</title>
+<meta name="description" content="FOLD is an independent magazine covering film, music, books, cities, and the people who make culture happen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EE;
+    --ink: #171512;
+    --red: #B3261E;
+    --hairline: rgba(23, 21, 18, 0.28);
+    --faint: rgba(23, 21, 18, 0.62);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  .wrap {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--faint);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .masthead {
+    text-align: center;
+    padding: 1.75rem 0 1.1rem;
+  }
+
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(3.2rem, 9vw, 5.6rem);
+    letter-spacing: 0.28em;
+    text-indent: 0.28em; /* balances the letter-spacing */
+    line-height: 1;
+  }
+
+  .masthead .tagline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 0.55rem;
+  }
+
+  /* Primary navigation: a wrapping horizontal strip, visible at every width */
+  .mainnav {
+    border-top: 3px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .mainnav::after {
+    content: "";
+    display: block;
+  }
+
+  .mainnav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 2rem;
+    padding: 0.55rem 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .mainnav a[aria-current="page"] { color: var(--red); }
+
+  .redrule {
+    border: 0;
+    border-top: 2px solid var(--red);
+    margin-bottom: 2.25rem;
+  }
+
+  /* ---------- Front-page grid ---------- */
+
+  .frontpage {
+    display: grid;
+    grid-template-columns: 1fr 1fr minmax(16rem, 0.9fr);
+    grid-template-areas:
+      "lead   lead   side"
+      "briefs briefs briefs"
+      "archive archive archive";
+    column-gap: 2rem;
+    row-gap: 2.5rem;
+  }
+
+  /* Lead story */
+  .lead {
+    grid-area: lead;
+    padding-right: 2rem;
+    border-right: 1px solid var(--hairline);
+  }
+
+  .kicker {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  .lead h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    line-height: 1.08;
+    margin-bottom: 0.7rem;
+  }
+
+  .lead .deck {
+    font-size: 1.12rem;
+    font-style: italic;
+    color: var(--faint);
+    margin-bottom: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .byline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1rem;
+  }
+
+  .byline b { color: var(--ink); font-weight: 700; }
+
+  .lead-art {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(160deg, rgba(23,21,18,0.85) 0%, rgba(23,21,18,0.55) 45%, rgba(179,38,30,0.35) 100%),
+      linear-gradient(20deg, #3a352c 0%, #6b6152 60%, #a89a82 100%);
+    margin-bottom: 0.45rem;
+  }
+
+  .caption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.74rem;
+    color: var(--faint);
+    margin-bottom: 1rem;
+  }
+
+  .lead p.body { margin-bottom: 0.9rem; }
+
+  .continue {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .continue a { color: var(--red); }
+
+  /* Secondary column */
+  .side { grid-area: side; }
+
+  .side .colhead {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .side article {
+    padding-bottom: 1.1rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .side article:last-of-type { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+
+  .side h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.18rem;
+    line-height: 1.22;
+    margin-bottom: 0.35rem;
+  }
+
+  .side p { font-size: 0.92rem; color: var(--faint); margin-bottom: 0.35rem; }
+
+  .side .byline { margin-bottom: 0; }
+
+  /* Briefs strip */
+  .briefs {
+    grid-area: briefs;
+    border-top: 3px double var(--ink);
+    padding-top: 1.2rem;
+  }
+
+  .briefs .strip-head {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  .briefs .strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 2rem;
+  }
+
+  .briefs article {
+    border-left: 1px solid var(--hairline);
+    padding-left: 1.25rem;
+  }
+
+  .briefs article:first-child { border-left: 0; padding-left: 0; }
+
+  .briefs h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+
+  .briefs p { font-size: 0.9rem; color: var(--faint); }
+
+  /* Archive box */
+  .archive {
+    grid-area: archive;
+    border: 1px solid var(--ink);
+    outline: 1px solid var(--ink);
+    outline-offset: 3px;
+    padding: 1.4rem 1.6rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.6rem;
+    align-items: baseline;
+  }
+
+  .archive .label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    white-space: nowrap;
+  }
+
+  .archive h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 0.3rem;
+  }
+
+  .archive p { font-size: 0.92rem; color: var(--faint); }
+
+  /* ---------- Footer ---------- */
+
+  .sitefoot {
+    margin-top: 3rem;
+    border-top: 1px solid var(--ink);
+    padding-top: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  /* ---------- Responsive collapse ---------- */
+
+  @media (max-width: 900px) {
+    .frontpage {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "lead"
+        "side"
+        "briefs"
+        "archive";
+    }
+    .lead { padding-right: 0; border-right: 0; border-bottom: 1px solid var(--hairline); padding-bottom: 1.8rem; }
+    .briefs .strip { grid-template-columns: 1fr; gap: 1.1rem 0; }
+    .briefs article { border-left: 0; padding-left: 0; border-top: 1px solid var(--hairline); padding-top: 1.1rem; }
+    .briefs article:first-child { border-top: 0; padding-top: 0; }
+    .archive { grid-template-columns: 1fr; gap: 0.6rem; }
+  }
+
+  /* No motion anywhere on this site; belt-and-suspenders for UA/extension styles */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="topbar">
+      <span>Issue 41 — The Slowness Issue</span>
+      <span>Tuesday, July 14, 2026</span>
+      <span>Printed quarterly · Read daily</span>
+    </div>
+
+    <div class="masthead">
+      <h1>FOLD</h1>
+      <p class="tagline">An independent magazine of film, music, books &amp; cities</p>
+    </div>
+
+    <nav class="mainnav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" aria-current="page">Front Page</a></li>
+        <li><a href="article.html">Film</a></li>
+        <li><a href="article.html">Music</a></li>
+        <li><a href="article.html">Books</a></li>
+        <li><a href="article.html">Cities</a></li>
+        <li><a href="article.html">Archive</a></li>
+      </ul>
+    </nav>
+    <hr class="redrule">
+  </header>
+
+  <main class="frontpage">
+
+    <!-- LEAD STORY -->
+    <article class="lead">
+      <p class="kicker">Cities / The Long Read</p>
+      <h2><a href="article.html">The Last Projectionist of Yesler Way</a></h2>
+      <p class="deck">For forty-one years, Marion Okabe has threaded 35mm film through the same Century JJ projector. The neighborhood changed around her booth. The booth did not.</p>
+      <p class="byline">By <b>Dana Reyes</b> · Photographs by <b>T. Adeyemi</b> · 18 min read</p>
+      <div class="lead-art" role="img" aria-label="Placeholder image: light falling through a projection booth window"></div>
+      <p class="caption">The booth of the Corona Theater, Seattle, photographed in March. The carbon-arc housings were retired in 1988; Okabe kept one as a doorstop.</p>
+      <p class="body">The staircase to the booth is seventeen steps, and Marion Okabe has counted them every working night since 1985. She climbs them with a thermos, a paperback, and two reels of whatever the Corona is showing — lately a restored print of a Taiwanese drama that arrived in a dented orange shipping case, the kind she says smells like every projection room she has ever stood in.</p>
+      <p class="body">Downstairs, the theater has survived three owners, one fire, and a decade of streaming. Upstairs, almost nothing has changed. There is a reason for that, and it is not nostalgia.</p>
+      <p class="continue"><a href="article.html">Continue reading →</a></p>
+    </article>
+
+    <!-- SECONDARY COLUMN -->
+    <section class="side" aria-label="More stories">
+      <h2 class="colhead">Also in this issue</h2>
+
+      <article>
+        <p class="kicker">Music</p>
+        <h3><a href="article.html">The Choir That Rehearses in a Parking Garage</a></h3>
+        <p>Every Thursday at 9 p.m., level B2 of a downtown garage becomes the most resonant room in the city — until security arrives.</p>
+        <p class="byline">By <b>Felix Nakamura</b></p>
+      </article>
+
+      <article>
+        <p class="kicker">Books</p>
+        <h3><a href="article.html">Against the Tidy Ending</a></h3>
+        <p>A wave of new fiction refuses resolution, and readers are buying it anyway. Our critic on why closure went out of style.</p>
+        <p class="byline">By <b>Imogen Clarke</b></p>
+      </article>
+
+      <article>
+        <p class="kicker">Film</p>
+        <h3><a href="article.html">What We Lost When Trailers Got Good</a></h3>
+        <p>The two-minute trailer is now its own art form, complete with festivals. That might be terrible news for the movies.</p>
+        <p class="byline">By <b>Ruth Osei</b></p>
+      </article>
+
+      <article>
+        <p class="kicker">Interview</p>
+        <h3><a href="article.html">"I Make Furniture for Rooms That Don't Exist Yet"</a></h3>
+        <p>Set designer Paulo Vieira on building the apartments of fictional people, and what your bookshelf says to a camera.</p>
+        <p class="byline">By <b>Dana Reyes</b></p>
+      </article>
+    </section>
+
+    <!-- CULTURE BRIEFS -->
+    <section class="briefs" aria-label="Culture briefs">
+      <h2 class="strip-head">Briefs — Noted This Week</h2>
+      <div class="strip">
+        <article>
+          <p class="kicker">Exhibitions</p>
+          <h3><a href="article.html">Receipts, 1974–2001</a></h3>
+          <p>A museum show built entirely from one woman's grocery receipts turns out to be the most moving economic history you'll see this year. Through September 6.</p>
+        </article>
+        <article>
+          <p class="kicker">Radio</p>
+          <h3><a href="article.html">The Shipping Forecast, Translated</a></h3>
+          <p>A late-night program reads maritime weather bulletins in fourteen languages. Nobody at the station remembers who started it, and nobody wants it to stop.</p>
+        </article>
+        <article>
+          <p class="kicker">Food</p>
+          <h3><a href="article.html">The Bakery With No Sign</a></h3>
+          <p>It opens at 5 a.m., sells out by 7, and has never advertised. We spent a week in line finding out why the bread is beside the point.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FROM THE ARCHIVE -->
+    <aside class="archive" aria-label="From the archive">
+      <p class="label">From the Archive · Issue 9, 2018</p>
+      <div>
+        <h3><a href="article.html">The Man Who Alphabetized the Ocean</a></h3>
+        <p>Our profile of cartographer Henrik Solberg, who spent thirty years naming underwater canyons after librarians, remains the most-requested reprint in FOLD's history. Republished this week with a new afterword.</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="sitefoot">
+    <span>FOLD Magazine · Founded 2015</span>
+    <span><a href="article.html">Subscriptions</a> · <a href="article.html">Stockists</a> · <a href="article.html">Masthead</a></span>
+    <span>Set in Playfair Display &amp; Source Serif</span>
+  </footer>
+
+</div>
+</body>
+</html>

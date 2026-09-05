@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KILN — Small-Batch Ceramics</title>
+<meta name="description" content="Browse the KILN catalog of small-batch ceramics — mugs, plates, bowls, teapots and vases, hand-thrown and fired in limited runs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#C9CFC4;
+  --ink:#26241F;
+  --clay:#A6634B;
+  --card:#F4F2EC;
+  --ink-soft:rgba(38,36,31,.66);
+  --line:rgba(38,36,31,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Karla',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400;line-height:1.12}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.site-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 20px;max-width:1120px;margin:0 auto}
+.brand{font-family:'DM Serif Display',serif;font-size:1.45rem;letter-spacing:.16em}
+.nav-links{display:flex;gap:20px;align-items:center;font-size:.95rem;flex-wrap:wrap}
+.nav-links a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+.nav-links a:hover{border-color:var(--clay)}
+.cart-link{display:inline-flex;gap:7px;align-items:center}
+.badge{min-width:21px;height:21px;padding:0 6px;border-radius:11px;background:var(--clay);color:var(--card);font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.badge.bump{animation:bump .35s ease}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.38)}100%{transform:scale(1)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:var(--card);border:none;font-family:'Karla',sans-serif;font-weight:700;font-size:.92rem;padding:11px 20px;border-radius:4px;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--clay)}
+.btn.added{background:var(--clay)}
+.hero{padding:64px 0 44px;max-width:640px}
+.hero .kicker{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);margin-bottom:16px}
+.hero p{color:var(--ink-soft);font-size:1.05rem;max-width:52ch}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-bottom:80px}
+@media (max-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:440px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.card .visual{display:block;aspect-ratio:4/5;position:relative}
+.visual::after{content:"";position:absolute;inset:12px;border:1px solid rgba(244,242,236,.35);border-radius:4px;pointer-events:none}
+.g1{background:linear-gradient(150deg,#DCCFB6 0%,#B49577 55%,#8C6E52 100%)}
+.g2{background:radial-gradient(circle at 32% 28%,#EDE8DA 0%,#AEB4A2 60%,#7E8676 100%)}
+.g3{background:linear-gradient(160deg,#5A544B 0%,#8A7B6B 55%,#C4B49C 100%)}
+.g4{background:radial-gradient(circle at 68% 30%,#D7DEDC 0%,#93A6A8 55%,#5E7476 100%)}
+.g5{background:linear-gradient(140deg,#C9B8A4 0%,#A6634B 70%,#7E4736 100%)}
+.g6{background:radial-gradient(circle at 40% 65%,#E9E3D2 0%,#C0BBA6 55%,#8F8C77 100%)}
+.g7{background:linear-gradient(155deg,#A8B39E 0%,#77836E 55%,#4E5947 100%)}
+.g8{background:radial-gradient(circle at 30% 70%,#E3D5C4 0%,#B98E70 60%,#8A5F48 100%)}
+.card-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-body h2{font-size:1.2rem}
+.card-body .glaze{font-size:.82rem;color:var(--ink-soft)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px}
+.price{font-weight:700;font-size:1rem}
+.quick-add{padding:9px 14px;font-size:.84rem}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:8px 0 26px}
+.section-head h2{font-size:1.6rem}
+.section-head span{font-size:.85rem;color:var(--ink-soft)}
+.note-band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;margin-bottom:64px}
+.note-band .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media (max-width:720px){.note-band .wrap{grid-template-columns:1fr}}
+.note-band h3{font-size:1.05rem;margin-bottom:6px}
+.note-band p{font-size:.88rem;color:var(--ink-soft)}
+footer{border-top:1px solid var(--line);padding:34px 0 46px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.85rem;color:var(--ink-soft)}
+footer nav{display:flex;gap:18px}
+footer nav a:hover{color:var(--clay)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html">KILN</a>
+    <div class="nav-links">
+      <a href="index.html" aria-current="page">Shop</a>
+      <a href="product.html?id=ember-teapot">Featured</a>
+      <a href="cart.html" class="cart-link">Cart <span id="cart-badge" class="badge">0</span></a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="kicker">Fired weekly in Eugene, Oregon</p>
+    <h1>Stoneware made in batches of twelve, never more.</h1>
+    <p>Every piece is thrown, trimmed, and glazed by two hands in our backyard studio. Small warps and speckle are part of the record — no two firings come out the same, and we like it that way.</p>
+  </section>
+
+  <div class="section-head">
+    <h2>Current batch — Summer firing No. 41</h2>
+    <span>8 pieces available</span>
+  </div>
+
+  <section class="grid" aria-label="Product catalog">
+    <article class="card">
+      <a class="visual g1" href="product.html?id=ridge-mug" aria-label="View Ridge Mug"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=ridge-mug">Ridge Mug</a></h2>
+        <p class="glaze">12 oz · throw-line texture</p>
+        <div class="card-foot">
+          <span class="price">$38</span>
+          <button class="btn quick-add" data-add="ridge-mug">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g2" href="product.html?id=dune-plate" aria-label="View Dune Dinner Plate"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=dune-plate">Dune Dinner Plate</a></h2>
+        <p class="glaze">10.5&Prime; · shallow coupe rim</p>
+        <div class="card-foot">
+          <span class="price">$52</span>
+          <button class="btn quick-add" data-add="dune-plate">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g3" href="product.html?id=ember-teapot" aria-label="View Ember Teapot"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=ember-teapot">Ember Teapot</a></h2>
+        <p class="glaze">24 oz · cane handle, drip-free spout</p>
+        <div class="card-foot">
+          <span class="price">$124</span>
+          <button class="btn quick-add" data-add="ember-teapot">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g4" href="product.html?id=tide-bowl" aria-label="View Tide Bowl"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=tide-bowl">Tide Bowl</a></h2>
+        <p class="glaze">6&Prime; · everyday cereal &amp; noodle bowl</p>
+        <div class="card-foot">
+          <span class="price">$44</span>
+          <button class="btn quick-add" data-add="tide-bowl">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g5" href="product.html?id=fold-vase" aria-label="View Fold Vase"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=fold-vase">Fold Vase</a></h2>
+        <p class="glaze">9&Prime; tall · pinched shoulder</p>
+        <div class="card-foot">
+          <span class="price">$86</span>
+          <button class="btn quick-add" data-add="fold-vase">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g6" href="product.html?id=hearth-tumbler" aria-label="View Hearth Tumbler"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=hearth-tumbler">Hearth Tumbler</a></h2>
+        <p class="glaze">10 oz · no handle, thumb dimple</p>
+        <div class="card-foot">
+          <span class="price">$32</span>
+          <button class="btn quick-add" data-add="hearth-tumbler">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g7" href="product.html?id=moss-platter" aria-label="View Moss Serving Platter"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=moss-platter">Moss Serving Platter</a></h2>
+        <p class="glaze">14&Prime; oval · slab-built</p>
+        <div class="card-foot">
+          <span class="price">$98</span>
+          <button class="btn quick-add" data-add="moss-platter">Add to cart</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="visual g8" href="product.html?id=cinder-bud-vase" aria-label="View Cinder Bud Vase"></a>
+      <div class="card-body">
+        <h2><a href="product.html?id=cinder-bud-vase">Cinder Bud Vase</a></h2>
+        <p class="glaze">4.5&Prime; tall · single-stem neck</p>
+        <div class="card-foot">
+          <span class="price">$46</span>
+          <button class="btn quick-add" data-add="cinder-bud-vase">Add to cart</button>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<div class="note-band">
+  <div class="wrap">
+    <div>
+      <h3>Seconds are honest</h3>
+      <p>Pieces with pinholes or glaze crawl are sold at studio sales, never shipped. What arrives is first-quality.</p>
+    </div>
+    <div>
+      <h3>Packed to survive</h3>
+      <p>Double-boxed with molded paper pulp — zero plastic foam. Breakage in transit is replaced, no photos-of-shards ritual required.</p>
+    </div>
+    <div>
+      <h3>Batch, not backorder</h3>
+      <p>When a batch sells out, the listing closes until the next firing. Join the kiln-opening list on any product page.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 KILN Ceramics Studio — Eugene, OR</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Shop</a>
+      <a href="cart.html">Cart</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ---- KILN shared cart (identical block on every page) ---- */
+const KILN_MAX_QTY = 12; /* business rule: max 12 per line item */
+const KILN_PRODUCTS = {
+  "ridge-mug":       { name:"Ridge Mug",           price:38,  grad:"g1", variants:["Speckled Oat","Iron Wash","Sage Ash"] },
+  "dune-plate":      { name:"Dune Dinner Plate",   price:52,  grad:"g2", variants:["Speckled Oat","Sage Ash","Tide Blue"] },
+  "ember-teapot":    { name:"Ember Teapot",        price:124, grad:"g3", variants:["Iron Wash","Clay Rust","Speckled Oat"] },
+  "tide-bowl":       { name:"Tide Bowl",           price:44,  grad:"g4", variants:["Tide Blue","Speckled Oat","Sage Ash"] },
+  "fold-vase":       { name:"Fold Vase",           price:86,  grad:"g5", variants:["Clay Rust","Iron Wash"] },
+  "hearth-tumbler":  { name:"Hearth Tumbler",      price:32,  grad:"g6", variants:["Speckled Oat","Sage Ash","Clay Rust"] },
+  "moss-platter":    { name:"Moss Serving Platter",price:98,  grad:"g7", variants:["Sage Ash","Iron Wash"] },
+  "cinder-bud-vase": { name:"Cinder Bud Vase",     price:46,  grad:"g8", variants:["Clay Rust","Tide Blue","Speckled Oat"] }
+};
+const KILN_CART_KEY = "kiln_cart";
+function kilnReadCart(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(KILN_CART_KEY));
+    return Array.isArray(raw) ? raw.filter(l => l && KILN_PRODUCTS[l.id] && l.qty > 0) : [];
+  }catch(e){ return []; }
+}
+function kilnWriteCart(cart){
+  localStorage.setItem(KILN_CART_KEY, JSON.stringify(cart));
+  kilnUpdateBadge(true);
+}
+function kilnAddToCart(id, variant, qty){
+  const cart = kilnReadCart();
+  const line = cart.find(l => l.id === id && l.variant === variant);
+  if(line){ line.qty = Math.min(KILN_MAX_QTY, line.qty + qty); }
+  else{ cart.push({ id:id, variant:variant, qty:Math.min(KILN_MAX_QTY, qty) }); }
+  kilnWriteCart(cart);
+}
+function kilnCartCount(){
+  return kilnReadCart().reduce((sum, l) => sum + l.qty, 0);
+}
+function kilnCartSubtotal(){
+  return kilnReadCart().reduce((sum, l) => sum + KILN_PRODUCTS[l.id].price * l.qty, 0);
+}
+function kilnUpdateBadge(bump){
+  const b = document.getElementById("cart-badge");
+  if(!b) return;
+  b.textContent = kilnCartCount();
+  if(bump){
+    b.classList.remove("bump");
+    void b.offsetWidth; /* restart animation */
+    b.classList.add("bump");
+  }
+}
+document.addEventListener("DOMContentLoaded", function(){ kilnUpdateBadge(false); });
+/* ---- end shared cart ---- */
+
+/* Page: catalog quick-add (adds first glaze variant) */
+document.querySelectorAll("[data-add]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    const id = btn.getAttribute("data-add");
+    const product = KILN_PRODUCTS[id];
+    if(!product) return;
+    kilnAddToCart(id, product.variants[0], 1);
+    const original = btn.textContent;
+    btn.textContent = "Added ✓";
+    btn.classList.add("added");
+    btn.disabled = true;
+    setTimeout(function(){
+      btn.textContent = original;
+      btn.classList.remove("added");
+      btn.disabled = false;
+    }, 1200);
+  });
+});
+</script>
+</body>
+</html>
