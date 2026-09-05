@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Copper Fig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#171310;
+    --bg-2:#201a15;
+    --card:#241d17;
+    --paper:#f3ede2;
+    --rust:#c1602e;
+    --rust-light:#e08a55;
+    --line:#3a3128;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--paper);line-height:1.6}
+  h1,h2,h3,.display{font-family:'Cormorant Garamond',serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  header{position:relative;z-index:5;padding:26px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Cormorant Garamond';font-weight:600;font-size:24px;letter-spacing:.02em;color:var(--paper)}
+  nav.links{display:flex;gap:34px;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:#c9bfae}
+  nav.links a:hover{color:var(--rust-light)}
+  .btn-reserve{border:1px solid var(--rust-light);color:var(--rust-light);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:11px 20px}
+
+  /* Hero: full bleed dark with layered gradient "photo" */
+  .hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;margin-top:-92px;padding-top:92px}
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(120% 90% at 80% 10%, rgba(193,96,46,.35), transparent 60%),
+      radial-gradient(90% 70% at 10% 100%, rgba(60,40,20,.7), transparent 55%),
+      linear-gradient(180deg,#221b15 0%, #171310 70%);
+  }
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.02) 0 2px, transparent 2px 90px);
+  }
+  .hero .wrap{position:relative;padding-bottom:80px}
+  .hero-kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust-light);margin-bottom:22px}
+  .hero h1{font-size:clamp(46px,7vw,96px);font-weight:600;line-height:1;margin-bottom:26px;max-width:14ch}
+  .hero h1 i{color:var(--rust-light)}
+  .hero p.sub{font-size:18px;color:#d8cdb9;max-width:46ch;margin-bottom:34px}
+  .hero .ctas{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .btn-solid{background:var(--rust);color:#fff;font-size:14px;letter-spacing:.05em;text-transform:uppercase;padding:16px 30px}
+  .btn-outline{border:1px solid #4a4034;color:var(--paper);font-size:14px;letter-spacing:.05em;text-transform:uppercase;padding:15px 28px}
+
+  /* Info strip under hero */
+  .info-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;background:var(--bg-2)}
+  .info-strip .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:#c9bfae}
+
+  /* Menu section: full-width feature row (different family from hero) */
+  .menu{padding:100px 0 70px}
+  .menu-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:56px}
+  .menu-head h2{font-size:clamp(30px,4.4vw,52px);font-weight:600}
+  .menu-head p{color:#c9bfae;max-width:36ch;font-size:15px}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .menu-item{display:flex;justify-content:space-between;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .menu-item:nth-child(odd){padding-right:40px}
+  .menu-item:nth-child(even){padding-left:40px;border-left:1px solid var(--line)}
+  .menu-item h3{font-size:21px;font-weight:500;margin-bottom:6px}
+  .menu-item p{font-size:14px;color:#a89c86;max-width:34ch}
+  .menu-item .price{font-family:'Cormorant Garamond';font-size:20px;color:var(--rust-light);white-space:nowrap}
+
+  /* Full-width quote band (different layout family) */
+  .quote-band{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+  .quote-band blockquote{font-size:clamp(22px,3vw,32px);font-weight:500;max-width:26ch;margin:0 auto 24px;line-height:1.4}
+  .quote-band .attr{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#a89c86}
+
+  /* Gallery: mosaic of gradient tiles (no photos) */
+  .gallery{padding:100px 0}
+  .gallery-head{margin-bottom:44px}
+  .gallery-head .k{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust-light);margin-bottom:14px}
+  .gallery-head h2{font-size:clamp(28px,3.6vw,42px);font-weight:600}
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:120px;gap:10px}
+  .tile{border-radius:6px}
+  .t1{grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,#8a4a26,#3a2314)}
+  .t2{grid-column:span 2;background:linear-gradient(135deg,#c1602e,#7a3618)}
+  .t3{grid-column:span 1;background:linear-gradient(135deg,#4a3a26,#241a10)}
+  .t4{grid-column:span 1;grid-row:span 2;background:linear-gradient(160deg,#7a3a1e,#241a10)}
+  .t5{grid-column:span 2;background:linear-gradient(135deg,#3a2418,#5c3320)}
+
+  /* Reservation CTA */
+  .reserve{padding:100px 0}
+  .reserve .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:56px;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+  .reserve h2{font-size:clamp(28px,3.6vw,42px);font-weight:600;margin-bottom:16px}
+  .reserve p{color:#c9bfae;max-width:42ch;margin-bottom:28px}
+  .hours-list{list-style:none}
+  .hours-list li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .hours-list li:last-child{border-bottom:none}
+  .hours-list li span:last-child{color:#a89c86}
+
+  footer{border-top:1px solid var(--line);padding:44px 0;background:var(--bg-2)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:13px;color:#a89c86}
+  footer .brand-f{font-family:'Cormorant Garamond';color:var(--paper);font-size:19px;margin-bottom:8px}
+
+  @media (max-width:900px){
+    nav.links{display:none}
+    .menu-grid{grid-template-columns:1fr}
+    .menu-item:nth-child(even){padding-left:0;border-left:none}
+    .menu-item:nth-child(odd){padding-right:0}
+    .mosaic{grid-template-columns:repeat(2,1fr)}
+    .reserve .card{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="brand">The Copper Fig</div>
+      <nav class="links">
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reserve">Hours</a>
+      </nav>
+      <a class="btn-reserve" href="#reserve">Reserve</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <div class="hero-kicker">Wood-fired &middot; Seasonal &middot; Downtown</div>
+      <h1>Dinner, <i>slowed</i> down.</h1>
+      <p class="sub">A wood-fired kitchen built around whatever the market has this week. Small plates, natural wine, and a room made for lingering.</p>
+      <div class="ctas">
+        <a class="btn-solid" href="#reserve">Reserve a Table</a>
+        <a class="btn-outline" href="#menu">View Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <div class="wrap">
+      <div>Tue&ndash;Sun, 5pm&ndash;11pm</div>
+      <div>214 Kestrel St, Portland OR</div>
+      <div>Walk-ins welcome at the bar</div>
+    </div>
+  </div>
+
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="menu-head">
+        <h2>From the wood-fired oven.</h2>
+        <p>A rotating menu — this is what's on it this week.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div><h3>Charred Leeks</h3><p>Whipped ricotta, hazelnut, brown butter vinaigrette</p></div>
+          <div class="price">$14</div>
+        </div>
+        <div class="menu-item">
+          <div><h3>Whole Roasted Trout</h3><p>Fennel, preserved lemon, chili oil</p></div>
+          <div class="price">$28</div>
+        </div>
+        <div class="menu-item">
+          <div><h3>Wood-Fired Flatbread</h3><p>Stracciatella, calabrian chili, honey</p></div>
+          <div class="price">$16</div>
+        </div>
+        <div class="menu-item">
+          <div><h3>Braised Short Rib</h3><p>Polenta, red wine jus, gremolata</p></div>
+          <div class="price">$32</div>
+        </div>
+        <div class="menu-item">
+          <div><h3>Market Vegetable Board</h3><p>Whatever came in this morning, char-grilled</p></div>
+          <div class="price">$19</div>
+        </div>
+        <div class="menu-item">
+          <div><h3>Olive Oil Cake</h3><p>Citrus curd, sea salt, crème fraîche</p></div>
+          <div class="price">$11</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-band">
+    <div class="wrap">
+      <blockquote>"The kind of neighborhood spot you wish existed everywhere &mdash; unpretentious, but every plate is considered."</blockquote>
+      <div class="attr">Portland Eater, 2025</div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div class="k">Inside the room</div>
+        <h2>A dining room built for long tables.</h2>
+      </div>
+      <div class="mosaic">
+        <div class="tile t1"></div>
+        <div class="tile t2"></div>
+        <div class="tile t3"></div>
+        <div class="tile t4"></div>
+        <div class="tile t5"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserve" id="reserve">
+    <div class="wrap">
+      <div class="card">
+        <div>
+          <h2>Tables go fast on weekends.</h2>
+          <p>We hold a handful of walk-in seats at the bar every night, but the dining room books out about a week ahead.</p>
+          <a class="btn-solid" href="mailto:reserve@thecopperfig.com">Request a Reservation</a>
+        </div>
+        <ul class="hours-list">
+          <li><span>Tuesday &ndash; Thursday</span><span>5:00pm &ndash; 10:00pm</span></li>
+          <li><span>Friday &ndash; Saturday</span><span>5:00pm &ndash; 11:00pm</span></li>
+          <li><span>Sunday</span><span>5:00pm &ndash; 9:00pm</span></li>
+          <li><span>Monday</span><span>Closed</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <div class="brand-f">The Copper Fig</div>
+        <div>214 Kestrel St, Portland, OR</div>
+      </div>
+      <div>reserve@thecopperfig.com<br>(503) 555-0176</div>
+      <div>&copy; 2026 The Copper Fig</div>
+    </div>
+  </footer>
+
+</body>
+</html>
