@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRISMA — Vibrant Design Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0a0e27; color: white; overflow-x: hidden; }
+
+    header { padding: 2rem; border-bottom: 3px solid; border-image: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0) 1; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #ff0080, #ff8c00, #40e0d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    nav { display: flex; gap: 2rem; font-weight: 600; }
+    nav a { color: white; text-decoration: none; transition: all 0.3s; }
+    nav a:hover { background: linear-gradient(135deg, #ff0080, #ff8c00); padding: 0.5rem 1rem; border-radius: 50px; }
+
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a0033 0%, #330066 25%, #003366 50%, #006666 75%, #0a0e27 100%); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,0,128,0.3) 0%, transparent 70%); top: 10%; left: -100px; border-radius: 50%; }
+    .hero::after { content: ''; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(64,224,208,0.2) 0%, transparent 70%); bottom: -150px; right: -100px; border-radius: 50%; }
+
+    .hero-content { max-width: 800px; text-align: center; position: relative; z-index: 10; }
+    .hero h1 { font-size: 4.5rem; font-weight: 900; margin-bottom: 1.5rem; line-height: 1.2; background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #ff0080); background-size: 200% auto; animation: gradient-shift 3s ease infinite; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    @keyframes gradient-shift { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+    .hero p { font-size: 1.5rem; margin-bottom: 2rem; color: #ccc; }
+    .hero-btn { display: inline-block; padding: 1rem 3rem; background: linear-gradient(135deg, #ff0080, #ff8c00); color: white; text-decoration: none; font-weight: 700; border-radius: 50px; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 30px rgba(255,0,128,0.3); }
+    .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(255,0,128,0.5); }
+
+    .services { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; }
+    .services h2 { font-size: 3rem; margin-bottom: 3rem; text-align: center; background: linear-gradient(90deg, #40e0d0, #ff0080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .service-card { padding: 2.5rem; border-radius: 20px; background: linear-gradient(135deg, rgba(255,0,128,0.1), rgba(64,224,208,0.1)); border: 1px solid rgba(255,0,128,0.3); transition: all 0.3s; }
+    .service-card:hover { transform: translateY(-10px); border-color: rgba(255,0,128,0.8); box-shadow: 0 20px 40px rgba(255,0,128,0.2); }
+    .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .service-card p { color: #aaa; line-height: 1.6; }
+
+    footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid rgba(255,0,128,0.3); color: #888; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">PRISMA</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Design That<br>Moves You</h1>
+    <p>Bold colors, flowing gradients, and immersive experiences.</p>
+    <a href="#" class="hero-btn">Explore Now</a>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2>What We Create</h2>
+  <div class="grid">
+    <div class="service-card">
+      <h3>🎨 Visual Identity</h3>
+      <p>Brand design that captures attention and stays in memory. Custom color palettes and dynamic systems.</p>
+    </div>
+    <div class="service-card">
+      <h3>✨ Motion Design</h3>
+      <p>Smooth animations and transitions that guide the eye. Every movement has purpose.</p>
+    </div>
+    <div class="service-card">
+      <h3>🚀 Digital Experience</h3>
+      <p>Websites and apps that feel alive. Interactive and responsive to every interaction.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 PRISMA Studio. Crafted with gradients and passion.
+</footer>
+
+</body>
+</html>

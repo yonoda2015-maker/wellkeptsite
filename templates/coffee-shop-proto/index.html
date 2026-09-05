@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CAFÉMARK — スペシャリティコーヒーの隠れ家</title>
+<meta name="description" content="落ち着きと温かさに包まれたカフェ。スペシャリティコーヒーと手作りフードで、日々の時間を豊かに。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ===== デザイントークン（暖色アース無難系） ===== */
+  :root{
+    --bg:#F5EFE6; --surface:#FFFFFF; --fg:#4A3428; --muted:#8A7A6E;
+    --accent-terra:#C97C5D; --accent-sage:#8A9A78; --line:rgba(74,52,40,.1);
+    --h1:clamp(2.2rem,5vw,4rem); --h2:clamp(1.6rem,3.5vw,2.5rem);
+    --body:clamp(1rem,1.05vw,1.125rem); --maxw:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;
+    font-size:var(--body);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem)}
+  h1,h2,h3{font-family:Lora,serif;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+  h1{font-size:var(--h1)} h2{font-size:var(--h2)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;height:auto;display:block}
+  .muted{color:var(--muted)}
+  button,a.btn{transition:.2s;cursor:pointer}
+
+  /* ===== Sticky Header（素朴・温かい） ===== */
+  header.nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);
+    background:rgba(245,239,230,.95);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-size:1.3rem;font-weight:700;font-family:Lora,serif;letter-spacing:.05em;color:var(--fg)}
+  .nav-links{display:flex;gap:2.5rem;align-items:center}
+  @media(max-width:768px){
+    .nav-links{display:none}
+    .logo{font-size:1.1rem}
+  }
+  .nav a{font-weight:500;font-size:0.95rem;color:var(--muted);transition:.2s}
+  .nav a:hover{color:var(--accent-terra)}
+  .cta-nav{padding:0.6rem 1.4rem;background:var(--accent-terra);color:#fff;border-radius:20px;
+    font-weight:600;font-size:0.9rem}
+  .cta-nav:hover{opacity:.9;transform:translateY(-2px)}
+
+  /* ===== Hero セクション（店舗を感じさせる） ===== */
+  .sec-hero{
+    background:linear-gradient(135deg, #D4A574 0%, #8A9A78 100%);
+    color:#fff;padding:6rem 0;text-align:center;
+    background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect fill=%22none%22 width=%22120%22 height=%22120%22/%3E%3C/svg%3E');
+  }
+  .hero-content{display:flex;flex-direction:column;gap:1.5rem;align-items:center;max-width:600px;margin:0 auto}
+  .hero-content h1{color:#fff;font-size:clamp(2rem,6vw,3.5rem)}
+  .hero-content p{font-size:1.1rem;line-height:1.6;opacity:.95}
+  .btn-primary{display:inline-block;padding:1rem 2rem;background:#fff;color:var(--accent-terra);
+    border-radius:30px;font-weight:700;text-align:center}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.15)}
+
+  /* ===== セクション骨格 ===== */
+  .sec{padding:clamp(4rem,8vh,6rem) 0}
+  .sec h2{margin-bottom:2rem;text-align:center;color:var(--fg)}
+
+  /* ===== メニュータブ ===== */
+  .menu-tabs{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;
+    border-bottom:2px solid var(--line);padding-bottom:1.5rem}
+  .menu-tab{padding:0.8rem 1.5rem;background:transparent;border:2px solid var(--line);
+    border-radius:8px;cursor:pointer;font-weight:600;font-size:0.95rem;color:var(--muted);
+    transition:.2s}
+  .menu-tab:hover,.menu-tab.active{border-color:var(--accent-terra);color:var(--accent-terra);background:rgba(201,124,93,.05)}
+
+  /* ===== メニュー項目 ===== */
+  .menu-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+  .menu-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:1.5rem;transition:.3s}
+  .menu-item:hover{border-color:var(--accent-terra);box-shadow:0 8px 20px rgba(201,124,93,.1)}
+  .menu-name{font-size:1.1rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem}
+  .menu-desc{font-size:0.9rem;color:var(--muted);line-height:1.5;margin-bottom:0.8rem}
+  .menu-price{font-size:1.3rem;font-weight:700;color:var(--accent-terra)}
+
+  /* ===== About セクション ===== */
+  .about-content{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  @media(max-width:768px){ .about-content{grid-template-columns:1fr;gap:2rem} }
+  .about-image{width:100%;aspect-ratio:4/3;background:#E8DCC8;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.9rem;
+    border:1px solid var(--line)}
+  .about-text h3{font-size:1.5rem;margin-bottom:1rem;color:var(--fg)}
+  .about-text p{margin-bottom:1rem;line-height:1.8;color:var(--fg)}
+  .about-text .highlight{color:var(--accent-terra);font-weight:600}
+
+  /* ===== Location + 予約 ===== */
+  .location-content{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  @media(max-width:768px){ .location-content{grid-template-columns:1fr;gap:2rem} }
+  .location-info h3{font-size:1.3rem;margin-bottom:1.5rem;color:var(--fg)}
+  .location-detail{margin-bottom:1.5rem}
+  .location-detail strong{display:block;color:var(--accent-terra);font-size:0.9rem;margin-bottom:0.3rem}
+  .location-detail span{color:var(--fg);line-height:1.6}
+  .map-placeholder{width:100%;aspect-ratio:4/3;background:#E8DCC8;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);border:1px solid var(--line)}
+  .reservation-box{background:var(--accent-sage);color:#fff;padding:2rem;border-radius:12px}
+  .reservation-box h4{font-size:1.1rem;margin-bottom:1rem}
+  .reservation-box p{margin-bottom:1.5rem;line-height:1.6}
+  .btn-reserve{width:100%;padding:1rem;background:#fff;color:var(--fg);border:none;
+    border-radius:8px;font-weight:700;cursor:pointer;transition:.2s}
+  .btn-reserve:hover{background:var(--accent-terra);color:#fff}
+
+  /* ===== Instagram セクション ===== */
+  .insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  @media(max-width:768px){ .insta-grid{grid-template-columns:repeat(2,1fr);gap:1rem} }
+  .insta-card{aspect-ratio:1/1;background:#E8DCC8;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);
+    border:1px solid var(--line);transition:.2s;cursor:pointer}
+  .insta-card:hover{transform:scale(1.05);border-color:var(--accent-terra)}
+
+  /* ===== Footer ===== */
+  footer{background:var(--fg);color:#fff;padding:3rem 0;text-align:center;margin-top:4rem}
+  footer p{font-size:0.9rem;line-height:1.6}
+  footer .social{display:flex;gap:1.5rem;justify-content:center;margin:1.5rem 0}
+  footer a:hover{color:var(--accent-terra)}
+
+  /* ===== レスポンシブ ===== */
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="nav">
+  <div class="wrap">
+    <div class="logo">CAFÉMARK</div>
+    <nav class="nav-links">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="cta-nav">予約する</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== Hero：訪問者に「ここで時間を過ごしたい」と思わせる ===== -->
+  <section class="sec-hero">
+    <div class="wrap hero-content">
+      <h1>落ち着きと温かさに包まれた時間</h1>
+      <p>スペシャリティコーヒーと手作りフードで、日々の時間を豊かに。</p>
+      <a href="#menu" class="btn-primary">メニューを見る</a>
+    </div>
+  </section>
+
+  <!-- ===== Menu：「ここの珈琲が飲みたい」 ===== -->
+  <section class="sec" id="menu">
+    <div class="wrap">
+      <h2>Menu</h2>
+
+      <div class="menu-tabs">
+        <button class="menu-tab active" onclick="showMenu('hot')">Hot Coffee</button>
+        <button class="menu-tab" onclick="showMenu('iced')">Iced Coffee</button>
+        <button class="menu-tab" onclick="showMenu('food')">Food</button>
+        <button class="menu-tab" onclick="showMenu('dessert')">Desserts</button>
+      </div>
+
+      <!-- Hot Coffee Menu -->
+      <div id="menu-hot" class="menu-items">
+        <div class="menu-item">
+          <div class="menu-name">Single Origin Espresso</div>
+          <div class="menu-desc">エチオピア産。フローラルな香りとすっきりとした後味。</div>
+          <div class="menu-price">¥800</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Flat White</div>
+          <div class="menu-desc">マイクロフォームミルクの織りなす滑らかさ。珈琲の味わい引き立つ。</div>
+          <div class="menu-price">¥850</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Seasonal Blend</div>
+          <div class="menu-desc">毎月入れ替わる。今月はブラジル・コロンビアのブレンド。</div>
+          <div class="menu-price">¥750</div>
+        </div>
+      </div>
+
+      <!-- Iced Coffee Menu (hidden by default) -->
+      <div id="menu-iced" class="menu-items" style="display:none">
+        <div class="menu-item">
+          <div class="menu-name">Iced Pour Over</div>
+          <div class="menu-desc">丁寧に淹れた珈琲を急冷。澄んだ味わい。</div>
+          <div class="menu-price">¥850</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Iced Latte</div>
+          <div class="menu-desc">濃厚なエスプレッソとミルクの相性。</div>
+          <div class="menu-price">¥800</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Cold Brew</div>
+          <div class="menu-desc">12時間水出し。深みのある味。</div>
+          <div class="menu-price">¥900</div>
+        </div>
+      </div>
+
+      <!-- Food Menu (hidden) -->
+      <div id="menu-food" class="menu-items" style="display:none">
+        <div class="menu-item">
+          <div class="menu-name">Croissant サンドウィッチ</div>
+          <div class="menu-desc">バターの香りと塩漬けハムの相性。毎朝焼き立て。</div>
+          <div class="menu-price">¥650</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Seasonal Salad</div>
+          <div class="menu-desc">青野菜と季節野菜。オーガニック主義。</div>
+          <div class="menu-price">¥900</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Avocado Toast</div>
+          <div class="menu-desc">ライ麦パンに熟したアボカド。塩・柚子。</div>
+          <div class="menu-price">¥950</div>
+        </div>
+      </div>
+
+      <!-- Desserts Menu (hidden) -->
+      <div id="menu-dessert" class="menu-items" style="display:none">
+        <div class="menu-item">
+          <div class="menu-name">Chocolate Cake</div>
+          <div class="menu-desc">ベルギーチョコレート使用。濃厚な甘さ。</div>
+          <div class="menu-price">¥500</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Matcha Latte + Scone</div>
+          <div class="menu-desc">抹茶とスコーンの組み合わせ。日本の味。</div>
+          <div class="menu-price">¥850</div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-name">Cheesecake</div>
+          <div class="menu-desc">ニューヨーク流。濃厚でなめらか。</div>
+          <div class="menu-price">¥550</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== About：「このカフェを信頼する」 ===== -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <h2>About Us</h2>
+
+      <div class="about-content">
+        <div class="about-image">
+          <span>店舗写真</span>
+        </div>
+        <div class="about-text">
+          <h3>カフェのある毎日へ</h3>
+          <p>2019年、代官山の路地裏に誕生したCAFÉMARK。</p>
+          <p>私たちが大切にしているのは、<span class="highlight">珈琲の質</span>と<span class="highlight">空間の温度</span>。</p>
+          <p>毎日、焙煎士が目利きしたスペシャリティコーヒーだけを厳選。 カウンター席では、焙煎職人との対話の時間が生まれます。</p>
+          <p>営業時間: 07:00 - 22:00（日・祝は20:00まで）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Location + Reservation：「今すぐ行きたい」 ===== -->
+  <section class="sec" id="location">
+    <div class="wrap">
+      <h2>Location & Reservation</h2>
+
+      <div class="location-content">
+        <div>
+          <h3>アクセス</h3>
+          <div class="location-detail">
+            <strong>住所</strong>
+            <span>東京都渋谷区道玄坂 1-2-3<br>グリーンビル B1F</span>
+          </div>
+          <div class="location-detail">
+            <strong>アクセス</strong>
+            <span>渋谷駅 徒歩5分</span>
+          </div>
+          <div class="location-detail">
+            <strong>電話</strong>
+            <span>03-XXXX-XXXX</span>
+          </div>
+          <div class="location-detail">
+            <strong>営業時間</strong>
+            <span>月〜土: 07:00 - 22:00<br>日・祝: 07:00 - 20:00</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="map-placeholder">地図：Googleマップ埋め込み予定</div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem">
+        <div class="reservation-box">
+          <h4>☕ グループ予約 / 貸し切り相談</h4>
+          <p>10名以上のご団体様や、特別な時間をお過ごしになりたいお客様へ。</p>
+          <button class="btn-reserve" onclick="alert('予約フォームに移動します')">予約する</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Instagram：「みんなが来ている」 ===== -->
+  <section class="sec">
+    <div class="wrap">
+      <h2>Instagram</h2>
+      <div class="insta-grid">
+        <div class="insta-card">📷 Post 1</div>
+        <div class="insta-card">📷 Post 2</div>
+        <div class="insta-card">📷 Post 3</div>
+        <div class="insta-card">📷 Post 4</div>
+        <div class="insta-card">📷 Post 5</div>
+        <div class="insta-card">📷 Post 6</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer id="contact">
+  <div class="wrap">
+    <h3 style="font-family:Lora,serif;margin-bottom:1rem">CAFÉMARK</h3>
+    <div class="social">
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+    </div>
+    <p>© 2026 CAFÉMARK. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ===== メニュータブ切替 =====
+  function showMenu(category) {
+    // すべてのメニューを非表示
+    document.getElementById('menu-hot').style.display = 'none';
+    document.getElementById('menu-iced').style.display = 'none';
+    document.getElementById('menu-food').style.display = 'none';
+    document.getElementById('menu-dessert').style.display = 'none';
+
+    // 選択したメニューを表示
+    document.getElementById('menu-' + category).style.display = 'grid';
+
+    // タブ のactive状態を更新
+    document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

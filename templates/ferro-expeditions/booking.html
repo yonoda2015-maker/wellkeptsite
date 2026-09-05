@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip Bag — Ferro & Co.</title>
+<meta name="description" content="Review your selected Ferro & Co. expeditions, adjust travelers, and proceed to confirm your booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1A1613; --raised:#221C18; --sand:#F0EAE0; --accent:#C4622D; --muted:#A89A8C;
+    --hair: rgba(240,234,224,.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--sand); font-family:'Manrope',sans-serif; line-height:1.5;}
+  h1,h2,h3{font-family:'Gelasio',serif; letter-spacing:-0.02em; font-weight:600;}
+  a{color:inherit; text-decoration:none;}
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:999; opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  header{position:sticky; top:0; z-index:100; background:rgba(26,22,19,0.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--hair);}
+  .nav-row{max-width:1280px; margin:0 auto; padding:20px 32px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Gelasio',serif; font-size:1.25rem; font-weight:700;}
+  .nav-links{display:flex; align-items:center; gap:28px; font-size:0.9rem;}
+  .nav-links a{color:var(--muted);}
+  .nav-links a:hover{color:var(--sand);}
+  .bag-btn{border:1px solid var(--hair); padding:8px 16px; font-size:0.85rem; color:var(--sand); display:flex; gap:8px; align-items:center;}
+  .bag-count{color:var(--accent); font-weight:700;}
+  .hamburger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;}
+  .hamburger span{width:24px; height:2px; background:var(--sand); display:block;}
+  .drawer{display:none; position:fixed; inset:0 0 0 auto; width:78%; max-width:340px; background:var(--raised); border-left:1px solid var(--hair); z-index:200; padding:28px 24px; flex-direction:column; gap:22px; transform:translateX(100%); transition:transform .25s ease;}
+  .drawer.open{display:flex; transform:translateX(0);}
+  .drawer a{font-size:1.1rem; color:var(--sand);}
+  .drawer-close{align-self:flex-end; background:none; border:none; color:var(--sand); font-size:1.5rem; cursor:pointer;}
+  .scrim{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:150;}
+  .scrim.open{display:block;}
+  @media (max-width:820px){ .nav-links{display:none;} .hamburger{display:flex;} }
+
+  .page-head{max-width:1280px; margin:0 auto; padding:64px 32px 32px; border-bottom:1px solid var(--hair);}
+  .page-head h1{font-size:clamp(2.2rem,5.5vw,3.6rem);}
+
+  .layout{max-width:1280px; margin:0 auto; padding:48px 32px 100px; display:grid; grid-template-columns:2fr 1fr; gap:40px;}
+  @media (max-width:860px){ .layout{grid-template-columns:1fr;} }
+
+  .bag-items{display:flex; flex-direction:column; border:1px solid var(--hair);}
+  .bag-item{padding:22px; border-bottom:1px solid var(--hair); display:grid; grid-template-columns:1fr auto auto; gap:20px; align-items:center;}
+  @media (max-width:600px){ .bag-item{grid-template-columns:1fr; gap:12px;} }
+  .bag-item:last-child{border-bottom:none;}
+  .bag-item h3{font-size:1.15rem;}
+  .bag-item .region{color:var(--muted); font-size:0.82rem; margin-top:4px;}
+  .bag-item .date-select{margin-top:10px;}
+  .bag-item select{background:var(--bg); border:1px solid var(--hair); color:var(--sand); padding:8px; font-family:'Manrope',sans-serif; font-size:0.85rem;}
+  .stepper{display:flex; align-items:center; gap:12px;}
+  .stepper button{width:32px; height:32px; border:1px solid var(--hair); background:var(--bg); color:var(--sand); font-size:1rem; cursor:pointer;}
+  .stepper span{font-family:'Gelasio',serif; font-size:1.1rem; min-width:20px; text-align:center;}
+  .line-price{font-family:'Gelasio',serif; font-size:1.2rem; color:var(--accent); text-align:right;}
+  .remove-btn{background:none; border:none; color:var(--muted); font-size:0.78rem; cursor:pointer; text-decoration:underline; margin-top:8px;}
+  .empty-state{padding:60px 24px; text-align:center; color:var(--muted); border:1px solid var(--hair);}
+  .empty-state a{color:var(--accent); text-decoration:underline;}
+
+  .summary{border:1px solid var(--hair); background:var(--raised); padding:28px; align-self:start;}
+  .summary h2{font-size:1.4rem; margin-bottom:20px;}
+  .summary-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--hair); font-size:0.9rem; color:var(--muted);}
+  .summary-row.total{color:var(--sand); font-weight:700; border-bottom:none; padding-top:16px;}
+  .summary-row.total .amt{font-family:'Gelasio',serif; font-size:1.5rem; color:var(--accent);}
+  .proceed-btn{width:100%; margin-top:20px; background:var(--accent); color:var(--bg); border:none; padding:16px; font-weight:700; font-size:0.95rem; cursor:pointer; font-family:'Manrope',sans-serif;}
+  .proceed-btn:disabled{background:var(--muted); cursor:not-allowed;}
+
+  footer{border-top:1px solid var(--hair); padding:60px 32px; max-width:1280px; margin:0 auto;}
+  footer h2{font-size:clamp(2rem,6vw,4rem); line-height:0.95;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important; animation:none !important;} }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <div class="nav-row">
+    <a class="logo" href="index.html">Ferro & Co.</a>
+    <nav class="nav-links" id="desktopNav">
+      <a href="index.html">Expeditions</a>
+      <a class="bag-btn" href="booking.html">Bag <span class="bag-count" id="bagCountDesktop">0</span></a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="mobileDrawer" aria-hidden="true">
+  <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+  <a href="index.html">Expeditions</a>
+  <a href="booking.html">Trip bag (<span id="bagCountMobile">0</span>)</a>
+</nav>
+
+<section class="page-head">
+  <h1>Your trip bag.</h1>
+</section>
+
+<section class="layout">
+  <div id="bagContainer"></div>
+  <aside class="summary">
+    <h2>Booking summary</h2>
+    <div class="summary-row"><span>Subtotal</span><span id="subtotalAmt">$0</span></div>
+    <div class="summary-row"><span>Permits &amp; gear fee</span><span id="feeAmt">$0</span></div>
+    <div class="summary-row total"><span>Total</span><span class="amt" id="totalAmt">$0</span></div>
+    <button class="proceed-btn" id="proceedBtn" disabled>Proceed to confirm</button>
+  </aside>
+</section>
+
+<footer>
+  <h2>Go remote.</h2>
+</footer>
+
+<script>
+const STORAGE_KEY = 'ferroTripBag';
+const TOURS = [
+  {id:'glacier-serrate', name:'Serrate Glacier Traverse', region:'High Cordillera', price:3480, dates:['2026-08-14','2026-08-28','2026-09-11']},
+  {id:'desert-halveth', name:'Halveth Salt Crossing', region:'Western Basin', price:2150, dates:['2026-08-05','2026-09-02','2026-09-23']},
+  {id:'jungle-korrin', name:'Korrin River Descent', region:'Lowland Basin', price:3120, dates:['2026-08-19','2026-09-16']},
+  {id:'arctic-nordvik', name:'Nordvik Ridge Circuit', region:'Polar Rim', price:4890, dates:['2026-09-05','2026-09-27']},
+  {id:'canyon-esker', name:'Esker Canyon Route', region:'Redrock Plateau', price:1780, dates:['2026-08-09','2026-08-30','2026-09-20']},
+  {id:'volcanic-thurra', name:'Thurra Volcanic Rim', region:'Southern Rift', price:2960, dates:['2026-08-22']},
+  {id:'fjord-alsemyr', name:'Alsemyr Fjord Paddle', region:'North Coast', price:2340, dates:['2026-08-16','2026-09-13']},
+  {id:'steppe-korval', name:'Korval Steppe Passage', region:'Interior Grasslands', price:3610, dates:['2026-09-01','2026-09-29']}
+];
+const GEAR_FEE_PER_TRAVELER = 85;
+
+function ferroReadBag(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return [];
+    const parsed = JSON.parse(raw);
+    if(!Array.isArray(parsed)) return [];
+    return parsed.filter(item => item && typeof item.tourId === 'string' && TOURS.some(t=>t.id===item.tourId));
+  }catch(e){ return []; }
+}
+function ferroWriteBag(bag){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(bag));
+  ferroUpdateBadge();
+  render();
+}
+function ferroUpdateBadge(){
+  const bag = ferroReadBag();
+  const count = bag.reduce((n,i)=>n + (i.travelers||1), 0);
+  document.querySelectorAll('[id^="bagCount"]').forEach(el=>{ el.textContent = count; });
+}
+
+function render(){
+  const bag = ferroReadBag();
+  const container = document.getElementById('bagContainer');
+  const proceedBtn = document.getElementById('proceedBtn');
+
+  if(bag.length === 0){
+    container.innerHTML = `<div class="empty-state">Your trip bag is empty. <a href="index.html">Browse expeditions</a></div>`;
+    document.getElementById('subtotalAmt').textContent = '$0';
+    document.getElementById('feeAmt').textContent = '$0';
+    document.getElementById('totalAmt').textContent = '$0';
+    proceedBtn.disabled = true;
+    return;
+  }
+
+  const wrap = document.createElement('div');
+  wrap.className = 'bag-items';
+  wrap.innerHTML = bag.map((item, idx) => {
+    const tour = TOURS.find(t => t.id === item.tourId);
+    return `
+      <div class="bag-item" data-idx="${idx}">
+        <div>
+          <h3>${tour.name}</h3>
+          <div class="region">${tour.region}</div>
+          <div class="date-select">
+            <select data-idx="${idx}" class="date-picker">
+              ${tour.dates.map(d => `<option value="${d}" ${d===item.departureDate?'selected':''}>${d}</option>`).join('')}
+            </select>
+          </div>
+          <button class="remove-btn" data-idx="${idx}">Remove</button>
+        </div>
+        <div class="stepper">
+          <button class="dec" data-idx="${idx}" aria-label="Decrease travelers">−</button>
+          <span>${item.travelers}</span>
+          <button class="inc" data-idx="${idx}" aria-label="Increase travelers">+</button>
+        </div>
+        <div class="line-price">$${(tour.price * item.travelers).toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+  container.innerHTML = '';
+  container.appendChild(wrap);
+
+  const subtotal = bag.reduce((sum, item) => {
+    const tour = TOURS.find(t => t.id === item.tourId);
+    return sum + tour.price * item.travelers;
+  }, 0);
+  const totalTravelers = bag.reduce((n,i)=>n + i.travelers, 0);
+  const fee = totalTravelers * GEAR_FEE_PER_TRAVELER;
+  const total = subtotal + fee;
+
+  document.getElementById('subtotalAmt').textContent = '$' + subtotal.toLocaleString();
+  document.getElementById('feeAmt').textContent = '$' + fee.toLocaleString();
+  document.getElementById('totalAmt').textContent = '$' + total.toLocaleString();
+  proceedBtn.disabled = false;
+
+  container.querySelectorAll('.inc').forEach(btn => btn.addEventListener('click', ()=>{
+    const bag2 = ferroReadBag();
+    const i = parseInt(btn.dataset.idx,10);
+    if(bag2[i].travelers < 12) bag2[i].travelers++;
+    ferroWriteBag(bag2);
+  }));
+  container.querySelectorAll('.dec').forEach(btn => btn.addEventListener('click', ()=>{
+    const bag2 = ferroReadBag();
+    const i = parseInt(btn.dataset.idx,10);
+    if(bag2[i].travelers > 1) bag2[i].travelers--;
+    ferroWriteBag(bag2);
+  }));
+  container.querySelectorAll('.remove-btn').forEach(btn => btn.addEventListener('click', ()=>{
+    const bag2 = ferroReadBag();
+    const i = parseInt(btn.dataset.idx,10);
+    bag2.splice(i,1);
+    ferroWriteBag(bag2);
+  }));
+  container.querySelectorAll('.date-picker').forEach(sel => sel.addEventListener('change', ()=>{
+    const bag2 = ferroReadBag();
+    const i = parseInt(sel.dataset.idx,10);
+    bag2[i].departureDate = sel.value;
+    ferroWriteBag(bag2);
+  }));
+}
+
+document.getElementById('proceedBtn').addEventListener('click', ()=>{
+  window.location.href = 'confirm.html';
+});
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileDrawer = document.getElementById('mobileDrawer');
+const drawerClose = document.getElementById('drawerClose');
+const scrim = document.getElementById('scrim');
+function openDrawer(){
+  mobileDrawer.classList.add('open'); mobileDrawer.setAttribute('aria-hidden','false');
+  scrim.classList.add('open'); hamburgerBtn.setAttribute('aria-expanded','true');
+}
+function closeDrawer(){
+  mobileDrawer.classList.remove('open'); mobileDrawer.setAttribute('aria-hidden','true');
+  scrim.classList.remove('open'); hamburgerBtn.setAttribute('aria-expanded','false');
+}
+hamburgerBtn.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+scrim.addEventListener('click', closeDrawer);
+
+ferroUpdateBadge();
+render();
+</script>
+</body>
+</html>

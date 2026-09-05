@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects — Terraform Studio</title>
+  <meta name="description" content="Built work by Terraform Studio: wetland parks, streetscapes, campus grounds, and civic plazas across the Pacific Northwest and Hokkaido.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Terraform Studio</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="studio.html">Studio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Built Work · 2016–2026</p>
+        <h1>Projects</h1>
+        <p class="lede">Sixty-two commissions built, six in construction. A selection below — each one is ground that had a problem before it had a design.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="project-grid">
+          <article class="project-card" id="kestrel-marsh-commons">
+            <div class="project-thumb thumb-marsh" role="img" aria-label="Site plan gradient for Kestrel Marsh Commons"></div>
+            <h3>Kestrel Marsh Commons</h3>
+            <p class="project-meta">Tacoma, WA · Constructed wetland &amp; boardwalk park · 2025</p>
+            <p class="project-meta" style="margin-top: 0.4rem;">A former rail yard rebuilt as an 18-acre treatment wetland that doubles as the neighborhood's only park. Detains 4.2M gallons per storm season.</p>
+          </article>
+          <article class="project-card" id="alder-line-terraces">
+            <div class="project-thumb thumb-terrace" role="img" aria-label="Site plan gradient for Alder Line Terraces"></div>
+            <h3>Alder Line Terraces</h3>
+            <p class="project-meta">Portland, OR · Transit corridor streetscape · 2024</p>
+            <p class="project-meta" style="margin-top: 0.4rem;">Two miles of light-rail frontage regraded into planted terraces that intercept runoff before it reaches the Willamette. 340 new street trees.</p>
+          </article>
+          <article class="project-card" id="odori-pocket-court">
+            <div class="project-thumb thumb-court" role="img" aria-label="Site plan gradient for Odori Pocket Court"></div>
+            <h3>Odori Pocket Court</h3>
+            <p class="project-meta">Sapporo, JP · Snow-country civic plaza · 2023</p>
+            <p class="project-meta" style="margin-top: 0.4rem;">A quarter-acre plaza engineered for five months of snow load and snow storage, then a fast spring conversion to market stalls.</p>
+          </article>
+          <article class="project-card">
+            <div class="project-thumb thumb-ridge" role="img" aria-label="Site plan gradient for Ridgeline Campus Grounds"></div>
+            <h3>Ridgeline Campus Grounds</h3>
+            <p class="project-meta">Bend, OR · Community college campus · 2022</p>
+            <p class="project-meta" style="margin-top: 0.4rem;">High-desert campus landscape planted entirely from a 40-mile seed radius. Irrigation demand cut 71% against the district baseline.</p>
+          </article>
+          <article class="project-card">
+            <div class="project-thumb thumb-basin" role="img" aria-label="Site plan gradient for Two Creeks Detention Basin"></div>
+            <h3>Two Creeks Detention Basin</h3>
+            <p class="project-meta">Vancouver, WA · Stormwater park · 2020</p>
+            <p class="project-meta" style="margin-top: 0.4rem;">A fenced-off municipal basin opened up as public open space — same hydraulic capacity, plus a loop trail, an amphitheater lawn, and heron habitat.</p>
+          </article>
+          <article class="project-card">
+            <div class="project-thumb thumb-meadow" role="img" aria-label="Site plan gradient for Hollow Meadow Schoolyard"></div>
+            <h3>Hollow Meadow Schoolyard</h3>
+            <p class="project-meta">Gresham, OR · Green schoolyard retrofit · 2019</p>
+            <p class="project-meta" style="margin-top: 0.4rem;">Four acres of asphalt play surface replaced with meadow, log scramble, and rain gardens. Summer surface temperatures dropped 22°F.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Commissioning</p>
+          <h2>Have a site that isn't working?</h2>
+        </div>
+        <div>
+          <p>We take on eight to ten new commissions a year, typically public or institutional, from 0.2 to 40 acres. If your site floods, bakes, or sits empty, that is our kind of problem.</p>
+          <p style="margin-top: 2rem;"><a class="btn" href="contact.html">Tell us about it</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="studio.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <small>&copy; 2026 Terraform Studio LLP · 1140 NW Marshall St, Portland, OR</small>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    })();
+  </script>
+</body>
+</html>

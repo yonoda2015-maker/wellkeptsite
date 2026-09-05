@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LOW/FI — A Podcast About Slow Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#F7F4EE; --fg:#2A2622; --muted:#8A8378; --accent:#B5471B; --surface:#FFFFFF; --line:rgba(42,38,34,0.14); }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;}
+  h1,h2,.serif{font-family:'Newsreader',serif;font-weight:600;letter-spacing:-0.01em;}
+  em.serif-em{font-family:'Newsreader',serif;font-style:italic;font-weight:500;}
+  a{color:inherit;text-decoration:none;}
+
+  header{padding:1.6rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);max-width:1200px;margin:0 auto;}
+  .logo{font-family:'Newsreader',serif;font-weight:600;font-size:1.5rem;}
+  nav{display:flex;gap:2rem;font-size:0.9rem;}
+  .btn-sub{background:var(--fg);color:var(--bg);padding:0.6rem 1.4rem;border-radius:100px;font-size:0.88rem;font-weight:600;}
+
+  .hero{max-width:1200px;margin:0 auto;padding:clamp(3rem,7vw,5rem) 2rem clamp(2rem,4vw,3rem);}
+  .hero-label{color:var(--accent);font-weight:600;font-size:0.9rem;letter-spacing:0.06em;margin-bottom:1.2rem;}
+  h1.hero-title{font-size:clamp(2.4rem,5.5vw,4.2rem);max-width:15ch;margin-bottom:1.2rem;}
+  .hero p{color:var(--muted);max-width:52ch;font-size:1.1rem;}
+
+  /* ===== CUSTOM AUDIO PLAYER ===== */
+  .player{max-width:1200px;margin:2rem auto 0;padding:0 2rem;}
+  .player-card{background:var(--surface);border-radius:20px;padding:1.6rem 1.8rem;display:flex;align-items:center;gap:1.4rem;box-shadow:0 8px 30px rgba(42,38,34,0.06);border:1px solid var(--line);}
+  .play-btn{width:56px;height:56px;border-radius:50%;background:var(--accent);color:white;border:none;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;flex-shrink:0;transition:transform 0.15s;}
+  .play-btn:hover{transform:scale(1.06);}
+  .player-info{flex-grow:1;min-width:0;}
+  .player-ep{font-size:0.78rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;}
+  .player-title{font-weight:600;margin:0.15rem 0 0.6rem;}
+  .waveform{display:flex;align-items:center;gap:2px;height:32px;cursor:pointer;}
+  .wf-bar{flex:1;background:var(--line);border-radius:2px;min-width:2px;transition:background 0.15s;}
+  .wf-bar.played{background:var(--accent);}
+  .player-time{font-size:0.78rem;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .player-speed{border:1px solid var(--line);border-radius:100px;padding:0.4rem 0.9rem;font-size:0.82rem;font-weight:600;background:none;cursor:pointer;color:var(--fg);flex-shrink:0;}
+
+  section{max-width:1200px;margin:0 auto;padding:4rem 2rem;}
+  .episodes h2{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:2rem;}
+  .ep-list{display:flex;flex-direction:column;}
+  .ep-row{display:grid;grid-template-columns:60px 1fr auto auto;gap:1.2rem;align-items:center;padding:1.4rem 0;border-top:1px solid var(--line);}
+  .ep-list .ep-row:last-child{border-bottom:1px solid var(--line);}
+  .ep-num{font-family:'Newsreader',serif;font-style:italic;color:var(--muted);font-size:1.1rem;}
+  .ep-title{font-weight:600;}
+  .ep-guest{color:var(--muted);font-size:0.9rem;margin-top:0.2rem;}
+  .ep-dur{color:var(--muted);font-size:0.85rem;}
+  .ep-play{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+  .ep-play:hover{background:var(--accent);border-color:var(--accent);color:white;}
+  @media(max-width:640px){.ep-row{grid-template-columns:40px 1fr auto;}.ep-dur{display:none;}}
+
+  .pull-quote{max-width:900px;margin:0 auto;padding:clamp(3rem,7vw,5rem) 2rem;text-align:center;}
+  .pull-quote blockquote{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.45;color:var(--fg);}
+  .pull-quote cite{display:block;margin-top:1rem;font-style:normal;color:var(--muted);font-size:0.92rem;}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-visual{aspect-ratio:1;border-radius:20px;background:linear-gradient(160deg,#D9C9A8,#B5471B);}
+  .about-grid h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1rem;}
+  .about-grid p{color:var(--muted);margin-bottom:1rem;}
+
+  .cta-final{text-align:center;padding:4rem 2rem 5rem;}
+  .cta-final h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:1.5rem;}
+  .platform-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .platform-chip{border:1px solid var(--line);padding:0.7rem 1.4rem;border-radius:100px;font-size:0.9rem;font-weight:600;}
+  .platform-chip:hover{border-color:var(--accent);color:var(--accent);}
+
+  footer{border-top:1px solid var(--line);padding:2.5rem 2rem;text-align:center;color:var(--muted);font-size:0.85rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LOW/FI</div>
+  <nav><a href="#episodes">Episodes</a><a href="#about">About</a></nav>
+  <a href="#listen" class="btn-sub">Subscribe</a>
+</header>
+
+<section class="hero">
+  <div class="hero-label">A PODCAST ABOUT SLOW, DELIBERATE WORK</div>
+  <h1 class="hero-title">Long conversations with people who refuse to rush.</h1>
+  <p>Every other week, we sit with a craftsperson, writer, or builder for 90 unhurried minutes. No hot takes, no timers.</p>
+</section>
+
+<div class="player">
+  <div class="player-card">
+    <button class="play-btn" id="playBtn">▶</button>
+    <div class="player-info">
+      <div class="player-ep">EPISODE 42</div>
+      <div class="player-title">The Cabinetmaker Who Won't Use Power Tools</div>
+      <div class="waveform" id="waveform"></div>
+    </div>
+    <div class="player-time">14:22 / 91:08</div>
+    <button class="player-speed">1.0x</button>
+  </div>
+</div>
+
+<section class="episodes" id="episodes">
+  <h2>Recent episodes</h2>
+  <div class="ep-list">
+    <div class="ep-row">
+      <div class="ep-num">42</div>
+      <div><div class="ep-title">The Cabinetmaker Who Won't Use Power Tools</div><div class="ep-guest">with Hideo Sano</div></div>
+      <div class="ep-dur">91 min</div>
+      <button class="ep-play">▶</button>
+    </div>
+    <div class="ep-row">
+      <div class="ep-num">41</div>
+      <div><div class="ep-title">Ten Years to Write One Novel</div><div class="ep-guest">with Renata Kolb</div></div>
+      <div class="ep-dur">84 min</div>
+      <button class="ep-play">▶</button>
+    </div>
+    <div class="ep-row">
+      <div class="ep-num">40</div>
+      <div><div class="ep-title">Building Houses With No Nails</div><div class="ep-guest">with Marcus Webb</div></div>
+      <div class="ep-dur">102 min</div>
+      <button class="ep-play">▶</button>
+    </div>
+    <div class="ep-row">
+      <div class="ep-num">39</div>
+      <div><div class="ep-title">The Last Film Photo Lab in the Region</div><div class="ep-guest">with Ines Pardo</div></div>
+      <div class="ep-dur">76 min</div>
+      <button class="ep-play">▶</button>
+    </div>
+  </div>
+</section>
+
+<section class="pull-quote">
+  <blockquote>"We stopped asking guests for tips and tricks. We just ask them to describe a single afternoon of their work, in full."</blockquote>
+  <cite>— From the show's founding note, 2021</cite>
+</section>
+
+<section class="about-grid" id="about">
+  <div class="about-visual"></div>
+  <div>
+    <h2>Why we do this slowly</h2>
+    <p>LOW/FI airs every other week — never more. Each episode is recorded in one sitting, unedited except for names and addresses.</p>
+    <p>We believe the best conversations about craft can't be extracted in twenty minutes. So we don't try.</p>
+  </div>
+</section>
+
+<section class="cta-final" id="listen">
+  <h2>Listen wherever you already are.</h2>
+  <div class="platform-row">
+    <a href="#" class="platform-chip">Apple Podcasts</a>
+    <a href="#" class="platform-chip">Spotify</a>
+    <a href="#" class="platform-chip">RSS Feed</a>
+    <a href="#" class="platform-chip">YouTube</a>
+  </div>
+</section>
+
+<footer>© 2026 LOW/FI Podcast. New episodes every other Tuesday.</footer>
+
+<script>
+  // Fake waveform bars (deterministic pseudo-random heights)
+  const waveform = document.getElementById('waveform');
+  const BAR_COUNT = 60;
+  let seed = 42;
+  function rand(){ seed = (seed*9301+49297)%233280; return seed/233280; }
+  for(let i=0;i<BAR_COUNT;i++){
+    const bar = document.createElement('div');
+    bar.className = 'wf-bar' + (i < 9 ? ' played' : '');
+    bar.style.height = (8 + rand()*24) + 'px';
+    waveform.appendChild(bar);
+  }
+
+  const playBtn = document.getElementById('playBtn');
+  let playing = false;
+  playBtn.addEventListener('click', ()=>{
+    playing = !playing;
+    playBtn.textContent = playing ? '❚❚' : '▶';
+  });
+
+  waveform.addEventListener('click', (e)=>{
+    const bars = Array.from(waveform.children);
+    const rect = waveform.getBoundingClientRect();
+    const ratio = (e.clientX - rect.left) / rect.width;
+    const cutoff = Math.floor(ratio * bars.length);
+    bars.forEach((b,i)=> b.classList.toggle('played', i <= cutoff));
+  });
+
+  document.querySelectorAll('.ep-play').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      btn.textContent = btn.textContent === '▶' ? '❚❚' : '▶';
+    });
+  });
+</script>
+
+</body>
+</html>

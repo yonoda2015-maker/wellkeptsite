@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SaaStrust — Professional Landing Page Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #dbeafe;
+      --primary-dark: #1e40af;
+      --text-primary: #1f2937;
+      --text-muted: #6b7280;
+      --bg-light: #f9fafb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .smooth-scroll {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="smooth-scroll">
+
+<!-- ===== HEADER / NAV ===== -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="text-2xl font-bold" style="color: var(--primary);">SaaStrust</div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-gray-600" id="mobileMenuBtn">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-8">
+        <a href="#features" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition">Features</a>
+        <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition">Testimonials</a>
+        <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition">Pricing</a>
+        <a href="#contact" class="text-sm font-medium text-gray-700 hover:text-blue-600 transition">Contact</a>
+      </nav>
+
+      <button style="background: var(--primary); color: white;" class="hidden md:block px-6 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition duration-200">
+        Get Started
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="py-20 md:py-32 px-4 transition-all" style="background: linear-gradient(135deg, var(--primary-light) 0%, #f3f4f6 100%);">
+  <div class="max-w-3xl mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style="color: var(--primary-dark);">
+      Build Trust,<br>Not Hype
+    </h1>
+    <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+      Enterprise-grade reliability for teams that care. No noise, just results. SOC 2 certified, 99.9% uptime guaranteed.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button style="background: var(--primary); color: white;" class="px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition transform hover:scale-105">
+        Start Free Trial
+      </button>
+      <button style="border: 2px solid var(--primary); color: var(--primary); background: white;" class="px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition">
+        Watch Demo (2 min)
+      </button>
+    </div>
+    <p class="text-sm text-gray-600 mt-6">✓ No credit card required  ✓ Full access for 14 days</p>
+  </div>
+</section>
+
+<!-- ===== FEATURES GRID ===== -->
+<section id="features" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Teams Choose Us</h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">Three core pillars of trust that set us apart.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Feature 1 -->
+      <div class="p-8 border border-gray-200 rounded-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:border-blue-300">
+        <div class="w-14 h-14 rounded-full mb-6 flex items-center justify-center" style="background: var(--primary-light); color: var(--primary);">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">99.9% Uptime</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Redundant infrastructure across 5 continents. We don't go down, and if we do, you know in seconds with automatic failover.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="p-8 border border-gray-200 rounded-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:border-blue-300">
+        <div class="w-14 h-14 rounded-full mb-6 flex items-center justify-center" style="background: var(--primary-light); color: var(--primary);">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">SOC 2 Certified</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Your data is encrypted in transit and at rest. Annual third-party audits, zero compromises on security.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="p-8 border border-gray-200 rounded-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:border-blue-300">
+        <div class="w-14 h-14 rounded-full mb-6 flex items-center justify-center" style="background: var(--primary-light); color: var(--primary);">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">1-Hour Onboarding</h3>
+        <p class="text-gray-600 leading-relaxed">
+          API docs + SDKs in Python, Go, Node.js. Live support during your first sprint, no waiting.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" class="py-20 px-4" style="background: var(--bg-light);">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Trusted by 500+ Teams</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition">
+        <div class="flex mb-4 gap-1">
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed text-lg">
+          "We switched from [competitor] after their outage cost us $50k. This platform hasn't blinked in 18 months."
+        </p>
+        <div>
+          <p class="font-semibold text-gray-900">Sarah Chen</p>
+          <p class="text-sm text-gray-600">CTO @ TechScale</p>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition">
+        <div class="flex mb-4 gap-1">
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+          <span style="color: var(--primary);">★</span>
+        </div>
+        <p class="text-gray-700 mb-6 leading-relaxed text-lg">
+          "The documentation is so clear that my junior devs onboarded without asking questions. Rare."
+        </p>
+        <div>
+          <p class="font-semibold text-gray-900">Marcus Rodriguez</p>
+          <p class="text-sm text-gray-600">Engineering Lead @ DataCorp</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="pricing" class="py-20 px-4 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+      <p class="text-gray-600 text-lg">No surprises. No setup fees. Cancel anytime.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Starter Plan -->
+      <div class="p-8 border border-gray-200 rounded-lg hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-2">Starter</h3>
+        <p class="text-4xl font-bold mb-1" style="color: var(--primary);">$99</p>
+        <p class="text-sm text-gray-600 mb-6">/month, billed annually</p>
+        <ul class="space-y-3 text-sm mb-8">
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>Up to 10k API calls</span>
+          </li>
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>Email support</span>
+          </li>
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>Basic analytics</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-gray-300">✗</span>
+            <span class="text-gray-400">Priority support</span>
+          </li>
+        </ul>
+        <button style="border: 2px solid var(--primary); color: var(--primary); background: white; width: 100%;" class="py-3 rounded font-semibold hover:bg-blue-50 transition">
+          Get Started
+        </button>
+      </div>
+
+      <!-- Professional Plan (Featured) -->
+      <div class="p-8 rounded-lg border-2 transform scale-105" style="border-color: var(--primary); background: var(--primary); color: white;">
+        <div class="bg-blue-900 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
+        <h3 class="text-xl font-bold mb-2">Professional</h3>
+        <p class="text-4xl font-bold mb-1">$299</p>
+        <p class="text-sm opacity-90 mb-6">/month, billed annually</p>
+        <ul class="space-y-3 text-sm mb-8">
+          <li class="flex gap-2">
+            <span>✓</span>
+            <span>Unlimited API calls</span>
+          </li>
+          <li class="flex gap-2">
+            <span>✓</span>
+            <span>Priority support (1h)</span>
+          </li>
+          <li class="flex gap-2">
+            <span>✓</span>
+            <span>Advanced analytics</span>
+          </li>
+          <li class="flex gap-2">
+            <span>✓</span>
+            <span>Custom integrations</span>
+          </li>
+        </ul>
+        <button style="background: white; color: var(--primary);" class="w-full py-3 rounded font-semibold hover:opacity-90 transition">
+          Start Free Trial
+        </button>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="p-8 border border-gray-200 rounded-lg hover:shadow-lg transition">
+        <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+        <p class="text-4xl font-bold mb-1" style="color: var(--primary);">Custom</p>
+        <p class="text-sm text-gray-600 mb-6">Dedicated support + SLA</p>
+        <ul class="space-y-3 text-sm mb-8">
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>Custom volume pricing</span>
+          </li>
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>Dedicated account manager</span>
+          </li>
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>On-premise option</span>
+          </li>
+          <li class="flex gap-2">
+            <span style="color: var(--primary);">✓</span>
+            <span>Custom contract terms</span>
+          </li>
+        </ul>
+        <button style="border: 2px solid var(--primary); color: var(--primary); background: white; width: 100%;" class="py-3 rounded font-semibold hover:bg-blue-50 transition">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA SECTION ===== -->
+<section id="contact" class="py-20 px-4 transition-all" style="background: var(--primary); color: white;">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Build on Solid Ground?</h2>
+    <p class="text-lg mb-8 opacity-95">Join 500+ teams who chose reliability. No credit card required.</p>
+    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleSubmit(event)">
+      <input
+        type="email"
+        placeholder="your@email.com"
+        class="flex-1 px-4 py-3 rounded text-gray-900 placeholder-gray-500"
+        required
+        aria-label="Email address"
+      >
+      <button
+        type="submit"
+        style="background: white; color: var(--primary);"
+        class="px-8 py-3 rounded font-semibold hover:opacity-90 transition transform hover:scale-105"
+      >
+        Get Started
+      </button>
+    </form>
+    <p class="text-sm opacity-75 mt-4">✓ Enterprise-ready  ✓ Risk-free  ✓ 24/7 support included</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-gray-900 text-gray-400 py-12 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <p class="font-bold text-white mb-4">SaaStrust</p>
+        <p class="text-sm leading-relaxed">Enterprise reliability for modern teams. Trust is everything.</p>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4">Product</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#features" class="hover:text-white transition">Features</a></li>
+          <li><a href="#pricing" class="hover:text-white transition">Pricing</a></li>
+          <li><a href="#" class="hover:text-white transition">Docs</a></li>
+          <li><a href="#" class="hover:text-white transition">API Status</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4">Company</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">About</a></li>
+          <li><a href="#" class="hover:text-white transition">Blog</a></li>
+          <li><a href="#" class="hover:text-white transition">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white mb-4">Legal</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-white transition">Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 text-center text-sm">
+      <p>© 2026 SaaStrust. All rights reserved. Built with trust.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Form submission handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    alert(`Thanks for signing up! We'll send you a confirmation at ${email}`);
+    e.target.reset();
+  }
+
+  // Mobile menu toggle
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    alert('Mobile menu: Features, Testimonials, Pricing, Contact');
+  });
+
+  // Add scroll reveal animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('[id^="features"] > div > div, [id^="testimonials"] > div > div').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.6s ease-out';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

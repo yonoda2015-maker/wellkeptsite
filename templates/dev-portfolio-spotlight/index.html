@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kai Renner — Frontend Engineer</title>
+<meta name="description" content="Kai Renner is a frontend engineer building fast, considered interfaces for product teams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080A; --fg:#F2F0EB; --muted:#8A8680; --surface:#111114;
+    --amber:#E8A94A; --amber-dim: rgba(232,169,74,0.14);
+    --line: rgba(242,240,235,0.1);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Sora',sans-serif; background:var(--bg); color:var(--fg); line-height:1.6; overflow-x:hidden; }
+  h1,h2,h3,.display{ font-family:'Bricolage Grotesque',sans-serif; font-weight:600; letter-spacing:-0.01em; line-height:1.05; }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--amber); color:#141008; }
+
+  /* ===== LOADING SCREEN ===== */
+  #loader{
+    position:fixed; inset:0; z-index:200; background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+  .loader-mark{ font-family:'Bricolage Grotesque',sans-serif; font-size:1.1rem; color:var(--muted); letter-spacing:0.16em; text-transform:uppercase; display:flex; gap:0.4rem; align-items:center; }
+  .loader-mark::after{
+    content:''; width:8px; height:8px; border-radius:50%; background:var(--amber);
+    animation: loader-pulse 1s ease-in-out infinite;
+  }
+  @keyframes loader-pulse{ 0%,100%{ opacity:0.3; transform:scale(0.8);} 50%{ opacity:1; transform:scale(1.1);} }
+  @media (prefers-reduced-motion: reduce){ .loader-mark::after{ animation:none; } }
+
+  /* ===== NAV ===== */
+  header{ position:fixed; top:0; left:0; right:0; z-index:100; padding:1.6rem 2.5rem; display:flex; justify-content:space-between; align-items:center; mix-blend-mode:difference; }
+  .logo{ font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:1.15rem; }
+  nav{ display:flex; gap:2.2rem; font-size:0.85rem; }
+  nav a{ opacity:0.75; transition:opacity 0.2s; }
+  nav a:hover{ opacity:1; }
+
+  /* ===== HERO (flashlight/spotlight signature moment) ===== */
+  .hero{
+    position:relative; height:100vh; min-height:640px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    cursor:none;
+  }
+  .hero-portrait-base, .hero-portrait-bright{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:min(560px, 70vw); height:min(560px, 70vw); border-radius:50%;
+  }
+  .hero-portrait-base{
+    background: radial-gradient(circle at 42% 38%, #232227 0%, #131215 55%, #0a0a0c 100%);
+    filter: saturate(0.7) brightness(0.65);
+  }
+  .hero-portrait-bright{
+    background: radial-gradient(circle at 42% 38%, #F4CE8E 0%, #C97A3D 45%, #6B3A1E 85%, #2A160B 100%);
+    -webkit-mask-image: radial-gradient(circle at var(--mx,50%) var(--my,50%), black 0px, black 110px, transparent 150px);
+    mask-image: radial-gradient(circle at var(--mx,50%) var(--my,50%), black 0px, black 110px, transparent 150px);
+  }
+  .hero-content{ position:relative; z-index:5; text-align:center; padding:0 2rem; pointer-events:none; }
+  .hero-eyebrow{ font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:1.4rem; }
+  h1.hero-title{ font-size:clamp(2.6rem,7vw,5.6rem); margin-bottom:1rem; }
+  .hero-title .amber{ color:var(--amber); }
+  .hero-sub{ color:var(--muted); font-size:1.05rem; max-width:44ch; margin:0 auto; }
+  .hero-hint{ position:absolute; bottom:2.4rem; left:50%; transform:translateX(-50%); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); z-index:5; }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero{ cursor:auto; }
+    .hero-portrait-bright{
+      -webkit-mask-image:none; mask-image:none; opacity:0.5;
+    }
+  }
+
+  /* ===== SECTIONS ===== */
+  section{ max-width:1200px; margin:0 auto; padding:clamp(4rem,9vw,7rem) 2.5rem; }
+  .section-label{ font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--amber); margin-bottom:1.2rem; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; flex-wrap:wrap; margin-bottom:3rem; }
+  .section-head h2{ font-size:clamp(1.8rem,4vw,2.8rem); }
+  .section-head p{ color:var(--muted); max-width:38ch; }
+
+  /* ===== WORK SHOWCASE (video+title+description style) ===== */
+  .work-list{ display:flex; flex-direction:column; }
+  .work-row{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:center;
+    padding:clamp(2.5rem,5vw,3.5rem) 0; border-top:1px solid var(--line);
+  }
+  .work-list .work-row:last-child{ border-bottom:1px solid var(--line); }
+  @media(max-width:820px){ .work-row{ grid-template-columns:1fr; } }
+  .work-row:nth-child(even) .work-media{ order:2; }
+  .work-media{
+    aspect-ratio:16/10; border-radius:12px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .wm1{ background:linear-gradient(145deg,#20222A,#0D0E12); }
+  .wm2{ background:linear-gradient(145deg,#2A2016,#12100C); }
+  .wm3{ background:linear-gradient(145deg,#1A2420,#0C1210); }
+  .play-badge{
+    width:56px; height:56px; border-radius:50%; border:1.5px solid rgba(242,240,235,0.4);
+    display:flex; align-items:center; justify-content:center; color:var(--fg); font-size:1.1rem;
+    backdrop-filter:blur(6px); background:rgba(242,240,235,0.06); transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .work-media:hover .play-badge{ transform:scale(1.08); background:rgba(232,169,74,0.16); }
+  .work-tag{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:0.6rem; }
+  .work-title{ font-size:1.7rem; margin-bottom:0.8rem; }
+  .work-desc{ color:var(--muted); font-size:0.98rem; max-width:46ch; }
+
+  /* ===== SELECTED WORK GRID (portfolio listing page style) ===== */
+  .grid-portfolio{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.4rem; }
+  .grid-card{
+    border-radius:14px; padding:1.6rem; border:1px solid var(--line); background:var(--surface);
+    transition:border-color 0.25s ease, transform 0.25s ease;
+  }
+  .grid-card:hover{ border-color:rgba(232,169,74,0.4); transform:translateY(-4px); }
+  .grid-thumb{ aspect-ratio:4/3; border-radius:8px; margin-bottom:1.1rem; }
+  .gt1{ background:linear-gradient(160deg,#2A2016,#0D0B08); }
+  .gt2{ background:linear-gradient(160deg,#1A2420,#0A0F0C); }
+  .gt3{ background:linear-gradient(160deg,#20222A,#0A0A0D); }
+  .gt4{ background:linear-gradient(160deg,#26181C,#0D0709); }
+  .grid-card h3{ font-size:1.1rem; margin-bottom:0.3rem; }
+  .grid-card p{ font-size:0.85rem; color:var(--muted); }
+
+  /* ===== ABOUT ===== */
+  .about-grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:clamp(2rem,5vw,4rem); align-items:start; }
+  @media(max-width:820px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ color:var(--muted); margin-bottom:1.1rem; max-width:60ch; }
+  .stat-row{ display:flex; gap:clamp(2rem,4vw,3rem); margin-top:2rem; flex-wrap:wrap; }
+  .stat-num{ font-family:'Bricolage Grotesque',sans-serif; font-size:2rem; color:var(--amber); }
+  .stat-label{ font-size:0.8rem; color:var(--muted); margin-top:0.2rem; }
+
+  /* ===== CTA / FOOTER ===== */
+  .cta-final{ text-align:center; }
+  .cta-final h2{ font-size:clamp(2rem,6vw,4rem); margin-bottom:1.6rem; }
+  .btn-primary{
+    display:inline-block; background:var(--amber); color:#171106; padding:1.1rem 2.4rem;
+    border-radius:100px; font-weight:600; font-family:'Bricolage Grotesque',sans-serif; transition:transform 0.2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); }
+
+  footer{ border-top:1px solid var(--line); padding:2.5rem; display:flex; justify-content:space-between; color:var(--muted); font-size:0.85rem; flex-wrap:wrap; gap:1rem; }
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="loader-mark">Loading</div></div>
+
+<header>
+  <div class="logo">Kai Renner</div>
+  <nav>
+    <a href="#work">Work</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero-spotlight">
+  <div class="hero-portrait-base"></div>
+  <div class="hero-portrait-bright" id="brightLayer"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Frontend Engineer — Based in Berlin</div>
+    <h1 class="hero-title">Interfaces that feel<br><span class="amber">inevitable.</span></h1>
+    <p class="hero-sub">I build fast, considered product interfaces for teams who care about the details most people never notice.</p>
+  </div>
+  <div class="hero-hint">Move your cursor</div>
+</section>
+
+<section id="work">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Selected Work</div>
+      <h2>Three projects, in depth</h2>
+    </div>
+    <p>Each shipped to production, each with a real constraint that shaped the outcome.</p>
+  </div>
+  <div class="work-list">
+    <div class="work-row">
+      <div class="work-media wm1"><div class="play-badge">▶</div></div>
+      <div>
+        <div class="work-tag">Fintech · Design System</div>
+        <div class="work-title">Ledger — Component System</div>
+        <p class="work-desc">A 140-component design system built for a banking dashboard used by 40,000 analysts daily. Rebuilt the table virtualization layer to cut render time by 70%.</p>
+      </div>
+    </div>
+    <div class="work-row">
+      <div class="work-media wm2"><div class="play-badge">▶</div></div>
+      <div>
+        <div class="work-tag">E-commerce · Performance</div>
+        <div class="work-title">Fernweg — Checkout Rebuild</div>
+        <p class="work-desc">Rebuilt a checkout flow from scratch after the old one was losing 12% of carts to load time. New flow ships in under 400kb and converts 18% higher.</p>
+      </div>
+    </div>
+    <div class="work-row">
+      <div class="work-media wm3"><div class="play-badge">▶</div></div>
+      <div>
+        <div class="work-tag">Developer Tools · Motion</div>
+        <div class="work-title">Circuit — Docs Site</div>
+        <p class="work-desc">Documentation site for a hardware SDK. Interactive code samples run in-browser via a WASM sandbox I built from scratch over one long winter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="section-head">
+    <div>
+      <div class="section-label">Full Portfolio</div>
+      <h2>Everything else</h2>
+    </div>
+  </div>
+  <div class="grid-portfolio">
+    <div class="grid-card"><div class="grid-thumb gt1"></div><h3>Arvo — Landing Page</h3><p>Marketing site, 2025</p></div>
+    <div class="grid-card"><div class="grid-thumb gt2"></div><h3>Nordlys — Brand Site</h3><p>Full rebuild, 2025</p></div>
+    <div class="grid-card"><div class="grid-thumb gt3"></div><h3>Palette — Internal Tool</h3><p>Design tooling, 2024</p></div>
+    <div class="grid-card"><div class="grid-thumb gt4"></div><h3>Wayfind — Mobile Web</h3><p>Navigation app, 2024</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About</div>
+      <h2>Ten years, one obsession</h2>
+    </div>
+    <div>
+      <p>I've spent the last decade on the same problem: making interfaces that feel like they couldn't have been built any other way. Not flashy — inevitable.</p>
+      <p>Most of that time was spent on teams shipping to millions of users, where a 100ms delay is a business problem, not an engineering footnote.</p>
+      <div class="stat-row">
+        <div><div class="stat-num">10</div><div class="stat-label">Years shipping</div></div>
+        <div><div class="stat-num">40+</div><div class="stat-label">Products launched</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Design systems built</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <div class="section-label" style="justify-content:center; display:flex;">Get in touch</div>
+  <h2>Have something worth building?</h2>
+  <a href="mailto:hello@kairenner.example" class="btn-primary">hello@kairenner.example</a>
+</section>
+
+<footer>
+  <span>© 2026 Kai Renner.</span>
+  <span>Berlin, Germany</span>
+</footer>
+
+<script>
+  // Loading screen
+  window.addEventListener('load', function(){
+    var loader = document.getElementById('loader');
+    setTimeout(function(){ loader.classList.add('hidden'); }, 400);
+  });
+
+  // Flashlight/spotlight cursor reveal
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var heroEl = document.getElementById('hero-spotlight');
+  var brightLayer = document.getElementById('brightLayer');
+
+  if(!reduceMotion && heroEl && brightLayer){
+    heroEl.addEventListener('mousemove', function(e){
+      var rect = heroEl.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      brightLayer.style.setProperty('--mx', x + 'px');
+      brightLayer.style.setProperty('--my', y + 'px');
+    });
+    heroEl.addEventListener('mouseleave', function(){
+      brightLayer.style.setProperty('--mx', '50%');
+      brightLayer.style.setProperty('--my', '50%');
+    });
+  }
+</script>
+
+</body>
+</html>

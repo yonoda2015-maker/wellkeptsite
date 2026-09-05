@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXUS Creative — Digital Agency Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #ef4444;      /* Red accent */
+      --primary-dark: #991b1b; /* Dark red */
+      --text: #1a1a1a;
+      --bg-light: #f8f8f8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Serif for headings */
+    h1, h2, h3 { font-family: 'Georgia', serif; }
+
+    /* Hero video background */
+    .hero-bg {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Grid layout asymmetric */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      grid-auto-rows: auto;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      aspect-ratio: 1;
+      background: var(--bg-light);
+    }
+
+    .portfolio-item:nth-child(3n+2) {
+      grid-column: span 1;
+    }
+
+    .portfolio-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      color: white;
+    }
+
+    .overlay h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .overlay p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Animated accent line */
+    .accent-line {
+      height: 4px;
+      background: var(--primary);
+      width: 0;
+      animation: slideRight 0.8s ease forwards;
+    }
+
+    @keyframes slideRight {
+      to { width: 100px; }
+    }
+
+    /* Floating cards */
+    .float-card {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Stagger animation */
+    .stagger-1 { animation-delay: 0s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.4s; }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-3xl font-bold tracking-tight">
+      <span style="color: var(--primary);">NEXUS</span>
+      <span class="text-gray-900"> Creative</span>
+    </div>
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="#work" class="hover:text-red-500 transition">Our Work</a>
+      <a href="#services" class="hover:text-red-500 transition">Services</a>
+      <a href="#team" class="hover:text-red-500 transition">Team</a>
+      <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+    </nav>
+    <button style="background: var(--primary); color: white;" class="px-6 py-2 rounded text-sm font-semibold hover:opacity-90 transition">
+      Let's Talk
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero-bg text-white py-32 md:py-48 px-6 relative z-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-8">
+      <div class="accent-line"></div>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 max-w-3xl">
+      We Build Digital<br>
+      <span style="color: var(--primary);">Experiences</span><br>
+      That Matter
+    </h1>
+    <p class="text-xl text-gray-300 max-w-2xl mb-12 leading-relaxed">
+      From concept to launch. We craft brands, websites, and digital products that captivate and convert.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <button style="background: var(--primary); color: white;" class="px-8 py-4 text-lg font-semibold hover:opacity-90 transition">
+        View Our Work
+      </button>
+      <button style="border: 2px solid white; color: white; background: transparent;" class="px-8 py-4 text-lg font-semibold hover:bg-white hover:text-black transition">
+        Schedule a Call
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED WORK ===== -->
+<section id="work" class="py-20 px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16">
+      <h2 class="text-5xl font-bold mb-2">Featured Projects</h2>
+      <p class="text-lg text-gray-600">Handpicked work that showcases our craft</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <!-- Project 1 -->
+      <div class="portfolio-item bg-gradient-to-br from-purple-400 to-pink-600">
+        <div class="overlay">
+          <h3>Fintech Platform</h3>
+          <p>SaaS product design & development</p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="portfolio-item bg-gradient-to-br from-blue-400 to-cyan-600">
+        <div class="overlay">
+          <h3>E-commerce Redesign</h3>
+          <p>Brand identity + full-stack rebuild</p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="portfolio-item bg-gradient-to-br from-orange-400 to-red-600">
+        <div class="overlay">
+          <h3>Mobile App Experience</h3>
+          <p>UI/UX design + iOS/Android implementation</p>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="portfolio-item bg-gradient-to-br from-green-400 to-emerald-600">
+        <div class="overlay">
+          <h3>Brand System Design</h3>
+          <p>Logo, color system, comprehensive guidelines</p>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="portfolio-item bg-gradient-to-br from-indigo-400 to-purple-600">
+        <div class="overlay">
+          <h3>Dashboard Application</h3>
+          <p>Data visualization + performance optimization</p>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="portfolio-item bg-gradient-to-br from-rose-400 to-pink-600">
+        <div class="overlay">
+          <h3>Marketing Website</h3>
+          <p>Brand storytelling + conversion optimization</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="py-20 px-6 bg-gray-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl font-bold mb-16">What We Do</h2>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Service 1 -->
+      <div class="float-card stagger-1">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-red-500 rounded"></div>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Brand Strategy</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          We don't just design—we define. From market positioning to brand voice, we build the foundation of your digital presence.
+        </p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="float-card stagger-2">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-red-500 rounded"></div>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Product Design</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          User-centered design that solves real problems. Every pixel has a purpose. Every interaction delights.
+        </p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="float-card stagger-3">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-red-500 rounded"></div>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Development</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          High-performance code meets beautiful design. We build for speed, scale, and sustainability.
+        </p>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="float-card stagger-1">
+        <div class="mb-4">
+          <div class="w-12 h-12 bg-red-500 rounded"></div>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Growth Marketing</h3>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          Data-driven strategies that turn visitors into customers. We obsess over metrics and results.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM STATS ===== -->
+<section class="py-20 px-6 bg-white border-t border-gray-200">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl font-bold mb-16">By The Numbers</h2>
+
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="text-5xl font-bold mb-2" style="color: var(--primary);">120+</div>
+        <p class="text-gray-600 text-lg">Projects Completed</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl font-bold mb-2" style="color: var(--primary);">50+</div>
+        <p class="text-gray-600 text-lg">Happy Clients</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl font-bold mb-2" style="color: var(--primary);">8</div>
+        <p class="text-gray-600 text-lg">Years in Business</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl font-bold mb-2" style="color: var(--primary);">24</div>
+        <p class="text-gray-600 text-lg">Team Members</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="team" class="py-20 px-6 bg-gray-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-5xl font-bold mb-16">What Our Clients Say</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white p-8 rounded-lg border border-gray-200">
+        <div class="flex mb-4">
+          <span style="color: var(--primary);">★★★★★</span>
+        </div>
+        <p class="text-lg mb-6 leading-relaxed">
+          "NEXUS transformed our entire brand. Not just the visuals—they fundamentally changed how we think about our product."
+        </p>
+        <p class="font-semibold">Alex Turner</p>
+        <p class="text-sm text-gray-600">Founder, TechVenture</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg border border-gray-200">
+        <div class="flex mb-4">
+          <span style="color: var(--primary);">★★★★★</span>
+        </div>
+        <p class="text-lg mb-6 leading-relaxed">
+          "Incredibly talented team. They delivered on time, under budget, and exceeded every expectation. True partners."
+        </p>
+        <p class="font-semibold">Maya Rodriguez</p>
+        <p class="text-sm text-gray-600">CEO, DataFlow</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="contact" class="py-32 px-6" style="background: var(--primary); color: white;">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-5xl font-bold mb-6">Ready to Create Something<br>Extraordinary?</h2>
+    <p class="text-xl mb-12 opacity-95 max-w-2xl mx-auto">
+      Let's talk about your vision. Coffee, Zoom, or in person—we're here to listen.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button style="background: white; color: var(--primary);" class="px-10 py-4 text-lg font-semibold rounded hover:opacity-90 transition">
+        Get in Touch
+      </button>
+      <button style="border: 2px solid white; background: transparent; color: white;" class="px-10 py-4 text-lg font-semibold rounded hover:bg-white hover:text-red-500 transition">
+        See Our Latest Work
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-black text-gray-400 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-12 pb-12 border-b border-gray-800">
+      <div>
+        <p class="text-white font-bold text-lg mb-4">NEXUS Creative</p>
+        <p class="text-sm leading-relaxed">
+          Crafting digital experiences that inspire and convert since 2018.
+        </p>
+      </div>
+      <div>
+        <p class="text-white font-bold mb-4">Services</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Brand Strategy</a></li>
+          <li><a href="#" class="hover:text-white transition">Product Design</a></li>
+          <li><a href="#" class="hover:text-white transition">Development</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-bold mb-4">Company</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">About</a></li>
+          <li><a href="#" class="hover:text-white transition">Work</a></li>
+          <li><a href="#" class="hover:text-white transition">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white font-bold mb-4">Connect</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+          <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+          <li><a href="#" class="hover:text-white transition">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-sm">
+      <p>© 2026 NEXUS Creative. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Intersection observer for stagger animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+      }
+    });
+  });
+
+  document.querySelectorAll('.float-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transition = 'opacity 0.6s ease-out';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

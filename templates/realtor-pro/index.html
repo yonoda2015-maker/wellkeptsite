@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RealtorPro — Premium Real Estate Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #1F3A5F;      /* Navy blue */
+      --primary-light: #E8EDF4;
+      --accent: #D4A574;       /* Gold */
+      --text: #1A1A1A;
+      --text-light: #6B7280;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: white; }
+    h1, h2, h3 { font-family: 'Georgia', serif; font-weight: 700; }
+    .btn-primary { background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; }
+    .btn-primary:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold" style="color: var(--primary);">RealtorPro</div>
+    <nav class="hidden md:flex gap-8">
+      <a href="#featured" class="text-sm hover:text-accent">Featured Listings</a>
+      <a href="#search" class="text-sm hover:text-accent">Search</a>
+      <a href="#about" class="text-sm hover:text-accent">About</a>
+    </nav>
+    <button class="btn-primary">Schedule Viewing</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="py-16 px-6" style="background: linear-gradient(135deg, var(--primary) 0%, #2D5A8A 100%); color: white;">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-12">
+      <h1 class="text-5xl font-bold mb-4">Find Your Dream Home</h1>
+      <p class="text-xl opacity-90 mb-8">2,400+ premium properties across the city. Expert guidance. Transparent pricing.</p>
+    </div>
+    <div class="grid md:grid-cols-4 gap-4">
+      <input type="text" placeholder="Location" class="px-4 py-3 rounded text-gray-900" />
+      <select class="px-4 py-3 rounded text-gray-900"><option>Price Range</option></select>
+      <select class="px-4 py-3 rounded text-gray-900"><option>Bedrooms</option></select>
+      <button class="btn-primary">Search</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section id="featured" class="py-20 px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12" style="color: var(--primary);">Featured Listings</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
+        <div class="bg-gray-300 h-56 flex items-center justify-center text-gray-500">Property Image</div>
+        <div class="p-6">
+          <p class="text-sm text-accent font-semibold">$1,250,000</p>
+          <h3 class="text-xl font-bold mb-2">Modern Downtown Penthouse</h3>
+          <p class="text-gray-600 text-sm mb-4">3 bed • 2 bath • 1,850 sqft</p>
+          <p class="text-gray-700 mb-6">Luxury finishes, city views, doorman building.</p>
+          <button class="btn-primary w-full">View Details</button>
+        </div>
+      </div>
+
+      <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
+        <div class="bg-gray-300 h-56 flex items-center justify-center text-gray-500">Property Image</div>
+        <div class="p-6">
+          <p class="text-sm text-accent font-semibold">$875,000</p>
+          <h3 class="text-xl font-bold mb-2">Charming Brownstone</h3>
+          <p class="text-gray-600 text-sm mb-4">4 bed • 2.5 bath • 2,200 sqft</p>
+          <p class="text-gray-700 mb-6">Historic charm, updated systems, garden.</p>
+          <button class="btn-primary w-full">View Details</button>
+        </div>
+      </div>
+
+      <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
+        <div class="bg-gray-300 h-56 flex items-center justify-center text-gray-500">Property Image</div>
+        <div class="p-6">
+          <p class="text-sm text-accent font-semibold">$650,000</p>
+          <h3 class="text-xl font-bold mb-2">Waterfront Condo</h3>
+          <p class="text-gray-600 text-sm mb-4">2 bed • 2 bath • 1,400 sqft</p>
+          <p class="text-gray-700 mb-6">River views, modern amenities, pool access.</p>
+          <button class="btn-primary w-full">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="py-20 px-6" style="background: var(--primary-light);">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-center" style="color: var(--primary);">Why Choose RealtorPro</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="text-4xl font-bold mb-2" style="color: var(--accent);">15+</div>
+        <p class="font-semibold mb-2">Years Experience</p>
+        <p class="text-gray-600">Trusted by thousands of buyers and sellers.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold mb-2" style="color: var(--accent);">$2.5B</div>
+        <p class="font-semibold mb-2">Sales Volume</p>
+        <p class="text-gray-600">Successfully matched properties worth billions.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold mb-2" style="color: var(--accent);">98%</div>
+        <p class="font-semibold mb-2">Client Satisfaction</p>
+        <p class="text-gray-600">Rated 5 stars by satisfied clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: var(--primary); color: white;" class="py-12 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <p>© 2026 RealtorPro. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

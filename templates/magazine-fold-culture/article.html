@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Projectionist of Yesler Way — FOLD Magazine</title>
+<meta name="description" content="For forty-one years, Marion Okabe has threaded 35mm film through the same projector. A FOLD long read by Dana Reyes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EE;
+    --ink: #171512;
+    --red: #B3261E;
+    --hairline: rgba(23, 21, 18, 0.28);
+    --faint: rgba(23, 21, 18, 0.62);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.06rem;
+    line-height: 1.66;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  .wrap {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+
+  /* ---------- Compact masthead ---------- */
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--faint);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .masthead-sm {
+    text-align: center;
+    padding: 1.1rem 0 0.8rem;
+  }
+
+  .masthead-sm .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    line-height: 1;
+  }
+
+  .mainnav {
+    border-top: 3px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .mainnav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 2rem;
+    padding: 0.55rem 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .redrule {
+    border: 0;
+    border-top: 2px solid var(--red);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ---------- Article header ---------- */
+
+  .article-head {
+    max-width: 46rem;
+    margin: 0 auto 2.2rem;
+    text-align: center;
+  }
+
+  .kicker {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.7rem;
+  }
+
+  .article-head h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+    line-height: 1.08;
+    margin-bottom: 0.9rem;
+  }
+
+  .article-head .deck {
+    font-size: 1.18rem;
+    font-style: italic;
+    color: var(--faint);
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+  }
+
+  .byline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .byline b { color: var(--ink); font-weight: 700; }
+
+  .dateline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 0.4rem;
+  }
+
+  .headrule {
+    width: 6rem;
+    border: 0;
+    border-top: 2px solid var(--red);
+    margin: 1.4rem auto 0;
+  }
+
+  /* ---------- Article body: 65ch reading measure ---------- */
+
+  .article-body {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .article-body p { margin-bottom: 1.25rem; }
+
+  /* Drop cap on the opening paragraph */
+  .article-body > p.opener::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 4.6em;
+    line-height: 0.78;
+    float: left;
+    padding: 0.06em 0.12em 0 0;
+    color: var(--red);
+  }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 2.4rem 0 1rem;
+  }
+
+  /* Pull quote */
+  .pullquote {
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 1.5rem 1rem;
+    margin: 2.4rem 0;
+    text-align: center;
+  }
+
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.55rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .pullquote cite {
+    display: block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-style: normal;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 0.8rem;
+  }
+
+  /* Inline figure */
+  figure { margin: 2.4rem 0; }
+
+  .figure-art {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background:
+      linear-gradient(200deg, rgba(23,21,18,0.8) 0%, rgba(23,21,18,0.35) 50%, rgba(179,38,30,0.3) 100%),
+      linear-gradient(35deg, #2e2a23 0%, #5c5344 55%, #9c8e76 100%);
+  }
+
+  figcaption {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.76rem;
+    color: var(--faint);
+    padding-top: 0.5rem;
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 0.5rem;
+  }
+
+  figcaption .credit {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .endmark::after {
+    content: " ■";
+    color: var(--red);
+  }
+
+  /* ---------- Article footer: prev / next ---------- */
+
+  .article-foot {
+    max-width: 65ch;
+    margin: 3.5rem auto 0;
+    border-top: 3px double var(--ink);
+    padding-top: 1.4rem;
+  }
+
+  .article-foot .label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .prevnext {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .prevnext .next { text-align: right; border-left: 1px solid var(--hairline); padding-left: 2rem; }
+
+  .prevnext .dir {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.35rem;
+  }
+
+  .prevnext h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .sitefoot {
+    margin-top: 3rem;
+    border-top: 1px solid var(--ink);
+    padding-top: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  @media (max-width: 600px) {
+    .prevnext { grid-template-columns: 1fr; gap: 1.2rem; }
+    .prevnext .next { text-align: left; border-left: 0; padding-left: 0; border-top: 1px solid var(--hairline); padding-top: 1.2rem; }
+  }
+
+  /* No motion anywhere on this site; belt-and-suspenders for UA/extension styles */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="topbar">
+      <span>Issue 41 — The Slowness Issue</span>
+      <span>Tuesday, July 14, 2026</span>
+      <span><a href="index.html">← Front Page</a></span>
+    </div>
+
+    <div class="masthead-sm">
+      <p class="logo"><a href="index.html">FOLD</a></p>
+    </div>
+
+    <nav class="mainnav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Front Page</a></li>
+        <li><a href="article.html">Film</a></li>
+        <li><a href="article.html">Music</a></li>
+        <li><a href="article.html">Books</a></li>
+        <li><a href="article.html" aria-current="page">Cities</a></li>
+        <li><a href="article.html">Archive</a></li>
+      </ul>
+    </nav>
+    <hr class="redrule">
+  </header>
+
+  <main>
+    <article>
+      <header class="article-head">
+        <p class="kicker">Cities / The Long Read</p>
+        <h1>The Last Projectionist of Yesler Way</h1>
+        <p class="deck">For forty-one years, Marion Okabe has threaded 35mm film through the same Century JJ projector. The neighborhood changed around her booth. The booth did not.</p>
+        <p class="byline">By <b>Dana Reyes</b> · Photographs by <b>T. Adeyemi</b></p>
+        <p class="dateline">Seattle · July 14, 2026 · 18 min read</p>
+        <hr class="headrule">
+      </header>
+
+      <div class="article-body">
+        <p class="opener">The staircase to the booth is seventeen steps, and Marion Okabe has counted them every working night since 1985. She climbs them with a thermos, a paperback, and two reels of whatever the Corona Theater is showing — lately a restored print of a Taiwanese family drama that arrived in a dented orange shipping case. She opened the case, leaned in, and inhaled. "Vinegar and dust," she said, approvingly. "It smells like every projection room I've ever stood in."</p>
+
+        <p>Okabe is sixty-eight, and she is, as far as anyone at the film archive can determine, the last person in the city employed full-time to project photochemical film. The multiplexes went digital by 2013. The art houses followed, one by one, some keeping a 35mm machine in the corner "for special occasions" the way a family keeps a piano nobody plays. The Corona never converted. This was not a stand on principle. The owner at the time simply couldn't afford the digital projector, and by the time he could, the theater's stubbornness had become its brand.</p>
+
+        <p>"People think we planned it," Okabe told me on my first night in the booth. "Nobody plans to be the last of anything. You just keep showing up, and one day you look around."</p>
+
+        <p>The booth itself is a small concrete room, warmed by machinery, lined with forty years of accumulated instruction: splicing diagrams taped to the wall, a handwritten chart of reel-change cues for films that haven't screened since the nineties, a strip of masking tape on the rewind bench that reads, in fading marker, DO NOT TRUST THE COUNTER. Every object has an explanation, and every explanation is a story about something that once went wrong.</p>
+
+        <h2>Seventeen steps up, sixty years back</h2>
+
+        <p>The Corona opened in 1926 as a vaudeville house, converted to sound in 1930, and settled into its long career as a neighborhood second-run theater. Yesler Way around it has been remade at least four times: streetcars, then no streetcars, then a viaduct, then no viaduct. The theater's survival owes less to preservation boards than to a series of owners who were, in the words of the current one, "too sentimental to sell and too broke to renovate."</p>
+
+        <figure>
+          <div class="figure-art" role="img" aria-label="Placeholder image: the projection booth's rewind bench under a single work lamp"></div>
+          <figcaption>The rewind bench, photographed at 11:40 p.m. after the last screening. The masking-tape label is older than most of the Corona's staff. <span class="credit">Photograph by T. Adeyemi for FOLD</span></figcaption>
+        </figure>
+
+        <p>Okabe started in 1985 as an usher, moved to concessions, and was drafted upstairs when the projectionist of the era, a man she still calls only Mr. Halvorsen, needed someone with steady hands and no social life. She had both. He taught her to splice, to read a cue mark in her peripheral vision, to hear a failing belt before it failed. The apprenticeship lasted three years and ended without ceremony. One night Halvorsen simply didn't come up the stairs, and the film started on time anyway.</p>
+
+        <p>What she learned, she says, was not a set of skills but a posture toward the work: the film is fragile, the audience is trusting, and the projectionist is the only person in the building who can betray both at once.</p>
+
+        <blockquote class="pullquote">
+          <p>"Nobody plans to be the last of anything. You just keep showing up, and one day you look around."</p>
+          <cite>Marion Okabe, projectionist, the Corona Theater</cite>
+        </blockquote>
+
+        <p>The economics of keeping her employed are, by any reasonable accounting, indefensible. A digital cinema package arrives on a hard drive, ingests itself, and plays on schedule for weeks without supervision. A 35mm print arrives in five or six reels, each of which must be inspected, cleaned, spliced onto the platter, and watched — actually watched, all the way through, every screening — by a person paid to be ready for the moment something tears. The Corona's owner estimates that film-handling labor adds four dollars to the cost of every ticket. The tickets do not cost four dollars more. The difference is made up by a membership program whose top tier is named, at the members' own insistence, The Halvorsen Circle.</p>
+
+        <p>And yet the house sells out. Not despite the inconvenience but, in some way the owner has stopped trying to fully explain, because of it. On the night I visited, a Tuesday, the audience for a fifty-year-old film included a row of film students with notebooks, a couple in their eighties who told me they'd seen it here on its first run, and a teenager who had come alone, twice that week. Asked why, he shrugged. "It feels like it's happening," he said. "Streaming feels like it already happened."</p>
+
+        <h2>What the booth knows</h2>
+
+        <p>There is a version of this story that is a eulogy, and Okabe has no patience for it. She has trained two apprentices in the past five years, both in their twenties, both drawn by the archive's restoration program. She makes them learn the way she did: hands first, theory later, failure logged in the notebook that lives on the rewind bench. The notebook is on its eleventh volume. She intends to fill a twelfth.</p>
+
+        <p>On my last night, I asked her what happens to the booth when she retires. She threaded the projector while she considered the question, the film moving through her hands with the automatic precision of four decades, and answered without looking up.</p>
+
+        <p class="endmark">"The same thing that happens every night," she said. "Someone climbs the stairs, and the light goes on."</p>
+      </div>
+
+      <footer class="article-foot">
+        <p class="label">More from Issue 41</p>
+        <nav class="prevnext" aria-label="Previous and next articles">
+          <div class="prev">
+            <p class="dir">← Previous</p>
+            <h3><a href="index.html">The Choir That Rehearses in a Parking Garage</a></h3>
+          </div>
+          <div class="next">
+            <p class="dir">Next →</p>
+            <h3><a href="index.html">Against the Tidy Ending</a></h3>
+          </div>
+        </nav>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="sitefoot">
+    <span>FOLD Magazine · Founded 2015</span>
+    <span><a href="index.html">Subscriptions</a> · <a href="index.html">Stockists</a> · <a href="index.html">Masthead</a></span>
+    <span>Set in Playfair Display &amp; Source Serif</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relay SDK Documentation — Realtime Messaging for Web &amp; Server</title>
+<meta name="description" content="Official documentation for Relay SDK: channels, presence, message lifecycle, API reference, and production guides.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canvas: #F7F9FB;
+    --ink: #1A2432;
+    --ink-soft: #4B5768;
+    --ink-faint: #7A8699;
+    --accent: #2563D9;
+    --accent-soft: #E4EDFB;
+    --navy: #0F1B2D;
+    --navy-raise: #1A2A42;
+    --navy-line: #24364F;
+    --side-text: #B9C4D6;
+    --side-text-dim: #7688A1;
+    --line: #DDE4EC;
+    --card: #FFFFFF;
+    --warn-bg: #FCF3E3;
+    --warn-edge: #D9922B;
+    --warn-ink: #7A5210;
+    --note-bg: #E9F0FC;
+    --note-edge: #2563D9;
+    --note-ink: #1D4CAB;
+    --sidebar-w: 272px;
+    --toc-w: 220px;
+    --topbar-h: 56px;
+    --radius: 8px;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--canvas);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ TOPBAR (mobile) ============ */
+  .topbar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--topbar-h);
+    background: var(--navy);
+    color: #fff;
+    z-index: 60;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    box-shadow: 0 1px 0 var(--navy-line);
+  }
+  .topbar .brand-mini {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .hamburger {
+    background: none;
+    border: 1px solid var(--navy-line);
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--side-text);
+    border-radius: 1px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--navy);
+    color: var(--side-text);
+    display: flex;
+    flex-direction: column;
+    z-index: 70;
+    overflow: hidden;
+  }
+  .sidebar-head {
+    padding: 20px 20px 14px;
+    border-bottom: 1px solid var(--navy-line);
+    flex-shrink: 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, #2563D9 0%, #4E86EE 60%, #7FAAF4 100%);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: 8px 7px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: skewX(-12deg);
+  }
+  .brand .ver {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--side-text-dim);
+    background: var(--navy-raise);
+    border: 1px solid var(--navy-line);
+    border-radius: 999px;
+    padding: 1px 8px;
+    margin-left: auto;
+  }
+  .search-wrap {
+    margin-top: 14px;
+    position: relative;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    stroke: var(--side-text-dim);
+    fill: none;
+    stroke-width: 2;
+    pointer-events: none;
+  }
+  #docSearch {
+    width: 100%;
+    background: var(--navy-raise);
+    border: 1px solid var(--navy-line);
+    border-radius: 6px;
+    color: #E7EDF6;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    padding: 8px 10px 8px 32px;
+    outline: none;
+  }
+  #docSearch::placeholder { color: var(--side-text-dim); }
+  #docSearch:focus { border-color: var(--accent); }
+  .search-empty {
+    display: none;
+    font-size: 12.5px;
+    color: var(--side-text-dim);
+    padding: 12px 20px;
+  }
+  .search-empty.visible { display: block; }
+
+  .sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 12px 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--navy-line) transparent;
+  }
+
+  .nav-group { margin-bottom: 4px; }
+  .nav-group-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    color: var(--side-text-dim);
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 10px 8px 6px;
+    cursor: pointer;
+  }
+  .nav-group-toggle:hover { color: var(--side-text); }
+  .nav-group-toggle .chev {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.18s ease;
+    margin-right: 4px;
+  }
+  .nav-group.collapsed .nav-group-toggle .chev { transform: rotate(-45deg); }
+  .nav-group ul {
+    list-style: none;
+    overflow: hidden;
+  }
+  .nav-group.collapsed ul { display: none; }
+  .nav-group li a {
+    display: block;
+    color: var(--side-text);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 8px 6px 14px;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    margin: 1px 0;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-group li a:hover { background: var(--navy-raise); color: #fff; }
+  .nav-group li a.active {
+    background: rgba(37, 99, 217, 0.18);
+    border-left-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+  .nav-group li.filtered-out { display: none; }
+  .nav-group.filtered-out { display: none; }
+
+  .sidebar-foot {
+    flex-shrink: 0;
+    border-top: 1px solid var(--navy-line);
+    padding: 12px 20px;
+    font-size: 12px;
+    color: var(--side-text-dim);
+    display: flex;
+    justify-content: space-between;
+  }
+  .sidebar-foot a { color: var(--side-text); text-decoration: none; }
+  .sidebar-foot a:hover { color: #fff; }
+
+  .drawer-scrim {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 27, 45, 0.55);
+    z-index: 65;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+  .drawer-scrim.visible { opacity: 1; }
+
+  body.drawer-open { overflow: hidden; }
+
+  /* ============ LAYOUT ============ */
+  .layout {
+    margin-left: var(--sidebar-w);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 40px;
+  }
+  .content {
+    flex: 1;
+    min-width: 0;
+    max-width: 760px;
+    padding: 48px 0 96px;
+  }
+
+  /* ============ RIGHT TOC ============ */
+  .page-toc {
+    width: var(--toc-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 48px 0 48px 4px;
+    font-size: 13px;
+  }
+  .page-toc .toc-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .page-toc ul { list-style: none; border-left: 1px solid var(--line); }
+  .page-toc li a {
+    display: block;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 4px 0 4px 14px;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+    transition: color 0.12s ease, border-color 0.12s ease;
+  }
+  .page-toc li a:hover { color: var(--ink); }
+  .page-toc li a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ============ CONTENT TYPOGRAPHY ============ */
+  .doc-section { margin-bottom: 64px; }
+  .doc-section:target { scroll-margin-top: 24px; }
+  .crumb {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .doc-section h2 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    scroll-margin-top: 24px;
+  }
+  .doc-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 32px 0 10px;
+    scroll-margin-top: 24px;
+  }
+  .doc-section p { margin-bottom: 14px; color: var(--ink); }
+  .doc-section p.lead { font-size: 17.5px; color: var(--ink-soft); }
+  .doc-section a { color: var(--accent); text-decoration: none; }
+  .doc-section a:hover { text-decoration: underline; }
+  .doc-section ul.plain, .doc-section ol.plain {
+    margin: 0 0 14px 22px;
+  }
+  .doc-section ul.plain li, .doc-section ol.plain li { margin-bottom: 6px; }
+  code.inline {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: #EAEEF3;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: #23406E;
+    white-space: nowrap;
+  }
+
+  .flash-title {
+    animation: flash-bg 1.2s ease 2;
+    border-radius: 4px;
+  }
+  @keyframes flash-bg {
+    0% { background: transparent; }
+    30% { background: #FBEFC9; box-shadow: 0 0 0 6px #FBEFC9; }
+    100% { background: transparent; box-shadow: 0 0 0 6px transparent; }
+  }
+
+  /* ============ CODE BLOCKS ============ */
+  .code-block {
+    background: var(--navy);
+    border-radius: var(--radius);
+    margin: 18px 0 22px;
+    overflow: hidden;
+    border: 1px solid var(--navy-line);
+  }
+  .code-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px 8px 16px;
+    border-bottom: 1px solid var(--navy-line);
+    background: var(--navy-raise);
+  }
+  .code-lang {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--side-text-dim);
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+  }
+  .copy-btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--side-text);
+    background: transparent;
+    border: 1px solid var(--navy-line);
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .copy-btn:hover { background: rgba(37, 99, 217, 0.2); color: #fff; }
+  .copy-btn.copied { color: #7BD8A4; border-color: #2E5B44; }
+  .copy-btn svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; }
+  .code-block pre {
+    padding: 16px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .code-block code {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #DCE5F1;
+    white-space: pre;
+  }
+  .code-block .tk-kw { color: #8FB4F5; }
+  .code-block .tk-str { color: #A7D8A0; }
+  .code-block .tk-com { color: #63748C; font-style: italic; }
+  .code-block .tk-fn { color: #E9C88C; }
+  .code-block .tk-num { color: #E8A0B4; }
+
+  /* ============ CALLOUTS ============ */
+  .callout {
+    display: flex;
+    gap: 12px;
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin: 18px 0 22px;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .callout .co-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 1px;
+    color: #fff;
+  }
+  .callout strong.co-title { display: block; margin-bottom: 2px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .callout.note { background: var(--note-bg); border-left: 3px solid var(--note-edge); }
+  .callout.note .co-icon { background: var(--note-edge); }
+  .callout.note strong.co-title { color: var(--note-ink); }
+  .callout.warning { background: var(--warn-bg); border-left: 3px solid var(--warn-edge); }
+  .callout.warning .co-icon { background: var(--warn-edge); }
+  .callout.warning strong.co-title { color: var(--warn-ink); }
+
+  /* ============ TABLES ============ */
+  .table-scroll { overflow-x: auto; margin: 18px 0 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
+  table.params {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 560px;
+  }
+  table.params th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: #FBFCFE;
+    white-space: nowrap;
+  }
+  table.params td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.params tr:last-child td { border-bottom: none; }
+  table.params td code {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #23406E;
+    background: #EAEEF3;
+    border-radius: 4px;
+    padding: 1px 5px;
+    white-space: nowrap;
+  }
+  table.params .t-type { font-family: var(--mono); font-size: 12.5px; color: #8046B8; white-space: nowrap; }
+  table.params .t-req { font-size: 11px; font-weight: 700; color: #B23A48; }
+  table.params .t-opt { font-size: 11px; font-weight: 600; color: var(--ink-faint); }
+
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0 0 48px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1180px) {
+    .page-toc { display: none; }
+  }
+  @media (max-width: 900px) {
+    .topbar { display: flex; }
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      width: min(var(--sidebar-w), 84vw);
+      box-shadow: 8px 0 32px rgba(15, 27, 45, 0.35);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .drawer-scrim.visible-block { display: block; }
+    .layout {
+      margin-left: 0;
+      padding: 0 20px;
+    }
+    .content { padding-top: calc(var(--topbar-h) + 28px); }
+    html { scroll-padding-top: calc(var(--topbar-h) + 16px); }
+    .doc-section h2, .doc-section h3 { scroll-margin-top: calc(var(--topbar-h) + 16px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .sidebar, .drawer-scrim, .hamburger span,
+    .nav-group-toggle .chev, .copy-btn,
+    .nav-group li a, .page-toc li a { transition: none !important; }
+    .flash-title { animation: none; background: #FBEFC9; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ MOBILE TOPBAR ============ -->
+<header class="topbar">
+  <button class="hamburger" id="drawerToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="brand-mini"><span class="brand-mark" aria-hidden="true"></span> Relay SDK Docs</div>
+</header>
+
+<div class="drawer-scrim" id="drawerScrim"></div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+  <div class="sidebar-head">
+    <a class="brand" href="#introduction">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Relay SDK
+      <span class="ver">v3.4</span>
+    </a>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      <input type="search" id="docSearch" placeholder="Search docs…" aria-label="Search documentation" autocomplete="off">
+    </div>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebarNav">
+    <div class="search-empty" id="searchEmpty">No sections match your search.</div>
+
+    <div class="nav-group" data-group="getting-started">
+      <button class="nav-group-toggle" aria-expanded="true">Getting Started <span class="chev" aria-hidden="true"></span></button>
+      <ul>
+        <li><a href="#introduction" data-section="introduction">Introduction</a></li>
+        <li><a href="#installation" data-section="installation">Installation</a></li>
+        <li><a href="#quickstart" data-section="quickstart">Quickstart</a></li>
+        <li><a href="#authentication" data-section="authentication">Authentication</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group" data-group="core-concepts">
+      <button class="nav-group-toggle" aria-expanded="true">Core Concepts <span class="chev" aria-hidden="true"></span></button>
+      <ul>
+        <li><a href="#channels" data-section="channels">Channels</a></li>
+        <li><a href="#presence" data-section="presence">Presence</a></li>
+        <li><a href="#message-lifecycle" data-section="message-lifecycle">Message Lifecycle</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group" data-group="api-reference">
+      <button class="nav-group-toggle" aria-expanded="true">API Reference <span class="chev" aria-hidden="true"></span></button>
+      <ul>
+        <li><a href="#relayclient" data-section="relayclient">RelayClient</a></li>
+        <li><a href="#channel-api" data-section="channel-api">Channel</a></li>
+        <li><a href="#events" data-section="events">Events</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-group" data-group="guides">
+      <button class="nav-group-toggle" aria-expanded="true">Guides <span class="chev" aria-hidden="true"></span></button>
+      <ul>
+        <li><a href="#reconnection" data-section="reconnection">Handling Reconnection</a></li>
+        <li><a href="#webhooks" data-section="webhooks">Server Webhooks</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="sidebar-foot">
+    <span>© 2026 Relay Labs</span>
+    <span title="Coming soon">Changelog</span>
+  </div>
+</aside>
+
+<!-- ============ MAIN LAYOUT ============ -->
+<div class="layout">
+  <main class="content" id="content">
+
+    <!-- ================= INTRODUCTION ================= -->
+    <section class="doc-section" id="introduction" data-title="Introduction">
+      <p class="crumb">Getting Started</p>
+      <h2 id="h-introduction">Introduction</h2>
+      <p class="lead">Relay is a realtime messaging SDK for building chat, collaboration, live dashboards, and multiplayer features. It gives you pub/sub channels, presence, and guaranteed message ordering over a single WebSocket connection.</p>
+      <p>The client SDK ships for browsers, Node.js, and React Native from one package. Under the hood, Relay maintains a multiplexed connection to the nearest edge region, automatically resumes after network drops, and replays any messages you missed while offline — up to a two-minute window on every plan.</p>
+
+      <h3 id="h-intro-when">When to use Relay</h3>
+      <ul class="plain">
+        <li><strong>Chat and messaging</strong> — direct messages, group rooms, typing indicators, read receipts.</li>
+        <li><strong>Live collaboration</strong> — cursors, co-editing signals, comment streams.</li>
+        <li><strong>Data fan-out</strong> — pushing price ticks, order status, or telemetry to thousands of subscribers.</li>
+      </ul>
+      <p>If you need request/response RPC or file transfer, Relay is not the right tool — pair it with your existing HTTP API instead. Relay messages are capped at 64&nbsp;KB per publish.</p>
+
+      <div class="callout note">
+        <span class="co-icon" aria-hidden="true">i</span>
+        <div>
+          <strong class="co-title">Note</strong>
+          These docs cover SDK v3.x. The v2 client still works against the same infrastructure, but v2 reached end-of-support in March 2026. See the migration table in <a href="#relayclient">RelayClient</a> for renamed options.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= INSTALLATION ================= -->
+    <section class="doc-section" id="installation" data-title="Installation">
+      <p class="crumb">Getting Started</p>
+      <h2 id="h-installation">Installation</h2>
+      <p>Install the client package with your package manager of choice. The package includes TypeScript definitions — no separate <code class="inline">@types</code> install is needed.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">bash</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code>npm install @relay/client
+<span class="tk-com"># or</span>
+pnpm add @relay/client
+<span class="tk-com"># or</span>
+yarn add @relay/client</code></pre>
+      </div>
+
+      <h3 id="h-install-server">Server SDK</h3>
+      <p>For publishing from trusted backends and verifying webhooks, install the server package. It never opens a WebSocket — it signs REST calls with your secret key.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">bash</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code>npm install @relay/server</code></pre>
+      </div>
+
+      <h3 id="h-install-cdn">Browser via CDN</h3>
+      <p>For prototypes without a build step, load the IIFE bundle. It exposes a global <code class="inline">Relay</code> object. Pin an exact version in production — the <code class="inline">latest</code> tag can introduce breaking changes across majors.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">html</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code>&lt;script src=<span class="tk-str">"https://cdn.relay.dev/client/3.4.2/relay.min.js"</span>&gt;&lt;/script&gt;</code></pre>
+      </div>
+
+      <div class="callout warning">
+        <span class="co-icon" aria-hidden="true">!</span>
+        <div>
+          <strong class="co-title">Warning</strong>
+          Never ship your <em>secret</em> key (<code class="inline">sk_live_…</code>) to a browser or mobile app. Browsers should only ever see a publishable key (<code class="inline">pk_…</code>) combined with a token endpoint — see <a href="#authentication">Authentication</a>.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= QUICKSTART ================= -->
+    <section class="doc-section" id="quickstart" data-title="Quickstart">
+      <p class="crumb">Getting Started</p>
+      <h2 id="h-quickstart">Quickstart</h2>
+      <p class="lead">Send your first realtime message in under five minutes: connect, subscribe to a channel, and publish.</p>
+
+      <h3 id="h-quick-connect">1. Connect a client</h3>
+      <p>Create a <code class="inline">RelayClient</code> with your publishable key. The client connects lazily — the socket opens on the first subscribe or publish, not at construction time.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">import</span> { RelayClient } <span class="tk-kw">from</span> <span class="tk-str">"@relay/client"</span>;
+
+<span class="tk-kw">const</span> relay = <span class="tk-kw">new</span> <span class="tk-fn">RelayClient</span>({
+  key: <span class="tk-str">"pk_live_9f3aa01c"</span>,
+  authUrl: <span class="tk-str">"/api/relay-token"</span>,  <span class="tk-com">// your token endpoint</span>
+});</code></pre>
+      </div>
+
+      <h3 id="h-quick-subscribe">2. Subscribe and listen</h3>
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">const</span> room = relay.<span class="tk-fn">channel</span>(<span class="tk-str">"orders:eu-west"</span>);
+
+room.<span class="tk-fn">subscribe</span>(<span class="tk-str">"status.changed"</span>, (msg) =&gt; {
+  console.<span class="tk-fn">log</span>(msg.data.orderId, msg.data.status);
+});</code></pre>
+      </div>
+
+      <h3 id="h-quick-publish">3. Publish from your server</h3>
+      <p>Trusted publishes go through the server SDK with your secret key. The message fans out to every subscriber of <code class="inline">orders:eu-west</code> in the same order for all of them.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">javascript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">import</span> { Relay } <span class="tk-kw">from</span> <span class="tk-str">"@relay/server"</span>;
+
+<span class="tk-kw">const</span> relay = <span class="tk-kw">new</span> <span class="tk-fn">Relay</span>(process.env.RELAY_SECRET_KEY);
+
+<span class="tk-kw">await</span> relay.channels
+  .<span class="tk-fn">get</span>(<span class="tk-str">"orders:eu-west"</span>)
+  .<span class="tk-fn">publish</span>(<span class="tk-str">"status.changed"</span>, {
+    orderId: <span class="tk-str">"ord_1842"</span>,
+    status: <span class="tk-str">"shipped"</span>,
+  });</code></pre>
+      </div>
+
+      <div class="callout note">
+        <span class="co-icon" aria-hidden="true">i</span>
+        <div>
+          <strong class="co-title">Note</strong>
+          Clients can also publish directly if the channel's capability grant allows it. For anything user-generated (chat messages, reactions), that is the normal pattern — see <a href="#channels">Channels</a> for capability rules.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= AUTHENTICATION ================= -->
+    <section class="doc-section" id="authentication" data-title="Authentication">
+      <p class="crumb">Getting Started</p>
+      <h2 id="h-authentication">Authentication</h2>
+      <p class="lead">Relay uses short-lived signed tokens. Your backend mints a token scoped to the channels and capabilities a user should have; the client exchanges it transparently.</p>
+
+      <h3 id="h-auth-flow">Token flow</h3>
+      <ol class="plain">
+        <li>The client calls your <code class="inline">authUrl</code> endpoint with the user's session cookie or bearer token.</li>
+        <li>Your endpoint verifies the user, then calls <code class="inline">relay.auth.createToken()</code> with the allowed channel patterns.</li>
+        <li>The client presents the token when opening the socket. Tokens expire after 15 minutes by default; the SDK refreshes them automatically before expiry.</li>
+      </ol>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-com">// POST /api/relay-token  (Express example)</span>
+app.<span class="tk-fn">post</span>(<span class="tk-str">"/api/relay-token"</span>, requireLogin, <span class="tk-kw">async</span> (req, res) =&gt; {
+  <span class="tk-kw">const</span> token = <span class="tk-kw">await</span> relay.auth.<span class="tk-fn">createToken</span>({
+    userId: req.user.id,
+    capabilities: {
+      <span class="tk-str">"chat:*"</span>: [<span class="tk-str">"subscribe"</span>, <span class="tk-str">"publish"</span>, <span class="tk-str">"presence"</span>],
+      <span class="tk-str">"orders:*"</span>: [<span class="tk-str">"subscribe"</span>],
+    },
+    ttl: <span class="tk-num">900</span>, <span class="tk-com">// seconds</span>
+  });
+  res.<span class="tk-fn">json</span>(token);
+});</code></pre>
+      </div>
+
+      <h3 id="h-auth-params">createToken() parameters</h3>
+      <div class="table-scroll">
+        <table class="params">
+          <thead>
+            <tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>userId</code></td><td class="t-type">string</td><td class="t-req">required</td><td>Stable identifier for the user. Shown to other members through presence and attached to every message the client publishes.</td></tr>
+            <tr><td><code>capabilities</code></td><td class="t-type">Record&lt;string, Capability[]&gt;</td><td class="t-req">required</td><td>Map of channel patterns (<code>*</code> wildcards allowed) to allowed operations: <code>subscribe</code>, <code>publish</code>, <code>presence</code>, <code>history</code>.</td></tr>
+            <tr><td><code>ttl</code></td><td class="t-type">number</td><td class="t-opt">optional</td><td>Token lifetime in seconds. Default <code>900</code>, maximum <code>3600</code>.</td></tr>
+            <tr><td><code>metadata</code></td><td class="t-type">object</td><td class="t-opt">optional</td><td>Up to 1&nbsp;KB of JSON attached to the connection, readable by webhook handlers. Not visible to other clients.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warning">
+        <span class="co-icon" aria-hidden="true">!</span>
+        <div>
+          <strong class="co-title">Warning</strong>
+          Capability patterns are the security boundary. Granting <code class="inline">"*": ["publish"]</code> lets a client write to every channel in your app, including ones you add later. Scope patterns as narrowly as your product allows.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= CHANNELS ================= -->
+    <section class="doc-section" id="channels" data-title="Channels">
+      <p class="crumb">Core Concepts</p>
+      <h2 id="h-channels">Channels</h2>
+      <p class="lead">A channel is a named stream of messages. Anyone with the <code class="inline">subscribe</code> capability for its name receives every message published to it, in the same total order.</p>
+
+      <h3 id="h-channels-naming">Naming conventions</h3>
+      <p>Channel names are UTF-8 strings up to 160 characters. The colon is conventionally used as a namespace separator, and capability patterns match on it, so a consistent scheme pays off:</p>
+      <ul class="plain">
+        <li><code class="inline">chat:team-42</code> — one room per team</li>
+        <li><code class="inline">doc:8f1c:cursors</code> — high-frequency sub-stream kept apart from the main doc channel</li>
+        <li><code class="inline">user:u_991:inbox</code> — per-user private channel, granted only to that user's token</li>
+      </ul>
+
+      <h3 id="h-channels-lifecycle">Attach and detach</h3>
+      <p>Calling <code class="inline">relay.channel(name)</code> returns a local handle immediately. The channel <em>attaches</em> (starts receiving) on the first <code class="inline">subscribe()</code> call and detaches automatically when the last listener is removed. You can force these transitions:</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">const</span> doc = relay.<span class="tk-fn">channel</span>(<span class="tk-str">"doc:8f1c"</span>);
+
+<span class="tk-kw">await</span> doc.<span class="tk-fn">attach</span>();   <span class="tk-com">// start buffering before listeners exist</span>
+<span class="tk-kw">await</span> doc.<span class="tk-fn">detach</span>();   <span class="tk-com">// stop receiving, keep the handle</span>
+doc.<span class="tk-fn">release</span>();        <span class="tk-com">// drop the handle and all listeners</span></code></pre>
+      </div>
+
+      <div class="callout note">
+        <span class="co-icon" aria-hidden="true">i</span>
+        <div>
+          <strong class="co-title">Note</strong>
+          Attached channels count toward your plan's concurrent-channel limit per connection (500 on Free, 2,000 on Pro). Detached handles are free. If you page through many rooms, detach the ones that scroll out of view.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= PRESENCE ================= -->
+    <section class="doc-section" id="presence" data-title="Presence">
+      <p class="crumb">Core Concepts</p>
+      <h2 id="h-presence">Presence</h2>
+      <p class="lead">Presence tracks who is currently in a channel. Members enter with a small state object, can update it, and are removed automatically when their connection dies.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">const</span> room = relay.<span class="tk-fn">channel</span>(<span class="tk-str">"chat:team-42"</span>);
+
+<span class="tk-kw">await</span> room.presence.<span class="tk-fn">enter</span>({ status: <span class="tk-str">"online"</span>, typing: <span class="tk-kw">false</span> });
+
+room.presence.<span class="tk-fn">onChange</span>((members) =&gt; {
+  <span class="tk-fn">renderAvatars</span>(members); <span class="tk-com">// full, deduplicated member list</span>
+});
+
+<span class="tk-com">// cheap partial update — merged server-side</span>
+<span class="tk-kw">await</span> room.presence.<span class="tk-fn">update</span>({ typing: <span class="tk-kw">true</span> });</code></pre>
+      </div>
+
+      <h3 id="h-presence-semantics">Semantics worth knowing</h3>
+      <ul class="plain">
+        <li><strong>Leave is automatic.</strong> If the socket drops without a clean <code class="inline">leave()</code>, the member is evicted after a 30-second grace period. A reconnect within that window cancels the eviction, so brief network blips don't cause avatar flicker.</li>
+        <li><strong>One member per userId.</strong> A user with three tabs open appears once, with the state from their most recent <code class="inline">enter</code> or <code class="inline">update</code>.</li>
+        <li><strong>State is capped at 2&nbsp;KB.</strong> Presence is for status, not payloads. Put anything bigger in a regular message.</li>
+      </ul>
+
+      <div class="callout warning">
+        <span class="co-icon" aria-hidden="true">!</span>
+        <div>
+          <strong class="co-title">Warning</strong>
+          Presence fan-out is O(members²) on updates — every update reaches every member. Above roughly 200 concurrent members per channel, switch to the sampled mode (<code class="inline">presence: { mode: "sampled" }</code> in channel options) which delivers member counts plus a bounded sample instead of the full roster.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= MESSAGE LIFECYCLE ================= -->
+    <section class="doc-section" id="message-lifecycle" data-title="Message Lifecycle">
+      <p class="crumb">Core Concepts</p>
+      <h2 id="h-message-lifecycle">Message Lifecycle</h2>
+      <p class="lead">Every message moves through a fixed pipeline: accepted, sequenced, fanned out, and retained. Understanding it explains Relay's delivery guarantees.</p>
+
+      <h3 id="h-lifecycle-guarantees">Delivery guarantees</h3>
+      <ul class="plain">
+        <li><strong>Order:</strong> per-channel total order. Subscriber A and subscriber B always see the same sequence.</li>
+        <li><strong>Delivery:</strong> at-least-once while connected or within the replay window. The SDK deduplicates on <code class="inline">msg.id</code>, so your handlers see each message exactly once.</li>
+        <li><strong>Replay:</strong> after a disconnect, the client resumes from its last acknowledged sequence number. Messages published up to 2 minutes before resume are replayed automatically.</li>
+      </ul>
+
+      <h3 id="h-lifecycle-envelope">The message envelope</h3>
+      <p>Handlers receive the envelope, not just your payload:</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">json</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code>{
+  <span class="tk-str">"id"</span>: <span class="tk-str">"msg_01J9ZK4QW8"</span>,
+  <span class="tk-str">"seq"</span>: <span class="tk-num">48213</span>,
+  <span class="tk-str">"name"</span>: <span class="tk-str">"status.changed"</span>,
+  <span class="tk-str">"channel"</span>: <span class="tk-str">"orders:eu-west"</span>,
+  <span class="tk-str">"publisher"</span>: { <span class="tk-str">"type"</span>: <span class="tk-str">"server"</span>, <span class="tk-str">"userId"</span>: <span class="tk-kw">null</span> },
+  <span class="tk-str">"publishedAt"</span>: <span class="tk-str">"2026-07-15T09:41:07.221Z"</span>,
+  <span class="tk-str">"data"</span>: { <span class="tk-str">"orderId"</span>: <span class="tk-str">"ord_1842"</span>, <span class="tk-str">"status"</span>: <span class="tk-str">"shipped"</span> }
+}</code></pre>
+      </div>
+
+      <h3 id="h-lifecycle-history">History</h3>
+      <p>Beyond the 2-minute replay window, channels with the <code class="inline">history</code> capability retain messages for 72 hours (Pro) and can be paged backwards:</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">const</span> page = <span class="tk-kw">await</span> room.<span class="tk-fn">history</span>({ limit: <span class="tk-num">50</span>, direction: <span class="tk-str">"backwards"</span> });
+<span class="tk-kw">for</span> (<span class="tk-kw">const</span> msg <span class="tk-kw">of</span> page.items) <span class="tk-fn">prepend</span>(msg);
+<span class="tk-kw">if</span> (page.hasNext) <span class="tk-kw">await</span> page.<span class="tk-fn">next</span>();</code></pre>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= RELAYCLIENT ================= -->
+    <section class="doc-section" id="relayclient" data-title="RelayClient">
+      <p class="crumb">API Reference</p>
+      <h2 id="h-relayclient">RelayClient</h2>
+      <p class="lead">The root object. One instance per app is the norm — it owns the socket, the token refresh loop, and the channel registry.</p>
+
+      <h3 id="h-client-ctor">Constructor options</h3>
+      <div class="table-scroll">
+        <table class="params">
+          <thead>
+            <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>key</code></td><td class="t-type">string</td><td>—</td><td><span class="t-req">required</span>&nbsp; Publishable key (<code>pk_…</code>). Identifies your app; carries no privileges by itself.</td></tr>
+            <tr><td><code>authUrl</code></td><td class="t-type">string</td><td>—</td><td>Endpoint the SDK POSTs to for tokens. Either this or <code>authCallback</code> is required for private channels.</td></tr>
+            <tr><td><code>authCallback</code></td><td class="t-type">(ctx) =&gt; Promise&lt;Token&gt;</td><td>—</td><td>Programmatic alternative to <code>authUrl</code> — return a token object yourself (React Native apps often use this with their own fetch stack).</td></tr>
+            <tr><td><code>region</code></td><td class="t-type">"auto" | RegionCode</td><td><code>"auto"</code></td><td>Pin the edge region. <code>"auto"</code> picks the lowest-latency region via anycast; pin only for data-residency requirements.</td></tr>
+            <tr><td><code>reconnect</code></td><td class="t-type">ReconnectPolicy</td><td>exponential</td><td>Backoff policy. Default: 250&nbsp;ms base, ×2 per attempt, 30&nbsp;s cap, full jitter. See <a href="#reconnection">Handling Reconnection</a>.</td></tr>
+            <tr><td><code>logLevel</code></td><td class="t-type">"silent" | "error" | "info" | "debug"</td><td><code>"error"</code></td><td>Console verbosity. <code>"debug"</code> logs every frame — never ship it.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="h-client-methods">Methods</h3>
+      <div class="table-scroll">
+        <table class="params">
+          <thead>
+            <tr><th>Method</th><th>Returns</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>channel(name)</code></td><td class="t-type">Channel</td><td>Get or create the local handle for a channel. Idempotent — the same name returns the same handle.</td></tr>
+            <tr><td><code>connect()</code></td><td class="t-type">Promise&lt;void&gt;</td><td>Force the socket open eagerly. Optional; usually the lazy default is what you want.</td></tr>
+            <tr><td><code>close()</code></td><td class="t-type">Promise&lt;void&gt;</td><td>Cleanly leave presence on all channels, flush pending publishes, then close the socket.</td></tr>
+            <tr><td><code>onConnectionChange(cb)</code></td><td class="t-type">() =&gt; void</td><td>Subscribe to connection state transitions. Returns an unsubscribe function.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout note">
+        <span class="co-icon" aria-hidden="true">i</span>
+        <div>
+          <strong class="co-title">Note</strong>
+          <strong>Migrating from v2?</strong> <code class="inline">apiKey</code> → <code class="inline">key</code>, <code class="inline">tokenEndpoint</code> → <code class="inline">authUrl</code>, and <code class="inline">cluster</code> → <code class="inline">region</code>. The v2 <code class="inline">autoReconnect: false</code> flag is now <code class="inline">reconnect: "off"</code>.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= CHANNEL API ================= -->
+    <section class="doc-section" id="channel-api" data-title="Channel">
+      <p class="crumb">API Reference</p>
+      <h2 id="h-channel-api">Channel</h2>
+      <p class="lead">Returned by <code class="inline">relay.channel(name)</code>. All methods are safe to call in any connection state — operations queue while offline and flush on resume.</p>
+
+      <h3 id="h-channel-publish">publish(name, data, options?)</h3>
+      <p>Publishes a message from the client. Resolves once the server has sequenced the message; rejects with <code class="inline">RelayError</code> code <code class="inline">40160</code> if the token lacks the <code class="inline">publish</code> capability.</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">await</span> room.<span class="tk-fn">publish</span>(<span class="tk-str">"chat.message"</span>, { text: <span class="tk-str">"Shipping Friday."</span> }, {
+  idempotencyKey: draftId,  <span class="tk-com">// retries won't duplicate</span>
+});</code></pre>
+      </div>
+
+      <div class="table-scroll">
+        <table class="params">
+          <thead>
+            <tr><th>Argument</th><th>Type</th><th>Required</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>name</code></td><td class="t-type">string</td><td class="t-req">required</td><td>Event name. Dot-separated by convention (<code>chat.message</code>, <code>cursor.move</code>). Subscribers filter on it.</td></tr>
+            <tr><td><code>data</code></td><td class="t-type">JsonValue</td><td class="t-req">required</td><td>Payload, JSON-serialized. 64&nbsp;KB max after serialization.</td></tr>
+            <tr><td><code>options.idempotencyKey</code></td><td class="t-type">string</td><td class="t-opt">optional</td><td>Publishes with the same key within 5 minutes are collapsed into one message.</td></tr>
+            <tr><td><code>options.ephemeral</code></td><td class="t-type">boolean</td><td class="t-opt">optional</td><td>Skip history and replay for this message. Use for cursors and typing indicators — subscribers who are offline simply miss it.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="h-channel-subscribe">subscribe(nameOrFilter, handler)</h3>
+      <p>Registers a handler and attaches the channel if needed. Returns an unsubscribe function. The filter form takes a glob: <code class="inline">room.subscribe("cursor.*", h)</code>.</p>
+
+      <div class="callout warning">
+        <span class="co-icon" aria-hidden="true">!</span>
+        <div>
+          <strong class="co-title">Warning</strong>
+          Handlers run on the socket's message loop. A handler that blocks for more than ~50&nbsp;ms will delay every other channel on the connection. Do heavy work in <code class="inline">queueMicrotask</code> or a worker.
+        </div>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= EVENTS ================= -->
+    <section class="doc-section" id="events" data-title="Events">
+      <p class="crumb">API Reference</p>
+      <h2 id="h-events">Events</h2>
+      <p class="lead">Connection and channel state changes are exposed as typed events so your UI can show accurate connectivity status.</p>
+
+      <h3 id="h-events-connection">Connection states</h3>
+      <div class="table-scroll">
+        <table class="params">
+          <thead>
+            <tr><th>State</th><th>Meaning</th><th>Typical UI</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>initialized</code></td><td>Client constructed, socket not yet opened.</td><td>Nothing — this is the pre-first-use state.</td></tr>
+            <tr><td><code>connecting</code></td><td>Socket dialing, or token being fetched.</td><td>Subtle spinner on first load only.</td></tr>
+            <tr><td><code>connected</code></td><td>Live. Publishes flush, subscriptions receive.</td><td>Nothing.</td></tr>
+            <tr><td><code>suspended</code></td><td>Retries exhausted the 30&nbsp;s cap; now retrying every 30&nbsp;s.</td><td>"Reconnecting…" banner. Queued publishes are still held.</td></tr>
+            <tr><td><code>failed</code></td><td>Unrecoverable — bad key, revoked token, or account limit.</td><td>Error state; check <code>event.reason</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">const</span> off = relay.<span class="tk-fn">onConnectionChange</span>((ev) =&gt; {
+  banner.hidden = ev.current !== <span class="tk-str">"suspended"</span>;
+  <span class="tk-kw">if</span> (ev.current === <span class="tk-str">"failed"</span>) {
+    console.<span class="tk-fn">error</span>(<span class="tk-str">"Relay failed:"</span>, ev.reason.code, ev.reason.message);
+  }
+});</code></pre>
+      </div>
+
+      <h3 id="h-events-errors">Error codes</h3>
+      <p>All SDK errors are <code class="inline">RelayError</code> instances with a numeric <code class="inline">code</code>. The first two digits mirror HTTP classes: <code class="inline">401xx</code> auth, <code class="inline">403xx</code> capability, <code class="inline">429xx</code> rate limits, <code class="inline">500xx</code> server. Codes are stable across SDK versions — match on them, not on message strings.</p>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= RECONNECTION GUIDE ================= -->
+    <section class="doc-section" id="reconnection" data-title="Handling Reconnection">
+      <p class="crumb">Guides</p>
+      <h2 id="h-reconnection">Handling Reconnection</h2>
+      <p class="lead">The SDK handles the mechanics of reconnecting — backoff, token refresh, sequence resume. Your job is deciding what the UI does during the gap and what happens when the gap was too long.</p>
+
+      <h3 id="h-reconn-short">Short gaps: do nothing</h3>
+      <p>Drops under the 2-minute replay window are invisible to your data layer. Messages replay in order, presence eviction is cancelled, and pending publishes flush. Showing a banner for a 3-second WiFi blip trains users to ignore your banners — react to <code class="inline">suspended</code>, not <code class="inline">connecting</code>.</p>
+
+      <h3 id="h-reconn-long">Long gaps: resync</h3>
+      <p>If the client was offline past the replay window, the resume is rejected and the SDK emits <code class="inline">channel.stateLost</code> on each affected channel. That is your cue to refetch canonical state from your own API:</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code>room.<span class="tk-fn">on</span>(<span class="tk-str">"stateLost"</span>, <span class="tk-kw">async</span> () =&gt; {
+  <span class="tk-com">// gap exceeded the replay window — rebuild from source of truth</span>
+  <span class="tk-kw">const</span> snapshot = <span class="tk-kw">await</span> api.<span class="tk-fn">fetchMessages</span>(roomId, { limit: <span class="tk-num">100</span> });
+  store.<span class="tk-fn">replaceAll</span>(snapshot);
+  <span class="tk-com">// live messages arriving after this point are newer than the snapshot</span>
+});</code></pre>
+      </div>
+
+      <div class="callout note">
+        <span class="co-icon" aria-hidden="true">i</span>
+        <div>
+          <strong class="co-title">Note</strong>
+          <code class="inline">stateLost</code> fires <em>before</em> replayed live traffic resumes on the channel, so a snapshot fetched inside the handler can never be overwritten by an older message.
+        </div>
+      </div>
+
+      <h3 id="h-reconn-tuning">Tuning backoff</h3>
+      <p>The defaults suit interactive apps. For battery-sensitive mobile apps, lengthen the cap; for trading dashboards, shorten the base:</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">typescript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">new</span> <span class="tk-fn">RelayClient</span>({
+  key: <span class="tk-str">"pk_live_9f3aa01c"</span>,
+  authUrl: <span class="tk-str">"/api/relay-token"</span>,
+  reconnect: { baseMs: <span class="tk-num">100</span>, maxMs: <span class="tk-num">10_000</span>, jitter: <span class="tk-str">"full"</span> },
+});</code></pre>
+      </div>
+    </section>
+    <hr class="section-rule">
+
+    <!-- ================= WEBHOOKS GUIDE ================= -->
+    <section class="doc-section" id="webhooks" data-title="Server Webhooks">
+      <p class="crumb">Guides</p>
+      <h2 id="h-webhooks">Server Webhooks</h2>
+      <p class="lead">Webhooks let your backend react to realtime activity — persist chat messages, moderate content, or track who's online — without holding a client connection open.</p>
+
+      <h3 id="h-webhooks-events">Available webhook events</h3>
+      <div class="table-scroll">
+        <table class="params">
+          <thead>
+            <tr><th>Event</th><th>Fires when</th><th>Batching</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>message.published</code></td><td>Any message is sequenced on a matching channel pattern.</td><td>Up to 100 messages / 1&nbsp;s per batch</td></tr>
+            <tr><td><code>presence.entered</code></td><td>A member enters presence.</td><td>Not batched</td></tr>
+            <tr><td><code>presence.left</code></td><td>A member leaves or is evicted after grace.</td><td>Not batched</td></tr>
+            <tr><td><code>channel.opened</code></td><td>First subscriber attaches to a channel.</td><td>Not batched</td></tr>
+            <tr><td><code>channel.closed</code></td><td>Last subscriber detaches (after 60&nbsp;s idle).</td><td>Not batched</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="h-webhooks-verify">Verifying signatures</h3>
+      <p>Every delivery is signed with HMAC-SHA256 over the raw body. Reject anything that fails verification — the helper also checks the timestamp to block replays older than 5 minutes:</p>
+
+      <div class="code-block">
+        <div class="code-head"><span class="code-lang">javascript</span><button class="copy-btn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>Copy</button></div>
+        <pre><code><span class="tk-kw">import</span> { verifyWebhook } <span class="tk-kw">from</span> <span class="tk-str">"@relay/server"</span>;
+
+app.<span class="tk-fn">post</span>(<span class="tk-str">"/hooks/relay"</span>, express.<span class="tk-fn">raw</span>({ type: <span class="tk-str">"*/*"</span> }), (req, res) =&gt; {
+  <span class="tk-kw">const</span> event = <span class="tk-fn">verifyWebhook</span>(req.body, {
+    signature: req.headers[<span class="tk-str">"relay-signature"</span>],
+    secret: process.env.RELAY_WEBHOOK_SECRET,
+  }); <span class="tk-com">// throws RelayError 40103 on mismatch</span>
+
+  <span class="tk-kw">if</span> (event.type === <span class="tk-str">"message.published"</span>) {
+    <span class="tk-kw">for</span> (<span class="tk-kw">const</span> msg <span class="tk-kw">of</span> event.messages) db.messages.<span class="tk-fn">insert</span>(msg);
+  }
+  res.<span class="tk-fn">sendStatus</span>(<span class="tk-num">200</span>);
+});</code></pre>
+      </div>
+
+      <div class="callout warning">
+        <span class="co-icon" aria-hidden="true">!</span>
+        <div>
+          <strong class="co-title">Warning</strong>
+          Use the <em>raw</em> request body for verification. Body parsers that re-serialize JSON (different key order, whitespace) will produce a different HMAC and every delivery will look forged.
+        </div>
+      </div>
+
+      <h3 id="h-webhooks-retry">Delivery and retries</h3>
+      <p>Relay expects a 2xx within 10 seconds. Failed deliveries retry with exponential backoff for up to 6 hours, then land in the dead-letter view in the dashboard, where you can replay them manually. Design handlers to be idempotent — the batch <code class="inline">id</code> header is stable across retries.</p>
+    </section>
+
+  </main>
+
+  <!-- ============ RIGHT MINI-TOC ============ -->
+  <nav class="page-toc" id="pageToc" aria-label="On this page">
+    <div class="toc-label">On this page</div>
+    <ul id="tocList"></ul>
+  </nav>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Mobile drawer ---------- */
+  var sidebar = document.getElementById("sidebar");
+  var toggle = document.getElementById("drawerToggle");
+  var scrim = document.getElementById("drawerScrim");
+
+  function openDrawer() {
+    sidebar.classList.add("open");
+    document.body.classList.add("drawer-open");
+    scrim.classList.add("visible-block");
+    requestAnimationFrame(function () { scrim.classList.add("visible"); });
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation");
+  }
+  function closeDrawer() {
+    sidebar.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+    scrim.classList.remove("visible");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation");
+    var delay = prefersReduced ? 0 : 220;
+    setTimeout(function () {
+      if (!sidebar.classList.contains("open")) scrim.classList.remove("visible-block");
+    }, delay);
+  }
+  toggle.addEventListener("click", function () {
+    if (sidebar.classList.contains("open")) closeDrawer(); else openDrawer();
+  });
+  scrim.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && sidebar.classList.contains("open")) closeDrawer();
+  });
+
+  /* ---------- Collapsible nav groups ---------- */
+  document.querySelectorAll(".nav-group-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var group = btn.closest(".nav-group");
+      var collapsed = group.classList.toggle("collapsed");
+      btn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    });
+  });
+
+  /* ---------- Build right-hand mini TOC from sections ---------- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".doc-section"));
+  var tocList = document.getElementById("tocList");
+  sections.forEach(function (sec) {
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + sec.id;
+    a.textContent = sec.getAttribute("data-title");
+    a.setAttribute("data-section", sec.id);
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  /* ---------- Active-section sync via IntersectionObserver on headings ---------- */
+  var navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
+  var tocLinks = tocList.querySelectorAll("a[data-section]");
+  var currentActive = null;
+
+  function setActive(sectionId) {
+    if (sectionId === currentActive) return;
+    currentActive = sectionId;
+    navLinks.forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-section") === sectionId);
+    });
+    tocLinks.forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-section") === sectionId);
+    });
+    // Auto-expand the group that owns the active item
+    var activeLink = document.querySelector('.sidebar-nav a[data-section="' + sectionId + '"]');
+    if (activeLink) {
+      var group = activeLink.closest(".nav-group");
+      if (group && group.classList.contains("collapsed")) {
+        group.classList.remove("collapsed");
+        group.querySelector(".nav-group-toggle").setAttribute("aria-expanded", "true");
+      }
+    }
+  }
+
+  var headings = sections.map(function (sec) { return sec.querySelector("h2"); });
+  var visibleHeadings = new Set();
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) visibleHeadings.add(entry.target);
+      else visibleHeadings.delete(entry.target);
+    });
+    if (visibleHeadings.size > 0) {
+      // topmost visible heading wins
+      var top = null;
+      visibleHeadings.forEach(function (h) {
+        if (!top || h.getBoundingClientRect().top < top.getBoundingClientRect().top) top = h;
+      });
+      setActive(top.closest(".doc-section").id);
+    } else {
+      // no heading visible: activate the last heading above the viewport
+      var last = null;
+      for (var i = 0; i < headings.length; i++) {
+        if (headings[i].getBoundingClientRect().top < 80) last = headings[i];
+      }
+      if (last) setActive(last.closest(".doc-section").id);
+    }
+  }, { rootMargin: "-56px 0px -55% 0px", threshold: 0 });
+
+  headings.forEach(function (h) { observer.observe(h); });
+  if (sections.length) setActive(sections[0].id);
+
+  /* ---------- Smooth scroll + drawer close on nav/TOC click ---------- */
+  function handleAnchorClick(e) {
+    var href = this.getAttribute("href");
+    if (!href || href.charAt(0) !== "#") return;
+    var target = document.getElementById(href.slice(1));
+    if (!target) return;
+    e.preventDefault();
+    if (window.innerWidth <= 900 && sidebar.classList.contains("open")) closeDrawer();
+    target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
+    history.pushState(null, "", href);
+  }
+  navLinks.forEach(function (a) { a.addEventListener("click", handleAnchorClick); });
+  tocLinks.forEach(function (a) { a.addEventListener("click", handleAnchorClick); });
+
+  /* ---------- Copy buttons ---------- */
+  document.querySelectorAll(".code-block").forEach(function (block) {
+    var btn = block.querySelector(".copy-btn");
+    var code = block.querySelector("pre code");
+    if (!btn || !code) return;
+    var original = btn.innerHTML;
+    btn.addEventListener("click", function () {
+      var text = code.textContent;
+      function done() {
+        btn.classList.add("copied");
+        btn.textContent = "Copied!";
+        setTimeout(function () {
+          btn.classList.remove("copied");
+          btn.innerHTML = original;
+        }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+      } else {
+        fallbackCopy(text, done);
+      }
+    });
+  });
+  function fallbackCopy(text, done) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (err) { /* no-op */ }
+    document.body.removeChild(ta);
+    done();
+  }
+
+  /* ---------- Sidebar search: live-filter nav + flash matching titles ---------- */
+  var searchInput = document.getElementById("docSearch");
+  var searchEmpty = document.getElementById("searchEmpty");
+  var groups = document.querySelectorAll(".nav-group");
+  var flashTimer = null;
+
+  searchInput.addEventListener("input", function () {
+    var q = searchInput.value.trim().toLowerCase();
+    var anyMatch = false;
+
+    groups.forEach(function (group) {
+      var items = group.querySelectorAll("li");
+      var groupHasMatch = false;
+      items.forEach(function (li) {
+        var label = li.textContent.toLowerCase();
+        var match = q === "" || label.indexOf(q) !== -1;
+        li.classList.toggle("filtered-out", !match);
+        if (match) groupHasMatch = true;
+      });
+      group.classList.toggle("filtered-out", q !== "" && !groupHasMatch);
+      if (q !== "" && groupHasMatch && group.classList.contains("collapsed")) {
+        group.classList.remove("collapsed");
+        group.querySelector(".nav-group-toggle").setAttribute("aria-expanded", "true");
+      }
+      if (groupHasMatch) anyMatch = true;
+    });
+
+    searchEmpty.classList.toggle("visible", q !== "" && !anyMatch);
+
+    // Flash matching section titles in the content column
+    clearTimeout(flashTimer);
+    document.querySelectorAll(".doc-section h2.flash-title").forEach(function (h) {
+      h.classList.remove("flash-title");
+    });
+    if (q.length >= 2) {
+      flashTimer = setTimeout(function () {
+        sections.forEach(function (sec) {
+          var title = sec.getAttribute("data-title").toLowerCase();
+          if (title.indexOf(q) !== -1) {
+            var h2 = sec.querySelector("h2");
+            h2.classList.remove("flash-title");
+            void h2.offsetWidth; // restart animation
+            h2.classList.add("flash-title");
+          }
+        });
+      }, 250);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

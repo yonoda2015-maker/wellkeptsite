@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VELOCE — Next-Gen API Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #0B0F17;
+      --surface: #111827;
+      --primary: #22D3EE;     /* Cyan */
+      --secondary: #A78BFA;   /* Purple */
+      --accent: #FF006E;      /* Hot pink */
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', monospace, sans-serif;
+      background: var(--bg);
+      color: #E5E7EB;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-weight: 700; }
+    .neon-border { border: 1px solid var(--primary); box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: var(--bg);
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+      transform: translateY(-2px);
+    }
+    .code-block {
+      background: rgba(0, 0, 0, 0.4);
+      border-left: 2px solid var(--primary);
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+    }
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
+      50% { text-shadow: 0 0 20px rgba(34, 211, 238, 0.8); }
+    }
+    .glow { animation: glow 2s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-black border-b border-cyan-900">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold glow" style="color: var(--primary);">⚡ VELOCE</div>
+    <nav class="hidden md:flex gap-8 text-sm"><a href="#features" style="color: var(--primary);">Features</a><a href="#pricing" style="color: var(--primary);">Pricing</a><a href="#docs" style="color: var(--primary);">Docs</a></nav>
+    <button class="btn-primary">Start Free</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="py-32 px-6 relative overflow-hidden">
+  <div class="absolute top-20 right-10 w-96 h-96 rounded-full opacity-20" style="background: radial-gradient(circle, var(--primary), transparent); filter: blur(40px);"></div>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="mb-6">
+      <span class="text-xs text-cyan-400 tracking-widest">NEXT-GENERATION API INFRASTRUCTURE</span>
+    </div>
+    <h1 class="text-6xl font-bold mb-6 leading-tight">
+      The Fastest API<br><span style="color: var(--primary);">Platform on Earth</span>
+    </h1>
+    <p class="text-xl text-gray-400 mb-12 max-w-2xl">
+      Sub-millisecond latency. Global edge network. Built for scale. Used by companies that move fast.
+    </p>
+    <div class="flex gap-4">
+      <button class="btn-primary">Get Started Free</button>
+      <button style="border: 1px solid var(--primary); background: transparent; color: var(--primary);" class="px-8 py-3 rounded">View Docs</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES GRID -->
+<section id="features" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-16">Why Developers Love VELOCE</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="neon-border p-8 rounded-lg">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--primary);">Blazing Fast</h3>
+        <p class="text-gray-400 mb-6">99.99% uptime guaranteed. Global CDN. Response times under 10ms worldwide.</p>
+        <div class="code-block">$ curl https://api.veloce.io/v1/data<br>Response: 7.2ms ✓</div>
+      </div>
+
+      <div class="neon-border p-8 rounded-lg">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--secondary);">Developer Friendly</h3>
+        <p class="text-gray-400 mb-6">Simple REST API. SDKs in 10+ languages. Comprehensive documentation.</p>
+        <div class="code-block">import veloce<br>client = veloce.Client(api_key)<br>response = client.query()</div>
+      </div>
+
+      <div class="neon-border p-8 rounded-lg">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--primary);">Enterprise Scale</h3>
+        <p class="text-gray-400 mb-6">Handle millions of requests per second. Zero downtime deployments.</p>
+        <div class="code-block">Max throughput: 10M req/sec<br>Concurrent connections: Unlimited</div>
+      </div>
+
+      <div class="neon-border p-8 rounded-lg">
+        <h3 class="text-xl font-bold mb-4" style="color: var(--secondary);">Security First</h3>
+        <p class="text-gray-400 mb-6">256-bit encryption. OAuth2. Rate limiting. DDoS protection included.</p>
+        <div class="code-block">Authorization: Bearer token<br>X-API-Key: your-secret-key</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO CODE -->
+<section class="py-20 px-6 bg-black border-t border-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12">Get Started in Minutes</h2>
+    <div class="neon-border p-8 rounded-lg">
+      <p class="text-gray-400 mb-6">1. Get your API key from the dashboard</p>
+      <div class="code-block mb-6">
+const veloce = require('veloce-sdk');<br>
+const client = new veloce.Client({ apiKey: 'your-key' });<br>
+<br>
+client.query({<br>
+&nbsp;&nbsp;query: 'SELECT * FROM users',<br>
+&nbsp;&nbsp;timeout: 5000<br>
+}).then(result => console.log(result));
+      </div>
+      <p class="text-gray-400">2. Deploy to production. That's it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-16 text-center">Simple Pricing</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="neon-border p-8 rounded-lg">
+        <h3 class="text-2xl font-bold mb-4">Starter</h3>
+        <p class="text-3xl font-bold mb-6" style="color: var(--primary);">Free</p>
+        <ul class="space-y-2 text-gray-400 mb-8"><li>✓ 100k reqs/month</li><li>✓ Community support</li><li>✓ Basic auth</li></ul>
+        <button class="btn-primary w-full">Start Free</button>
+      </div>
+
+      <div style="border: 2px solid var(--secondary); box-shadow: 0 0 30px rgba(167, 139, 250, 0.4);" class="p-8 rounded-lg transform scale-105">
+        <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Pro</h3>
+        <p class="text-3xl font-bold mb-2">$99<span class="text-lg text-gray-400">/mo</span></p>
+        <p class="text-gray-400 mb-6">Unlimited requests</p>
+        <ul class="space-y-2 text-gray-400 mb-8"><li>✓ Priority support</li><li>✓ Advanced analytics</li><li>✓ Custom integrations</li></ul>
+        <button class="btn-primary w-full">Get Pro</button>
+      </div>
+
+      <div class="neon-border p-8 rounded-lg">
+        <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+        <p class="text-3xl font-bold mb-6" style="color: var(--primary);">Custom</p>
+        <ul class="space-y-2 text-gray-400 mb-8"><li>✓ Dedicated support</li><li>✓ Custom SLA</li><li>✓ On-premise option</li></ul>
+        <button style="border: 1px solid var(--primary); background: transparent; color: var(--primary);" class="w-full px-8 py-3 rounded">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-6 border-t border-gray-800">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6">Ready to Build Fast?</h2>
+    <p class="text-xl text-gray-400 mb-12">Join 1,000+ companies accelerating their APIs.</p>
+    <button class="btn-primary">Start Building Now</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-12 px-6 border-t border-gray-800 text-center text-gray-500 text-sm">
+  <p>© 2026 VELOCE. Powered by speed.</p>
+</footer>
+
+</body>
+</html>

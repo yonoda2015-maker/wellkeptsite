@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — KILN Ceramics</title>
+<meta name="description" content="Secure checkout for your KILN order — enter shipping and payment details to finish buying your small-batch ceramics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#C9CFC4;
+  --ink:#26241F;
+  --clay:#A6634B;
+  --card:#F4F2EC;
+  --ink-soft:rgba(38,36,31,.66);
+  --line:rgba(38,36,31,.18);
+  --ok:#5A7A52;
+  --err:#9B3D2A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Karla',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400;line-height:1.12}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.site-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 20px;max-width:1120px;margin:0 auto}
+.brand{font-family:'DM Serif Display',serif;font-size:1.45rem;letter-spacing:.16em}
+.nav-links{display:flex;gap:20px;align-items:center;font-size:.95rem;flex-wrap:wrap}
+.nav-links a{border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .2s}
+.nav-links a:hover{border-color:var(--clay)}
+.cart-link{display:inline-flex;gap:7px;align-items:center}
+.badge{min-width:21px;height:21px;padding:0 6px;border-radius:11px;background:var(--clay);color:var(--card);font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.badge.bump{animation:bump .35s ease}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.38)}100%{transform:scale(1)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:var(--card);border:none;font-family:'Karla',sans-serif;font-weight:700;font-size:.95rem;padding:14px 26px;border-radius:4px;cursor:pointer;transition:background .2s;text-align:center}
+.btn:hover{background:var(--clay)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn:disabled:hover{background:var(--ink)}
+.page-head{padding:44px 0 26px}
+.page-head h1{font-size:clamp(1.9rem,4.5vw,2.6rem)}
+.page-head p{color:var(--ink-soft);margin-top:6px}
+.checkout-layout{display:grid;grid-template-columns:1.5fr 1fr;gap:34px;padding-bottom:80px;align-items:start}
+@media (max-width:820px){.checkout-layout{grid-template-columns:1fr}.order-summary{order:-1}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:26px}
+.panel + .panel{margin-top:20px}
+.panel h2{font-size:1.25rem;margin-bottom:4px}
+.panel .panel-sub{font-size:.85rem;color:var(--ink-soft);margin-bottom:18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-grid .full{grid-column:1/-1}
+@media (max-width:520px){.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}}
+.field label{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.field input,.field select{width:100%;padding:12px 12px;border:1.5px solid var(--line);border-radius:4px;background:#FDFCF9;font-family:'Karla',sans-serif;font-size:.95rem;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(38,36,31,.12)}
+.field .msg{font-size:.78rem;margin-top:5px;min-height:1.1em;display:block}
+.field.invalid input,.field.invalid select{border-color:var(--err);box-shadow:0 0 0 3px rgba(155,61,42,.14)}
+.field.invalid .msg{color:var(--err)}
+.field.valid input,.field.valid select{border-color:var(--ok)}
+.field.valid .msg{color:var(--ok)}
+.order-summary{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:24px;position:sticky;top:84px}
+.order-summary h2{font-size:1.3rem;margin-bottom:16px}
+.sum-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:.92rem;border-bottom:1px dashed var(--line)}
+.sum-line:last-of-type{border-bottom:none}
+.sum-line .item-name{font-weight:700}
+.sum-line .item-variant{display:block;font-size:.78rem;color:var(--ink-soft);font-weight:400}
+.sum-row{display:flex;justify-content:space-between;font-size:.95rem;padding:6px 0}
+.sum-row.muted{color:var(--ink-soft)}
+.sum-row.total{border-top:1px solid var(--line);margin-top:10px;padding-top:14px;font-weight:700;font-size:1.05rem}
+.summary-empty{font-size:.92rem;color:var(--ink-soft)}
+.summary-empty a{color:var(--clay);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.place-order-wrap{margin-top:22px}
+.place-order-wrap .btn{width:100%}
+.form-error-banner{background:rgba(155,61,42,.1);border:1px solid var(--err);color:var(--err);border-radius:4px;padding:12px 14px;font-size:.88rem;font-weight:700;margin-bottom:18px;display:none}
+.form-error-banner.show{display:block}
+.demo-note{font-size:.78rem;color:var(--ink-soft);margin-top:10px;text-align:center}
+.success{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:64px 30px;text-align:center;display:none}
+.success.show{display:block}
+.success .check{width:64px;height:64px;margin:0 auto 20px;border-radius:50%;background:var(--ok);color:var(--card);font-size:1.8rem;display:flex;align-items:center;justify-content:center}
+.success h2{font-size:1.9rem;margin-bottom:10px}
+.success p{color:var(--ink-soft);max-width:48ch;margin:0 auto 8px}
+.success .order-no{font-weight:700;color:var(--ink);letter-spacing:.06em}
+.success .btn{margin-top:24px}
+footer{border-top:1px solid var(--line);padding:34px 0 46px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.85rem;color:var(--ink-soft)}
+footer nav{display:flex;gap:18px}
+footer nav a:hover{color:var(--clay)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html">KILN</a>
+    <div class="nav-links">
+      <a href="index.html">Shop</a>
+      <a href="product.html?id=ember-teapot">Featured</a>
+      <a href="cart.html" class="cart-link">Cart <span id="cart-badge" class="badge">0</span></a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="page-head" id="page-head">
+    <h1>Checkout</h1>
+    <p>Ships in 3 business days from Eugene, OR. This is a demo checkout — no payment is processed.</p>
+  </div>
+
+  <section class="success" id="success-panel" aria-live="polite">
+    <div class="check" aria-hidden="true">✓</div>
+    <h2>Order placed — thank you</h2>
+    <p>Your pieces are being wrapped in paper pulp as we speak. A confirmation email is on its way with tracking to follow.</p>
+    <p class="order-no" id="order-number">Order #KILN-0000</p>
+    <a class="btn" href="index.html">Back to the shop</a>
+  </section>
+
+  <div class="checkout-layout" id="checkout-layout">
+    <form id="checkout-form" novalidate>
+      <div class="form-error-banner" id="form-error" role="alert">Please fix the highlighted fields before placing your order.</div>
+
+      <div class="panel">
+        <h2>Shipping address</h2>
+        <p class="panel-sub">We ship anywhere in the US. International is by email for now.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-first">First name</label>
+            <input id="f-first" name="first" autocomplete="given-name" required>
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field">
+            <label for="f-last">Last name</label>
+            <input id="f-last" name="last" autocomplete="family-name" required>
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field full">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field full">
+            <label for="f-address">Street address</label>
+            <input id="f-address" name="address" autocomplete="street-address" required placeholder="Apartment, suite, unit included">
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field">
+            <label for="f-city">City</label>
+            <input id="f-city" name="city" autocomplete="address-level2" required>
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field">
+            <label for="f-state">State</label>
+            <select id="f-state" name="state" autocomplete="address-level1" required>
+              <option value="">Select…</option>
+              <option>CA</option><option>CO</option><option>FL</option><option>IL</option>
+              <option>MA</option><option>NY</option><option>OR</option><option>TX</option>
+              <option>WA</option><option>Other</option>
+            </select>
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field">
+            <label for="f-zip">ZIP code</label>
+            <input id="f-zip" name="zip" inputmode="numeric" autocomplete="postal-code" required placeholder="97401" maxlength="10">
+            <span class="msg" data-msg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Payment</h2>
+        <p class="panel-sub">Demo only — enter any digits. Nothing is charged or stored.</p>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="f-card">Card number</label>
+            <input id="f-card" name="card" inputmode="numeric" required placeholder="4242 4242 4242 4242" maxlength="19">
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field">
+            <label for="f-exp">Expiry (MM/YY)</label>
+            <input id="f-exp" name="exp" inputmode="numeric" required placeholder="08/28" maxlength="5">
+            <span class="msg" data-msg></span>
+          </div>
+          <div class="field">
+            <label for="f-cvc">CVC</label>
+            <input id="f-cvc" name="cvc" inputmode="numeric" required placeholder="123" maxlength="4">
+            <span class="msg" data-msg></span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <aside class="order-summary" aria-label="Order summary">
+      <h2>Order summary</h2>
+      <div id="summary-lines"></div>
+      <div id="summary-totals">
+        <div class="sum-row muted"><span>Subtotal</span><span id="sum-subtotal">$0</span></div>
+        <div class="sum-row muted"><span>Shipping</span><span id="sum-shipping">$8</span></div>
+        <div class="sum-row total"><span>Total</span><span id="sum-total">$0</span></div>
+      </div>
+      <div class="place-order-wrap">
+        <button class="btn" id="place-order" form="checkout-form" type="submit">Place order</button>
+        <p class="demo-note">Demo storefront — the “Place order” button simulates a confirmation.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 KILN Ceramics Studio — Eugene, OR</span>
+    <nav aria-label="Footer">
+      <a href="index.html">Shop</a>
+      <a href="cart.html">Cart</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* ---- KILN shared cart (identical block on every page) ---- */
+const KILN_MAX_QTY = 12; /* business rule: max 12 per line item */
+const KILN_PRODUCTS = {
+  "ridge-mug":       { name:"Ridge Mug",           price:38,  grad:"g1", variants:["Speckled Oat","Iron Wash","Sage Ash"] },
+  "dune-plate":      { name:"Dune Dinner Plate",   price:52,  grad:"g2", variants:["Speckled Oat","Sage Ash","Tide Blue"] },
+  "ember-teapot":    { name:"Ember Teapot",        price:124, grad:"g3", variants:["Iron Wash","Clay Rust","Speckled Oat"] },
+  "tide-bowl":       { name:"Tide Bowl",           price:44,  grad:"g4", variants:["Tide Blue","Speckled Oat","Sage Ash"] },
+  "fold-vase":       { name:"Fold Vase",           price:86,  grad:"g5", variants:["Clay Rust","Iron Wash"] },
+  "hearth-tumbler":  { name:"Hearth Tumbler",      price:32,  grad:"g6", variants:["Speckled Oat","Sage Ash","Clay Rust"] },
+  "moss-platter":    { name:"Moss Serving Platter",price:98,  grad:"g7", variants:["Sage Ash","Iron Wash"] },
+  "cinder-bud-vase": { name:"Cinder Bud Vase",     price:46,  grad:"g8", variants:["Clay Rust","Tide Blue","Speckled Oat"] }
+};
+const KILN_CART_KEY = "kiln_cart";
+function kilnReadCart(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(KILN_CART_KEY));
+    return Array.isArray(raw) ? raw.filter(l => l && KILN_PRODUCTS[l.id] && l.qty > 0) : [];
+  }catch(e){ return []; }
+}
+function kilnWriteCart(cart){
+  localStorage.setItem(KILN_CART_KEY, JSON.stringify(cart));
+  kilnUpdateBadge(true);
+}
+function kilnAddToCart(id, variant, qty){
+  const cart = kilnReadCart();
+  const line = cart.find(l => l.id === id && l.variant === variant);
+  if(line){ line.qty = Math.min(KILN_MAX_QTY, line.qty + qty); }
+  else{ cart.push({ id:id, variant:variant, qty:Math.min(KILN_MAX_QTY, qty) }); }
+  kilnWriteCart(cart);
+}
+function kilnCartCount(){
+  return kilnReadCart().reduce((sum, l) => sum + l.qty, 0);
+}
+function kilnCartSubtotal(){
+  return kilnReadCart().reduce((sum, l) => sum + KILN_PRODUCTS[l.id].price * l.qty, 0);
+}
+function kilnUpdateBadge(bump){
+  const b = document.getElementById("cart-badge");
+  if(!b) return;
+  b.textContent = kilnCartCount();
+  if(bump){
+    b.classList.remove("bump");
+    void b.offsetWidth; /* restart animation */
+    b.classList.add("bump");
+  }
+}
+document.addEventListener("DOMContentLoaded", function(){ kilnUpdateBadge(false); });
+/* ---- end shared cart ---- */
+
+/* Page: checkout */
+const FREE_SHIP_THRESHOLD = 120;
+const FLAT_SHIPPING = 8;
+
+function renderSummary(){
+  const cart = kilnReadCart();
+  const linesEl = document.getElementById("summary-lines");
+  const totalsEl = document.getElementById("summary-totals");
+  const placeBtn = document.getElementById("place-order");
+  linesEl.innerHTML = "";
+
+  if(cart.length === 0){
+    totalsEl.style.display = "none";
+    placeBtn.disabled = true;
+    linesEl.innerHTML = '<p class="summary-empty">Your cart is empty — nothing to check out yet. <a href="index.html">Browse the batch</a> first.</p>';
+    return;
+  }
+
+  totalsEl.style.display = "";
+  placeBtn.disabled = false;
+
+  cart.forEach(function(lineData){
+    const product = KILN_PRODUCTS[lineData.id];
+    const row = document.createElement("div");
+    row.className = "sum-line";
+    const left = document.createElement("span");
+    left.innerHTML = '<span class="item-name"></span><span class="item-variant"></span>';
+    left.querySelector(".item-name").textContent = lineData.qty + " × " + product.name;
+    left.querySelector(".item-variant").textContent = lineData.variant;
+    const right = document.createElement("span");
+    right.textContent = "$" + (product.price * lineData.qty);
+    row.appendChild(left);
+    row.appendChild(right);
+    linesEl.appendChild(row);
+  });
+
+  const subtotal = kilnCartSubtotal();
+  const freeShip = subtotal >= FREE_SHIP_THRESHOLD;
+  const shipping = freeShip ? 0 : FLAT_SHIPPING;
+  document.getElementById("sum-subtotal").textContent = "$" + subtotal;
+  document.getElementById("sum-shipping").textContent = freeShip ? "Free" : "$" + FLAT_SHIPPING;
+  document.getElementById("sum-total").textContent = "$" + (subtotal + shipping);
+}
+
+/* --- Field-level validation --- */
+const VALIDATORS = {
+  "f-first":  { test: v => v.trim().length >= 1, error: "First name is required." },
+  "f-last":   { test: v => v.trim().length >= 1, error: "Last name is required." },
+  "f-email":  { test: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), error: "Enter a valid email like you@example.com." },
+  "f-address":{ test: v => v.trim().length >= 5, error: "Enter your full street address." },
+  "f-city":   { test: v => v.trim().length >= 2, error: "City is required." },
+  "f-state":  { test: v => v !== "", error: "Choose a state." },
+  "f-zip":    { test: v => /^\d{5}(-\d{4})?$/.test(v.trim()), error: "ZIP should be 5 digits (e.g. 97401)." },
+  "f-card":   { test: v => /^[\d ]{15,19}$/.test(v.trim()) && v.replace(/\D/g,"").length >= 15, error: "Card number should be 15–16 digits." },
+  "f-exp":    { test: v => /^(0[1-9]|1[0-2])\/\d{2}$/.test(v.trim()), error: "Use MM/YY format, e.g. 08/28." },
+  "f-cvc":    { test: v => /^\d{3,4}$/.test(v.trim()), error: "CVC is the 3–4 digit code on the card." }
+};
+
+function validateField(input){
+  const rule = VALIDATORS[input.id];
+  if(!rule) return true;
+  const field = input.closest(".field");
+  const msg = field.querySelector("[data-msg]");
+  const ok = rule.test(input.value);
+  field.classList.toggle("invalid", !ok);
+  field.classList.toggle("valid", ok);
+  msg.textContent = ok ? "Looks good" : rule.error;
+  return ok;
+}
+
+Object.keys(VALIDATORS).forEach(function(id){
+  const input = document.getElementById(id);
+  input.addEventListener("blur", function(){ if(input.value !== "") validateField(input); });
+  input.addEventListener("input", function(){
+    const field = input.closest(".field");
+    if(field.classList.contains("invalid")) validateField(input); /* re-check live once flagged */
+  });
+});
+
+/* Light input formatting for card + expiry */
+document.getElementById("f-card").addEventListener("input", function(e){
+  const digits = e.target.value.replace(/\D/g, "").slice(0, 16);
+  e.target.value = digits.replace(/(\d{4})(?=\d)/g, "$1 ");
+});
+document.getElementById("f-exp").addEventListener("input", function(e){
+  const digits = e.target.value.replace(/\D/g, "").slice(0, 4);
+  e.target.value = digits.length > 2 ? digits.slice(0,2) + "/" + digits.slice(2) : digits;
+});
+
+/* Fake place-order → success state */
+document.getElementById("checkout-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  if(kilnReadCart().length === 0) return;
+
+  let allValid = true;
+  let firstBad = null;
+  Object.keys(VALIDATORS).forEach(function(id){
+    const input = document.getElementById(id);
+    if(!validateField(input)){
+      allValid = false;
+      if(!firstBad) firstBad = input;
+    }
+  });
+
+  const banner = document.getElementById("form-error");
+  if(!allValid){
+    banner.classList.add("show");
+    firstBad.focus();
+    return;
+  }
+  banner.classList.remove("show");
+
+  /* Simulated confirmation — no payment is processed anywhere */
+  const orderNo = "KILN-" + String(Math.floor(1000 + Math.random() * 9000));
+  document.getElementById("order-number").textContent = "Order #" + orderNo;
+  localStorage.removeItem(KILN_CART_KEY);
+  kilnUpdateBadge(true);
+  document.getElementById("checkout-layout").style.display = "none";
+  document.getElementById("page-head").style.display = "none";
+  document.getElementById("success-panel").classList.add("show");
+  window.scrollTo(0, 0);
+});
+
+document.addEventListener("DOMContentLoaded", renderSummary);
+</script>
+</body>
+</html>
