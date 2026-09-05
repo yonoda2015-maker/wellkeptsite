@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashford &amp; Vale — Tax &amp; Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b2a;
+    --navy:#16262b;
+    --cream:#f7f4ec;
+    --cream-2:#efe9da;
+    --line:#d8d1bd;
+    --gold:#8a6d2f;
+    --forest:#2e4a3d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Source Serif 4',Georgia,serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  header{border-bottom:1px solid var(--line);background:var(--cream)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding:22px 28px}
+  .brand{font-size:20px;font-weight:600;letter-spacing:.01em}
+  .brand .mark{color:var(--gold)}
+  nav.links{display:flex;gap:36px;font-family:'IBM Plex Mono';font-size:13px;letter-spacing:.03em;text-transform:uppercase}
+  nav.links a{border-bottom:1px solid transparent;padding-bottom:2px}
+  nav.links a:hover{border-color:var(--gold)}
+  .nav-cta{
+    font-family:'IBM Plex Mono';font-size:13px;text-transform:uppercase;letter-spacing:.03em;
+    border:1px solid var(--ink);padding:9px 18px;
+  }
+
+  /* Hero: asymmetric — text left (7), ledger right (5) */
+  .hero{padding:88px 0 90px;border-bottom:1px solid var(--line)}
+  .hero .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:70px;align-items:start}
+  .kicker{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+  .hero h1{font-size:clamp(32px,4vw,50px);font-weight:500;line-height:1.15;letter-spacing:-.01em;margin-bottom:22px}
+  .hero p.lead{font-size:18px;color:#3d4a48;max-width:52ch;margin-bottom:32px}
+  .hero .actions{display:flex;gap:16px;font-family:'IBM Plex Mono';font-size:13px;text-transform:uppercase;letter-spacing:.03em}
+  .btn-fill{background:var(--navy);color:var(--cream);padding:15px 26px}
+  .btn-line{border:1px solid var(--ink);padding:14px 26px}
+
+  .ledger{border:1px solid var(--line);background:#fff}
+  .ledger .head{padding:18px 22px;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono';font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#6b6250}
+  .ledger-row{display:flex;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line);font-size:15px}
+  .ledger-row:last-child{border-bottom:none}
+  .ledger-row .figure{font-family:'IBM Plex Mono';font-weight:500}
+
+  /* Approach section: numbered list, not cards */
+  .approach{padding:90px 0}
+  .approach .grid{display:grid;grid-template-columns:.85fr 2fr;gap:60px}
+  .approach h2{font-size:clamp(26px,3vw,36px);font-weight:500;line-height:1.2}
+  .approach .intro{font-family:'IBM Plex Mono';font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:18px}
+  .num-list{border-top:1px solid var(--line)}
+  .num-item{display:grid;grid-template-columns:70px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--line)}
+  .num-item .n{font-family:'IBM Plex Mono';font-size:14px;color:var(--gold)}
+  .num-item h3{font-size:19px;font-weight:600;margin-bottom:8px}
+  .num-item p{font-size:15px;color:#3d4a48;max-width:60ch}
+
+  /* Stat band */
+  .stats{background:var(--navy);color:var(--cream);padding:56px 0}
+  .stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .stats .stat .figure{font-family:'IBM Plex Mono';font-size:34px;color:#d8c48f}
+  .stats .stat .label{font-size:14px;color:#b7c2bd;margin-top:8px}
+
+  /* Pull quote */
+  .quote-section{padding:90px 0;border-bottom:1px solid var(--line)}
+  .quote-section .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+  blockquote{font-size:26px;line-height:1.4;font-weight:500;border-left:3px solid var(--gold);padding-left:28px}
+  .quote-attr{font-family:'IBM Plex Mono';font-size:13px;color:#6b6250;margin-top:20px;text-transform:uppercase;letter-spacing:.04em}
+  .quote-side{background:var(--cream-2);border:1px solid var(--line);padding:32px}
+  .quote-side h4{font-size:15px;font-weight:600;margin-bottom:14px}
+  .quote-side ul{list-style:none}
+  .quote-side li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .quote-side li:last-child{border-bottom:none}
+  .quote-side li .figure{font-family:'IBM Plex Mono';color:var(--gold);min-width:44px}
+
+  /* CTA */
+  .cta{padding:90px 0;text-align:center}
+  .cta h2{font-size:clamp(28px,4vw,40px);font-weight:500;margin-bottom:18px}
+  .cta p{font-size:17px;color:#3d4a48;max-width:52ch;margin:0 auto 32px}
+  .cta .btn-fill{padding:16px 32px;display:inline-block}
+
+  footer{border-top:1px solid var(--line);background:var(--cream-2);padding:40px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-family:'IBM Plex Mono';font-size:13px;color:#5b5343}
+
+  @media (max-width:880px){
+    .hero .grid, .approach .grid, .quote-section .grid{grid-template-columns:1fr}
+    nav.links{display:none}
+    .stats .wrap{grid-template-columns:1fr}
+    .num-item{grid-template-columns:44px 1fr}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="brand"><span class="mark">A&amp;V</span> Ashford &amp; Vale</div>
+      <nav class="links">
+        <a href="#approach">Approach</a>
+        <a href="#results">Results</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Book a Consult</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <div class="kicker">Tax &amp; Financial Advisory</div>
+        <h1>Precision bookkeeping for owners who'd rather run the business.</h1>
+        <p class="lead">We handle the filings, the reconciliations, and the quarterly estimates &mdash; so the numbers are ready before you need them, not the night before.</p>
+        <div class="actions">
+          <a class="btn-fill" href="#contact">Schedule a Consult</a>
+          <a class="btn-line" href="#approach">Our Approach</a>
+        </div>
+      </div>
+      <div class="ledger">
+        <div class="head">Client Snapshot — FY2025</div>
+        <div class="ledger-row"><span>Average response time</span><span class="figure">4.2 hrs</span></div>
+        <div class="ledger-row"><span>Filings completed on time</span><span class="figure">100%</span></div>
+        <div class="ledger-row"><span>Avg. tenure per client</span><span class="figure">9 yrs</span></div>
+        <div class="ledger-row"><span>Active client accounts</span><span class="figure">214</span></div>
+        <div class="ledger-row"><span>Licensed CPAs on staff</span><span class="figure">6</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach">
+    <div class="wrap grid">
+      <div>
+        <div class="intro">How we work</div>
+        <h2>Four habits we don't compromise on.</h2>
+      </div>
+      <div class="num-list">
+        <div class="num-item">
+          <div class="n">01</div>
+          <div>
+            <h3>Monthly close, every month</h3>
+            <p>Books reconciled by the 10th, not scrambled together in March. You always know where you stand.</p>
+          </div>
+        </div>
+        <div class="num-item">
+          <div class="n">02</div>
+          <div>
+            <h3>One advisor, not a rotating queue</h3>
+            <p>The person who knows your business is the person who answers when you call.</p>
+          </div>
+        </div>
+        <div class="num-item">
+          <div class="n">03</div>
+          <div>
+            <h3>Quarterly tax planning, not April surprises</h3>
+            <p>Estimated payments and structure reviews happen ahead of deadlines, so nothing lands as a shock.</p>
+          </div>
+        </div>
+        <div class="num-item">
+          <div class="n">04</div>
+          <div>
+            <h3>Plain-language reporting</h3>
+            <p>Statements written so an owner can read them in ten minutes, without a finance degree.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" id="results">
+    <div class="wrap">
+      <div class="stat"><div class="figure">$38M</div><div class="label">Client revenue under management</div></div>
+      <div class="stat"><div class="figure">214</div><div class="label">Businesses currently served</div></div>
+      <div class="stat"><div class="figure">22 yrs</div><div class="label">Serving Hartford County</div></div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="wrap grid">
+      <div>
+        <blockquote>"They caught a structuring issue that would have cost us three years of overpaid tax. That call alone paid for a decade of their fees."</blockquote>
+        <div class="quote-attr">Renata Osei &middot; Founder, Osei Logistics</div>
+      </div>
+      <div class="quote-side">
+        <h4>Who we typically work with</h4>
+        <ul>
+          <li><span class="figure">01</span> Owner-operated service businesses, 5&ndash;80 employees</li>
+          <li><span class="figure">02</span> Multi-location retail and franchise groups</li>
+          <li><span class="figure">03</span> Professional practices transitioning to an S-corp</li>
+          <li><span class="figure">04</span> Family businesses planning a succession</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <h2>Bring your last two tax returns.</h2>
+      <p>Most first consultations surface at least one thing worth fixing before the next filing deadline.</p>
+      <a class="btn-fill" href="mailto:consult@ashfordvale.com">Schedule a Consult</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>Ashford &amp; Vale, LLC &middot; Hartford, CT</div>
+      <div>consult@ashfordvale.com &middot; (860) 555-0118</div>
+      <div>&copy; 2026 Ashford &amp; Vale</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "wellkeptsite-templates-dev",
+  "private": true,
+  "description": "Dev-only tooling for generating LP template screenshots. Not used by the deployed static site.",
+  "scripts": {
+    "screenshot": "node templates/screenshot.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

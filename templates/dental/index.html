@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willowbrook Family Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0f8a80;
+    --teal-dark:#0b6a62;
+    --mint:#e6f6f2;
+    --mint-2:#d3ede6;
+    --coral:#ff8a65;
+    --ink:#173832;
+    --sub:#4d685f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito Sans',system-ui,sans-serif;background:#fff;color:var(--ink);line-height:1.6}
+  h1,h2,h3,.display{font-family:'Quicksand',sans-serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .pill{border-radius:999px}
+
+  header{padding:20px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Quicksand';font-weight:700;font-size:19px;color:var(--teal-dark)}
+  nav.links{display:flex;gap:30px;font-weight:600;font-size:15px;color:var(--sub)}
+  nav.links a:hover{color:var(--teal)}
+  .btn-book{background:var(--coral);color:#fff;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;box-shadow:0 10px 22px -8px rgba(255,138,101,.6)}
+
+  /* Hero: blob shape right, copy left */
+  .hero{padding:56px 0 30px;position:relative;overflow:hidden}
+  .hero .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--teal-dark);font-weight:700;font-size:13px;padding:8px 16px;border-radius:999px;margin-bottom:20px}
+  .hero h1{font-size:clamp(32px,4.4vw,52px);font-weight:700;line-height:1.14;color:var(--ink);margin-bottom:20px}
+  .hero h1 em{font-style:normal;color:var(--teal)}
+  .hero p.sub{font-size:17px;color:var(--sub);max-width:44ch;margin-bottom:30px}
+  .hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{background:var(--teal);color:#fff;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px;box-shadow:0 14px 26px -10px rgba(15,138,128,.55)}
+  .btn-ghost{border:2px solid var(--mint-2);color:var(--teal-dark);font-weight:700;font-size:16px;padding:14px 26px;border-radius:999px}
+  .hero-visual{position:relative;height:380px;display:flex;align-items:center;justify-content:center}
+  .blob{position:absolute;inset:0;background:linear-gradient(135deg,var(--mint) 0%, var(--mint-2) 100%);border-radius:45% 55% 60% 40%/50% 45% 55% 50%;}
+  .tooth-badge{position:relative;background:#fff;border-radius:24px;padding:26px 30px;box-shadow:0 26px 50px -20px rgba(15,60,50,.28);display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center}
+  .tooth-badge .rating{font-family:'Quicksand';font-weight:700;font-size:30px;color:var(--teal-dark)}
+  .tooth-badge .stars{color:var(--coral);letter-spacing:2px}
+  .tooth-badge p{font-size:13px;color:var(--sub)}
+  .float-chip{position:absolute;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 16px 32px -14px rgba(15,60,50,.3);font-size:13px;font-weight:700;color:var(--teal-dark);display:flex;align-items:center;gap:8px}
+  .chip-a{top:6%;right:2%}
+  .chip-b{bottom:8%;left:0%}
+
+  /* Trust strip */
+  .trust{padding:26px 0;border-top:1px solid var(--mint-2);border-bottom:1px solid var(--mint-2)}
+  .trust .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-weight:700;font-size:14px;color:var(--sub)}
+
+  /* Services: alternating rows (max 2) then break with bento */
+  .services{padding:80px 0 20px}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 56px}
+  .section-head .eyebrow{color:var(--teal);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:700}
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:20px}
+  .bento .cell{border-radius:22px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px}
+  .bento .cell h3{font-weight:700;font-size:19px;margin-bottom:8px}
+  .bento .cell p{font-size:14px}
+  .cell-1{grid-column:span 2;grid-row:span 2;background:linear-gradient(155deg,var(--teal) 0%, var(--teal-dark) 100%);color:#fff;min-height:auto}
+  .cell-2{grid-column:span 2;background:var(--mint)}
+  .cell-3{grid-column:span 1;background:#fff3ee}
+  .cell-4{grid-column:span 1;background:var(--mint-2)}
+  .cell-1 .icon-ring{width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .cell-2 p, .cell-3 p, .cell-4 p{color:var(--sub)}
+
+  /* Booking band */
+  .booking{background:var(--mint);padding:70px 0;margin-top:70px}
+  .booking .grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .booking h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;margin-bottom:16px}
+  .booking p{color:var(--sub);font-size:16px;margin-bottom:26px;max-width:44ch}
+  .hours-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 20px 40px -18px rgba(15,60,50,.25)}
+  .hours-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--mint-2);font-size:14px;font-weight:600}
+  .hours-row:last-child{border-bottom:none}
+  .hours-row span:last-child{color:var(--sub);font-weight:400}
+
+  /* Reviews marquee-ish, single row */
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .review-card{background:var(--mint);border-radius:20px;padding:26px}
+  .review-card .stars{color:var(--coral);margin-bottom:12px;letter-spacing:2px}
+  .review-card p{font-size:14px;color:var(--ink);margin-bottom:16px}
+  .review-card .who{font-weight:700;font-size:14px}
+
+  footer{background:var(--teal-dark);color:#dff2ee;padding:44px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:14px}
+  footer .brand-f{color:#fff;font-family:'Quicksand';font-weight:700;font-size:17px;margin-bottom:10px}
+
+  @media (max-width:900px){
+    .hero .grid, .booking .grid{grid-template-columns:1fr}
+    nav.links{display:none}
+    .bento{grid-template-columns:1fr 1fr}
+    .cell-1{grid-column:span 2}
+    .reviews-grid{grid-template-columns:1fr}
+    .hero-visual{height:280px}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="15" fill="#0f8a80"/><path d="M10 12c0-2 1.6-3 3-3 1 0 1.6.5 2 1 .4-.5 1-1 2-1 1.4 0 3 1 3 3 0 3-2.4 8-3.6 9.6-.6.8-1.8.8-2.4 0C12.4 20 10 15 10 12z" fill="#fff"/></svg>
+        Willowbrook Family Dental
+      </div>
+      <nav class="links">
+        <a href="#services">Services</a>
+        <a href="#booking">Hours</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+      <a class="btn-book" href="#booking">Book a Visit</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <div class="hero-tag">✓ Accepting new patients</div>
+        <h1>Dental care that feels like <em>a good neighbor</em>, not a chore.</h1>
+        <p class="sub">Gentle cleanings, same-week appointments, and a team that actually remembers your name. Most insurance accepted.</p>
+        <div class="ctas">
+          <a class="btn-primary" href="#booking">Book an Appointment</a>
+          <a class="btn-ghost" href="tel:+15125550199">Call the Office</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="blob"></div>
+        <div class="tooth-badge">
+          <div class="rating">4.9</div>
+          <div class="stars">★★★★★</div>
+          <p>from 640+ patient reviews</p>
+        </div>
+        <div class="float-chip chip-a">🦷 Same-week openings</div>
+        <div class="float-chip chip-b">😊 Kid-friendly team</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <div>Most PPO plans accepted</div>
+      <div>Sedation options available</div>
+      <div>Open Saturdays</div>
+      <div>Serving families since 2011</div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Care we provide</div>
+        <h2>Everything from checkups to smile makeovers.</h2>
+      </div>
+      <div class="bento">
+        <div class="cell cell-1">
+          <div class="icon-ring"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 10c0-1.7 1.3-2.5 2.5-2.5.8 0 1.3.4 1.5.8.2-.4.7-.8 1.5-.8C14.7 7.5 16 8.3 16 10c0 2.5-2 6.7-3 8-.5.6-1.5.6-2 0-1-1.3-3-5.5-3-8z" stroke="#fff" stroke-width="1.6"/></svg></div>
+          <h3>Preventive &amp; Family Care</h3>
+          <p style="color:#d5efe9">Cleanings, exams, and sealants for every age, with flexible scheduling for busy households.</p>
+        </div>
+        <div class="cell cell-2">
+          <h3>Cosmetic Dentistry</h3>
+          <p>Whitening, bonding, and veneers designed around your natural smile.</p>
+        </div>
+        <div class="cell cell-3">
+          <h3>Emergency Visits</h3>
+          <p>Same-day slots held for toothaches and chips.</p>
+        </div>
+        <div class="cell cell-4">
+          <h3>Invisalign</h3>
+          <p>Clear aligner plans reviewed monthly in-office.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <div class="wrap grid">
+      <div>
+        <h2>Book online in under a minute.</h2>
+        <p>Pick a time that works, tell us what's going on, and we'll confirm within the hour during office days.</p>
+        <a class="btn-primary" href="mailto:hello@willowbrookdental.com">Request an Appointment</a>
+      </div>
+      <div class="hours-card">
+        <div class="hours-row"><span>Monday &ndash; Thursday</span><span>8:00am &ndash; 5:30pm</span></div>
+        <div class="hours-row"><span>Friday</span><span>8:00am &ndash; 2:00pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9:00am &ndash; 1:00pm (2x/mo)</span></div>
+        <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Patients say</div>
+        <h2>Kind words from the chair.</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"My kids used to dread the dentist. Now they ask when their next cleaning is. Something about this office just works."</p>
+          <div class="who">Dana Ferreira</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Got a same-day appointment for a cracked tooth on a Friday afternoon. Painless fix, fair price, no upsell pressure."</p>
+          <div class="who">Marcus Ilic</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Clear explanations of every X-ray, no surprise charges, and they actually remember my name at the front desk."</p>
+          <div class="who">Sophia Nakamura</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <div class="brand-f">Willowbrook Family Dental</div>
+        <div>412 Willowbrook Lane, Georgetown, TX</div>
+      </div>
+      <div>hello@willowbrookdental.com<br>(512) 555-0199</div>
+      <div>&copy; 2026 Willowbrook Family Dental</div>
+    </div>
+  </footer>
+
+</body>
+</html>
