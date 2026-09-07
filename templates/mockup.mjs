@@ -97,8 +97,8 @@ async function main() {
     await page.goto(sourceUrl, { waitUntil: "networkidle" });
 
     const replaced = await page.evaluate(
-      ({ name, city, phone, tagline }) => {
-        const counts = { name: 0, city: 0, phone: 0, tagline: 0 };
+      ({ name, city, phone, tagline, domain }) => {
+        const counts = { name: 0, city: 0, phone: 0, tagline: 0, email: 0 };
         const values = { name, city, phone, tagline };
         document.querySelectorAll("[data-mock]").forEach((el) => {
           const field = el.getAttribute("data-mock");
@@ -108,9 +108,21 @@ async function main() {
           counts[field] = (counts[field] || 0) + 1;
         });
         if (name) document.title = name;
+        // Contact email: every base sample has a fictional mailto (e.g.
+        // consult@ashfordvale.com). Leaving it in a mockup that carries a real
+        // prospect's name would look like a typo at best — rewrite both the
+        // href and the visible text to info@<their domain>.
+        const email = `info@${domain}`;
+        let emails = 0;
+        document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+          a.setAttribute("href", `mailto:${email}`);
+          if (/@/.test(a.textContent || "")) a.textContent = email;
+          emails += 1;
+        });
+        counts.email = emails;
         return counts;
       },
-      { name, city, phone, tagline }
+      { name, city, phone, tagline, domain }
     );
 
     // Force eager-load of any lazy images so the saved HTML and the screenshot
