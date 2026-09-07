@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trueline Auto &amp; Diagnostics — Honest Car Repair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#141414; --black2:#1e1e1e; --red:#e0402e; --paper:#f3f2ef; --ink:#141414; --line:#dedcd6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Rubik,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-weight:800;letter-spacing:-.01em}
+
+  header.nav{background:var(--black);color:#fff}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:600;color:#b8b8b8}
+  .btn-call{background:var(--red);color:#fff;font-weight:700;padding:11px 22px;border-radius:5px}
+
+  .hero{background:var(--black);color:#fff;padding:0 0 0}
+  .hero .wrap{padding:70px 24px 0;display:grid;grid-template-columns:1fr;gap:20px}
+  .hero .badge{display:inline-block;background:rgba(224,64,46,.16);border:1px solid var(--red);color:#ff9284;font-size:12px;font-weight:700;letter-spacing:.06em;padding:6px 14px;border-radius:999px;margin-bottom:20px;text-transform:uppercase}
+  .hero h1{font-size:clamp(32px,5.4vw,58px);line-height:1.04;max-width:760px}
+  .hero h1 span{color:var(--red)}
+  .hero p.sub{font-size:17px;color:#c4c4c4;max-width:520px;margin-top:18px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .btn-primary{background:var(--red);color:#fff;font-weight:700;font-size:16px;padding:15px 26px;border-radius:5px}
+  .btn-outline{border:2px solid rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:16px;padding:13px 24px;border-radius:5px}
+
+  .price-strip{background:var(--black2);padding:0 0 60px}
+  .price-strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden;margin-top:10px}
+  .price-cell{background:var(--black);color:#fff;padding:26px 22px}
+  .price-cell .lbl{font-size:13px;color:#9c9c9c;font-weight:600;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}
+  .price-cell .val{font-size:30px;font-weight:800;color:var(--red)}
+
+  .services{padding:80px 0 60px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+  .services h2{font-size:clamp(28px,3.6vw,42px);max-width:600px;margin-bottom:40px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px}
+  .svc h3{font-size:18px;margin-bottom:8px}
+  .svc p{font-size:14px;color:#54524c;margin-bottom:14px}
+  .svc .price{font-weight:700;color:var(--red);font-size:15px}
+
+  .promise{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0}
+  .promise .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .promise h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:16px}
+  .promise p{color:#4c4a44;margin-bottom:8px}
+  .check-list{list-style:none}
+  .check-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .check-list li:last-child{border:none}
+  .check-list .num{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px}
+  .stars{color:var(--red);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#3a3833;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#847f75}
+
+  .cta-band{background:var(--red);color:#fff;text-align:center;padding:64px 0}
+  .cta-band h2{font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+  .cta-band .btn-primary{background:var(--black)}
+
+  footer{background:var(--black);color:#b8b8b8;padding:44px 0 26px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:30px;padding-top:18px;text-align:center;font-size:13px}
+
+  @media (max-width:900px){
+    nav.links{display:none}
+    .price-strip .wrap{grid-template-columns:1fr 1fr}
+    .svc-grid{grid-template-columns:1fr}
+    .promise .wrap{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="6" fill="#e0402e"/><circle cx="10" cy="20" r="3" stroke="#fff" stroke-width="2"/><circle cx="20" cy="20" r="3" stroke="#fff" stroke-width="2"/><path d="M6 20V13l3-5h9l4 5h2v7" stroke="#fff" stroke-width="2"/></svg>
+    <span data-mock="name">Trueline Auto &amp; Diagnostics</span>
+  </div>
+  <nav class="links"><a href="#services">Services</a><a href="#promise">Our Promise</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-call" href="tel:+13205550187">Book Now</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="badge">ASE Certified &middot; Every quote written down</div>
+  <h1>The estimate you get <span>is the bill you pay.</span></h1>
+  <p class="sub" data-mock="tagline">No "while we had it open" upsells. Every repair is diagnosed, photographed, and priced before we start a single wrench turn.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="tel:+13205550187" data-mock="phone">Call (320) 555-0187</a>
+    <a class="btn-outline" href="#services">See Flat-Rate Pricing</a>
+  </div>
+</div></section>
+
+<section class="price-strip"><div class="wrap">
+  <div class="wrap" style="padding:0">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,.08);border-radius:10px;overflow:hidden">
+      <div class="price-cell"><div class="lbl">Diagnostic scan</div><div class="val">$59</div></div>
+      <div class="price-cell"><div class="lbl">Oil change (synthetic)</div><div class="val">$64</div></div>
+      <div class="price-cell"><div class="lbl">Brake pads (per axle)</div><div class="val">$189</div></div>
+      <div class="price-cell"><div class="lbl">Timing belt</div><div class="val">From $410</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="services" id="services"><div class="wrap">
+  <div class="eyebrow">What we fix</div>
+  <h2>Domestic and import, engine to electrical.</h2>
+  <div class="svc-grid">
+    <div class="svc"><h3>Check Engine Light</h3><p>Full OBD-II diagnostic with a written, photo-documented report — not just a code reset.</p><div class="price">$59 diagnostic</div></div>
+    <div class="svc"><h3>Brakes &amp; Suspension</h3><p>Pads, rotors, struts, and alignment with a lifetime pad warranty.</p><div class="price">From $189</div></div>
+    <div class="svc"><h3>Engine &amp; Transmission</h3><p>Rebuilds and replacements with a 24-month, 24,000-mile warranty.</p><div class="price">Free estimate</div></div>
+    <div class="svc"><h3>Pre-Purchase Inspection</h3><p>150-point inspection before you buy a used car, done same day.</p><div class="price">$99</div></div>
+    <div class="svc"><h3>State Inspection &amp; Emissions</h3><p>In and out in under 30 minutes, no appointment needed most days.</p><div class="price">$35</div></div>
+    <div class="svc"><h3>Fleet &amp; Small Business</h3><p>Volume rates and priority scheduling for local delivery and trade fleets.</p><div class="price">Talk to us</div></div>
+  </div>
+</div></section>
+
+<section class="promise" id="promise"><div class="wrap">
+  <div>
+    <div class="eyebrow">Our promise</div>
+    <h2>Four rules, every visit, no exceptions.</h2>
+    <p>Most shops make you trust them blind. We'd rather show you the part, the code, and the price before we start.</p>
+  </div>
+  <ul class="check-list">
+    <li><span class="num">1</span> We show you the failed part, not just tell you</li>
+    <li><span class="num">2</span> Written quote before any work begins</li>
+    <li><span class="num">3</span> No repair proceeds without your OK</li>
+    <li><span class="num">4</span> Every job backed by a 12-month warranty</li>
+  </ul>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Drivers say</div>
+  <h2 style="margin-bottom:36px">Real cars, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Showed me the cracked belt on my phone before charging me a dime. First shop that's ever done that."</p><div class="who">Reuben Achebe</div><div class="role">Mankato, MN</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Pre-purchase inspection saved me from buying a car with a hidden transmission leak. Worth every cent."</p><div class="who">Nadia Sorensen</div><div class="role">North Mankato, MN</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Quoted $410 for the timing belt, that's exactly what I paid. No last-minute add-ons."</p><div class="who">Terrence Osei</div><div class="role">Eagle Lake, MN</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Dashboard light on right now?</h2>
+  <a class="btn-primary" href="tel:+13205550187">Call (320) 555-0187</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="color:#fff;margin-bottom:10px" data-mock="name">Trueline Auto &amp; Diagnostics</div>
+    <p style="max-width:28ch">ASE-certified repair shop serving <span data-mock="city">Mankato and the surrounding area</span>.</p>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;margin-bottom:10px">Contact</div>
+    <div><a href="tel:+13205550187" data-mock="phone">(320) 555-0187</a></div>
+    <div style="margin-top:6px"><a href="mailto:service@truelineauto.com">service@truelineauto.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Trueline Auto &amp; Diagnostics. ASE Certified &middot; MN Repair Lic. #AR-5521</div>
+</footer>
+
+</body>
+</html>

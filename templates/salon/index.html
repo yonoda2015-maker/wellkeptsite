@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Verrine Salon — Hair &amp; Color Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#e8d3cd; --cream:#faf6f2; --charcoal:#2b2622; --gold:#a9824f; --line:#e6ddd4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Jost,system-ui,sans-serif;background:var(--cream);color:var(--charcoal);line-height:1.7;font-weight:300}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.01em}
+
+  header.nav{padding:26px 0}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Cormorant Garamond';font-size:24px;letter-spacing:.03em}
+  nav.links{display:flex;gap:32px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .btn-primary{border:1px solid var(--charcoal);padding:11px 24px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+  .hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:0;align-items:stretch;min-height:560px}
+  .hero-copy{padding:60px 60px 60px 0;display:flex;flex-direction:column;justify-content:center}
+  .hero-copy .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+  .hero-copy h1{font-size:clamp(38px,5.4vw,66px);line-height:1.05;margin-bottom:22px}
+  .hero-copy h1 em{font-style:italic;color:var(--gold)}
+  .hero-copy p{font-size:17px;color:#5b544c;max-width:42ch;margin-bottom:30px}
+  .ctas{display:flex;gap:16px;align-items:center}
+  .link-arrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--charcoal);padding-bottom:2px}
+  .hero-panel{background:linear-gradient(165deg,var(--blush),#f1e2dc);display:flex;align-items:center;justify-content:center;position:relative}
+  .hero-panel .mono{font-family:'Cormorant Garamond';font-size:120px;color:rgba(43,38,34,.14);letter-spacing:.04em}
+
+  .services{padding:80px 0;border-top:1px solid var(--line)}
+  .services .wrap{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px}
+  .services h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:14px}
+  .services > .wrap > div:first-child p{color:#5b544c;max-width:32ch}
+  .svc-list{list-style:none;border-top:1px solid var(--line)}
+  .svc-list li{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line);font-size:16px}
+  .svc-list li span.price{color:var(--gold);font-weight:500}
+
+  .stylists{padding:80px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stylists h2{font-size:clamp(26px,3.2vw,36px);margin-bottom:36px;text-align:center}
+  .st-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .st-card{text-align:center}
+  .st-avatar{width:100%;aspect-ratio:1;border-radius:50%;background:linear-gradient(150deg,var(--blush),#d8b9ae);margin-bottom:18px}
+  .st-card h3{font-size:20px;margin-bottom:4px}
+  .st-card p{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .review p{font-size:16px;font-style:italic;color:#3a342e;margin-bottom:16px;font-family:'Cormorant Garamond';font-size:20px}
+  .who{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+
+  .cta-band{background:var(--charcoal);color:#f2ece5;text-align:center;padding:74px 0}
+  .cta-band h2{font-size:clamp(28px,4vw,44px);margin-bottom:16px;color:#fff}
+  .cta-band .btn-primary{border-color:#fff;color:#fff}
+
+  footer{padding:44px 0 26px;font-size:14px;color:#7a736a}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:12px}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    .hero-copy{padding:50px 24px}
+    .hero-panel{min-height:280px}
+    nav.links{display:none}
+    .services .wrap{grid-template-columns:1fr}
+    .st-grid{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand" data-mock="name">Maison Verrine</div>
+  <nav class="links"><a href="#services">Services</a><a href="#stylists">Stylists</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="#book">Book a Chair</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-copy">
+    <div class="eyebrow">Color &amp; cut studio &middot; <span data-mock="city">West Loop</span></div>
+    <h1>Hair that looks <em>effortless</em> because someone was very careful.</h1>
+    <p data-mock="tagline">Custom color, precision cuts, and a studio built for slow mornings — not rushed appointments.</p>
+    <div class="ctas">
+      <a class="btn-primary" href="tel:+13125550119">Book Online</a>
+      <a class="link-arrow" href="tel:+13125550119" data-mock="phone">(312) 555-0119</a>
+    </div>
+  </div>
+  <div class="hero-panel"><span class="mono">MV</span></div>
+</div></section>
+
+<section class="services" id="services"><div class="wrap">
+  <div>
+    <h2>Services</h2>
+    <p>Every service starts with a 10-minute consult, no exceptions — we'd rather ask twice than color once wrong.</p>
+  </div>
+  <ul class="svc-list">
+    <li><span>Cut &amp; Style</span><span class="price">from $85</span></li>
+    <li><span>Full Color</span><span class="price">from $165</span></li>
+    <li><span>Balayage / Hand-Painted Color</span><span class="price">from $220</span></li>
+    <li><span>Gloss &amp; Toner Refresh</span><span class="price">from $70</span></li>
+    <li><span>Blowout &amp; Styling</span><span class="price">from $55</span></li>
+    <li><span>Bridal &amp; Event Styling</span><span class="price">custom quote</span></li>
+  </ul>
+</div></section>
+
+<section class="stylists" id="stylists"><div class="wrap">
+  <h2>Our stylists</h2>
+  <div class="st-grid">
+    <div class="st-card"><div class="st-avatar"></div><h3>Noelle Farrow</h3><p>Color Director</p></div>
+    <div class="st-card"><div class="st-avatar"></div><h3>Priya Devraj</h3><p>Precision Cuts</p></div>
+    <div class="st-card"><div class="st-avatar"></div><h3>Amara Bisset</h3><p>Balayage Specialist</p></div>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <h2 style="margin-bottom:36px;text-align:center">Clients say</h2>
+  <div class="reviews-grid">
+    <div class="review"><p>"First salon where the color actually matched the swatch I brought in. I've rebooked with Noelle for two years now."</p><div class="who">— Camille D.</div></div>
+    <div class="review"><p>"The consult alone was worth the visit. Priya talked me out of a cut that wouldn't have suited my face shape."</p><div class="who">— Whitney A.</div></div>
+    <div class="review"><p>"Balayage held up beautifully for four months. Worth every dollar over my old salon."</p><div class="who">— Solange R.</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band" id="book"><div class="wrap">
+  <h2>Your chair is waiting.</h2>
+  <a class="btn-primary" href="tel:+13125550119">Book a Consultation</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Maison Verrine</div>
+    <p style="max-width:28ch">A color &amp; cut studio in <span data-mock="city">Chicago's West Loop</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:500;margin-bottom:10px;color:var(--charcoal)">Contact</div>
+    <div><a href="tel:+13125550119" data-mock="phone">(312) 555-0119</a></div>
+    <div style="margin-top:6px"><a href="mailto:studio@maisonverrine.com">studio@maisonverrine.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Maison Verrine Salon</div>
+</footer>
+
+</body>
+</html>

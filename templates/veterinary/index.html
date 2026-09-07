@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willow Creek Animal Hospital — Compassionate Veterinary Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --mint:#cfe8e2; --sky:#dceaf6; --coral:#ef8c72; --ink:#2c3a3a; --paper:#fbfcfa; --line:#e2eae7; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Mulish,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:Quicksand,sans-serif;font-weight:700}
+
+  header.nav{padding:20px 0}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Quicksand;font-weight:700;font-size:20px}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:600;color:#4c6060}
+  .btn-primary{background:var(--coral);color:#fff;font-weight:700;padding:12px 22px;border-radius:999px;font-size:14px}
+
+  .hero{padding:40px 0 70px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:#1f4b41;font-size:13px;font-weight:700;padding:8px 16px;border-radius:999px;margin-bottom:20px}
+  .hero h1{font-size:clamp(32px,4.6vw,52px);line-height:1.08;margin-bottom:18px}
+  .hero h1 span{color:var(--coral)}
+  .hero p.sub{font-size:17px;color:#4c6060;max-width:44ch;margin-bottom:26px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-outline{border:2px solid var(--ink);color:var(--ink);font-weight:700;padding:11px 22px;border-radius:999px;font-size:14px}
+  .hero-visual{background:linear-gradient(160deg,var(--mint),var(--sky));border-radius:28px;min-height:340px;display:flex;align-items:center;justify-content:center;position:relative}
+  .paw{position:absolute}
+  .p1{top:40px;left:40px;opacity:.5}
+  .p2{bottom:50px;right:60px;opacity:.35}
+
+  .urgent-band{background:#fff3ef;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;text-align:center;font-size:15px;font-weight:600;color:#a4472e}
+
+  .services{padding:80px 0}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+  .services h2{font-size:clamp(28px,3.6vw,40px);max-width:600px;margin-bottom:40px}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px}
+  .svc .icon{width:48px;height:48px;border-radius:14px;background:var(--mint);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .svc h3{font-size:18px;margin-bottom:8px}
+  .svc p{font-size:14px;color:#5c6c6c}
+
+  .team{background:var(--sky);padding:70px 0}
+  .team h2{font-size:clamp(26px,3.2vw,36px);margin-bottom:36px;text-align:center}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .t-card{background:#fff;border-radius:18px;padding:24px;text-align:center}
+  .t-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(150deg,var(--mint),#a7d3c8);margin:0 auto 14px}
+  .t-card h3{font-size:17px;margin-bottom:4px}
+  .t-card p{font-size:13px;color:var(--coral);font-weight:700}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+  .stars{color:var(--coral);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#3a4444;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#7c8a8a}
+
+  .cta-band{background:var(--mint);text-align:center;padding:64px 0;border-radius:28px;margin:0 24px 60px;max-width:1160px;margin-inline:auto}
+  .cta-band h2{font-size:clamp(26px,4vw,38px);margin-bottom:14px;color:#1f4b41}
+  .cta-band .btn-primary{background:var(--coral)}
+
+  footer{padding:20px 0 26px;font-size:14px;color:#6c7a7a}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:12px}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    nav.links{display:none}
+    .svc-grid{grid-template-columns:1fr}
+    .team-grid{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="18" r="7" fill="#ef8c72"/><circle cx="7" cy="10" r="3" fill="#ef8c72"/><circle cx="23" cy="10" r="3" fill="#ef8c72"/><circle cx="4" cy="17" r="2.4" fill="#ef8c72"/><circle cx="26" cy="17" r="2.4" fill="#ef8c72"/></svg>
+    <span data-mock="name">Willow Creek Animal Hospital</span>
+  </div>
+  <nav class="links"><a href="#services">Services</a><a href="#team">Our Team</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="tel:+15035550176">Book a Visit</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="badge">&#128062; Now accepting new patients</div>
+    <h1>Care that keeps your pet <span>calm</span> — and you too.</h1>
+    <p class="sub" data-mock="tagline">Full-service veterinary care in <span data-mock="city">Beaverton</span>, from wellness exams to urgent same-day visits, with a team that explains everything twice.</p>
+    <div class="ctas">
+      <a class="btn-primary" href="tel:+15035550176" data-mock="phone">Call (503) 555-0176</a>
+      <a class="btn-outline" href="#services">See Our Services</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg width="120" height="120" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="18" r="8" fill="#ffffff"/><circle cx="6" cy="9" r="3.4" fill="#ffffff"/><circle cx="24" cy="9" r="3.4" fill="#ffffff"/><circle cx="2.5" cy="17" r="2.7" fill="#ffffff"/><circle cx="27.5" cy="17" r="2.7" fill="#ffffff"/></svg>
+  </div>
+</div></section>
+
+<div class="urgent-band">&#9888; Sick or injured pet? Same-day urgent visits held open every weekday — call before coming in.</div>
+
+<section class="services" id="services"><div class="wrap">
+  <div class="eyebrow">How we help</div>
+  <h2>From puppy shots to senior care.</h2>
+  <div class="svc-grid">
+    <div class="svc"><div class="icon">&#128137;</div><h3>Wellness Exams</h3><p>Annual checkups, vaccines, and bloodwork to catch problems early.</p></div>
+    <div class="svc"><div class="icon">&#129517;</div><h3>Urgent &amp; Sick Visits</h3><p>Same-day appointments held open for pets who can't wait a week.</p></div>
+    <div class="svc"><div class="icon">&#129504;</div><h3>Dental Care</h3><p>Cleanings and extractions under monitored anesthesia, done gently.</p></div>
+    <div class="svc"><div class="icon">&#128293;</div><h3>Surgery</h3><p>Spay/neuter and soft-tissue surgery with a dedicated recovery team.</p></div>
+    <div class="svc"><div class="icon">&#128172;</div><h3>Behavior Consults</h3><p>One-on-one guidance for anxiety, aggression, and training setbacks.</p></div>
+    <div class="svc"><div class="icon">&#128274;</div><h3>Senior &amp; Chronic Care</h3><p>Ongoing management for arthritis, diabetes, and kidney disease.</p></div>
+  </div>
+</div></section>
+
+<section class="team" id="team"><div class="wrap">
+  <h2>Meet the team</h2>
+  <div class="team-grid">
+    <div class="t-card"><div class="t-avatar"></div><h3>Dr. Naomi Cortland</h3><p>Lead Veterinarian</p></div>
+    <div class="t-card"><div class="t-avatar"></div><h3>Dr. Felix Aramaki</h3><p>Surgery &amp; Dentistry</p></div>
+    <div class="t-card"><div class="t-avatar"></div><h3>Renee Skovgaard</h3><p>Head Vet Technician</p></div>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Pet parents say</div>
+  <h2 style="margin-bottom:36px">Real visits, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Got us in same-day when our cat stopped eating. Dr. Cortland explained every test before running it."</p><div class="who">Adaeze Mbeki</div><div class="role">Beaverton, OR</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Our anxious rescue dog actually calms down in their waiting room. That says a lot about the staff."</p><div class="who">Hollis Vantongeren</div><div class="role">Aloha, OR</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Dental cleaning found an infected tooth our old vet missed for a year. Our dog is a different animal now."</p><div class="who">Priyanka Reddy</div><div class="role">Hillsboro, OR</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>New patients welcome, most weeks.</h2>
+  <a class="btn-primary" href="tel:+15035550176">Call (503) 555-0176</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Willow Creek Animal Hospital</div>
+    <p style="max-width:28ch">Full-service veterinary care in <span data-mock="city">Beaverton, OR</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:10px;color:var(--ink)">Contact</div>
+    <div><a href="tel:+15035550176" data-mock="phone">(503) 555-0176</a></div>
+    <div style="margin-top:6px"><a href="mailto:frontdesk@willowcreekvet.com">frontdesk@willowcreekvet.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Willow Creek Animal Hospital. Licensed veterinary practice</div>
+</footer>
+
+</body>
+</html>

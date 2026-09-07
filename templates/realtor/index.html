@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marlowe Bishop, Realtor — Local Home Sales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --brick:#8a4632; --sand:#f1e9dd; --forest:#3a4a3c; --paper:#fdfbf7; --ink:#2c2620; --line:#e6ddca; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Karla,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Libre Baskerville',serif;font-weight:700;line-height:1.16}
+
+  header.nav{padding:22px 0}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Libre Baskerville';font-size:20px}
+  nav.links{display:flex;gap:26px;font-size:14px;font-weight:600;color:#5a5040}
+  .btn-primary{background:var(--brick);color:#fff;font-weight:700;padding:12px 22px;font-size:14px}
+
+  .hero{padding:20px 0 70px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .badge{display:inline-block;background:var(--sand);color:var(--brick);font-size:13px;font-weight:700;padding:7px 16px;margin-bottom:20px;border:1px solid var(--line)}
+  .hero h1{font-size:clamp(30px,4.4vw,48px);margin-bottom:18px}
+  .hero p.sub{font-size:17px;color:#5a5040;max-width:46ch;margin-bottom:26px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-outline{border:2px solid var(--ink);color:var(--ink);font-weight:700;padding:11px 22px;font-size:14px}
+  .agent-card{background:var(--sand);border:1px solid var(--line);padding:26px;display:flex;gap:18px;align-items:center}
+  .agent-avatar{width:74px;height:74px;border-radius:50%;background:linear-gradient(150deg,var(--brick),#5c2f1f);flex-shrink:0}
+  .agent-card h3{font-size:19px;margin-bottom:4px}
+  .agent-card p{font-size:14px;color:#5a5040}
+
+  .listings{padding:70px 0;background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brick);margin-bottom:10px}
+  .listings h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:40px}
+  .listing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .listing{background:#fff;border:1px solid var(--line)}
+  .listing-img{height:160px;background:linear-gradient(135deg,var(--forest),#24312a)}
+  .listing-img.l2{background:linear-gradient(135deg,var(--brick),#5c2f1f)}
+  .listing-img.l3{background:linear-gradient(135deg,#8a7a4c,#5c5030)}
+  .listing-body{padding:20px}
+  .listing-price{font-family:'Libre Baskerville';font-size:22px;color:var(--brick);margin-bottom:6px}
+  .listing-body h3{font-size:16px;margin-bottom:6px}
+  .listing-meta{font-size:13px;color:#7c705c}
+  .listing-status{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:var(--forest);color:#fff;padding:3px 10px;margin-bottom:10px}
+
+  .stats{padding:70px 0}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:24px}
+  .stats .num{font-family:'Libre Baskerville';font-size:38px;color:var(--brick)}
+  .stats .lbl{font-size:13px;color:#5a5040;margin-top:6px;text-transform:uppercase;letter-spacing:.03em}
+
+  .reviews{padding:70px 0;background:var(--sand);border-top:1px solid var(--line)}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border:1px solid var(--line);padding:26px}
+  .stars{color:var(--brick);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#3a342c;margin-bottom:16px;font-style:italic}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#7c705c}
+
+  .cta-band{background:var(--forest);color:#fff;text-align:center;padding:64px 0}
+  .cta-band h2{font-size:clamp(26px,4vw,38px);margin-bottom:14px}
+  .cta-band .btn-primary{background:var(--brick)}
+
+  footer{padding:44px 0 26px;font-size:14px;color:#5a5040}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:12px}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    nav.links{display:none}
+    .listing-grid{grid-template-columns:1fr}
+    .stats .wrap{grid-template-columns:1fr 1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand" data-mock="name">Marlowe Bishop, Realtor</div>
+  <nav class="links"><a href="#listings">Listings</a><a href="#stats">Track Record</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="tel:+14045550129">Schedule a Call</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="badge">Serving <span data-mock="city">the Grant Park area</span> since 2014</div>
+    <h1>Buying or selling, you get a straight answer every time.</h1>
+    <p class="sub" data-mock="tagline">No overpromising on price, no rushing you into an offer. Just a local agent who tells you what the comps actually say.</p>
+    <div class="ctas">
+      <a class="btn-primary" href="tel:+14045550129" data-mock="phone">Call (404) 555-0129</a>
+      <a class="btn-outline" href="#listings">View Listings</a>
+    </div>
+  </div>
+  <div class="agent-card">
+    <div class="agent-avatar"></div>
+    <div>
+      <h3>Marlowe Bishop</h3>
+      <p>Licensed Realtor &middot; 11 years local &middot; 210+ homes closed</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="listings" id="listings"><div class="wrap">
+  <div class="eyebrow">Current listings</div>
+  <h2>A few homes on the market right now.</h2>
+  <div class="listing-grid">
+    <div class="listing">
+      <div class="listing-img"></div>
+      <div class="listing-body">
+        <span class="listing-status">Active</span>
+        <div class="listing-price">$412,000</div>
+        <h3>3 bd &middot; 2 ba Craftsman bungalow</h3>
+        <div class="listing-meta">1,680 sqft &middot; Built 1932</div>
+      </div>
+    </div>
+    <div class="listing">
+      <div class="listing-img l2"></div>
+      <div class="listing-body">
+        <span class="listing-status">Pending</span>
+        <div class="listing-price">$589,000</div>
+        <h3>4 bd &middot; 3 ba renovated colonial</h3>
+        <div class="listing-meta">2,410 sqft &middot; Built 1948</div>
+      </div>
+    </div>
+    <div class="listing">
+      <div class="listing-img l3"></div>
+      <div class="listing-body">
+        <span class="listing-status">Active</span>
+        <div class="listing-price">$328,500</div>
+        <h3>2 bd &middot; 1.5 ba starter condo</h3>
+        <div class="listing-meta">1,120 sqft &middot; Built 2005</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="stats" id="stats"><div class="wrap">
+  <div><div class="num">210+</div><div class="lbl">Homes closed</div></div>
+  <div><div class="num">11 yrs</div><div class="lbl">Local experience</div></div>
+  <div><div class="num">14 days</div><div class="lbl">Avg. days on market</div></div>
+  <div><div class="num">4.9&#9733;</div><div class="lbl">Client rating</div></div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Clients say</div>
+  <h2 style="margin-bottom:36px">Real closings, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Told us honestly our first asking price was too high. Sold two weeks after we listened and adjusted."</p><div class="who">Bettina Okafor</div><div class="role">Grant Park, ATL</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"As first-time buyers we had a hundred questions. She answered every single one without making us feel dumb."</p><div class="who">Owen &amp; Kayla Fenwick</div><div class="role">Ormewood Park, ATL</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Negotiated $18,000 off the asking price on our inspection findings. Paid for her commission twice over."</p><div class="who">Marcus Delacroix</div><div class="role">East Atlanta Village</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Thinking about buying or selling this year?</h2>
+  <a class="btn-primary" href="tel:+14045550129">Call (404) 555-0129</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Marlowe Bishop, Realtor</div>
+    <p style="max-width:28ch">Licensed real estate agent serving <span data-mock="city">Grant Park and East Atlanta</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:10px;color:var(--ink)">Contact</div>
+    <div><a href="tel:+14045550129" data-mock="phone">(404) 555-0129</a></div>
+    <div style="margin-top:6px"><a href="mailto:marlowe@bishoprealty.com">marlowe@bishoprealty.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Marlowe Bishop, Realtor. Licensed in GA &middot; Equal Housing Opportunity</div>
+</footer>
+
+</body>
+</html>

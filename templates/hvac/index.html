@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ironclad Heating &amp; Air — Same-Day HVAC Service</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#132a2e; --deep2:#1c3b40; --amber:#f2a93b; --amber-d:#d98d1f;
+    --paper:#fbf8f2; --ink:#132a2e; --line:#e2ddd0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Barlow',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.01em}
+
+  .topbar{background:var(--deep);color:#cfe3e0;font-size:14px;font-weight:600}
+  .topbar .wrap{display:flex;justify-content:space-between;padding:9px 24px;flex-wrap:wrap;gap:6px}
+  .topbar a{color:var(--amber);font-weight:700}
+
+  header.nav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:600;color:#3f5457}
+  .btn-call{background:var(--amber);color:var(--deep);font-weight:700;padding:11px 20px;border-radius:3px}
+
+  .hero{background:linear-gradient(160deg,var(--deep) 0%,var(--deep2) 60%);color:#fff;overflow:hidden;position:relative}
+  .hero::after{content:'';position:absolute;right:-120px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(242,169,59,.22),transparent 70%)}
+  .hero .wrap{padding:80px 24px 70px;text-align:center;position:relative}
+  .hero .badge{display:inline-block;background:rgba(242,169,59,.16);border:1px solid rgba(242,169,59,.5);color:var(--amber);font-size:13px;font-weight:700;padding:7px 16px;border-radius:999px;margin-bottom:24px;letter-spacing:.05em;text-transform:uppercase}
+  .hero h1{font-size:clamp(38px,6vw,66px);line-height:1.02;max-width:900px;margin:0 auto 20px}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero p.sub{font-size:19px;color:#d3e0de;max-width:560px;margin:0 auto 34px;font-family:Barlow}
+  .hero .ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .btn-primary{background:var(--amber);color:var(--deep);font-weight:700;font-size:17px;padding:16px 30px;border-radius:3px}
+  .btn-outline{border:2px solid rgba(255,255,255,.35);color:#fff;font-weight:700;font-size:17px;padding:14px 28px;border-radius:3px}
+
+  .stat-band{background:var(--amber);color:var(--deep)}
+  .stat-band .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:32px 24px}
+  .stat-band .num{font-family:'Barlow Condensed';font-size:44px;font-weight:700;line-height:1}
+  .stat-band .lbl{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+
+  .services{padding:90px 0 70px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-d);margin-bottom:10px}
+  .services h2{font-size:clamp(30px,4vw,44px);max-width:600px;margin-bottom:44px}
+  .svc-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .svc-row{display:grid;grid-template-columns:60px 1fr 200px;align-items:center;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .svc-row .idx{font-family:'Barlow Condensed';font-size:28px;color:var(--amber-d);font-weight:700}
+  .svc-row h3{font-size:22px;text-transform:none;font-weight:700;margin-bottom:4px;font-family:Barlow}
+  .svc-row p{font-size:15px;color:#4c5f60}
+  .svc-row .price{text-align:right;font-weight:700;color:var(--deep);font-size:15px}
+
+  .season{background:var(--deep);color:#fff;padding:70px 0}
+  .season .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .season h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:16px}
+  .season p{color:#c7d9d6;margin-bottom:20px;font-size:16px}
+  .season .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:26px}
+  .season .card ul{list-style:none}
+  .season .card li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:15px;color:#dcebe9}
+  .season .card li:last-child{border-bottom:none}
+  .check{color:var(--amber);font-weight:700}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px}
+  .stars{color:var(--amber-d);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#3a4544;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#7a8988}
+
+  .cta-band{background:var(--amber);text-align:center;padding:64px 0;color:var(--deep)}
+  .cta-band h2{font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+  .cta-band .btn-primary{background:var(--deep);color:#fff}
+
+  footer{background:var(--deep2);color:#a9c1be;padding:44px 0 26px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:30px;padding-top:18px;text-align:center;font-size:13px}
+
+  @media (max-width:900px){
+    .stat-band .wrap{grid-template-columns:1fr 1fr}
+    nav.links{display:none}
+    .svc-row{grid-template-columns:40px 1fr;grid-template-areas:"idx title" "idx price"}
+    .season .wrap{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div>Serving <span data-mock="city">Tulsa metro</span> since 2011</div>
+  <div>Emergency line: <a href="tel:+19185550171" data-mock="phone">(918) 555-0171</a></div>
+</div></div>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 30 30" fill="none"><rect width="30" height="30" rx="6" fill="#132a2e"/><path d="M15 6v18M8 11l14 8M22 11 8 19" stroke="#f2a93b" stroke-width="2" stroke-linecap="round"/></svg>
+    <span data-mock="name">Ironclad Heating &amp; Air</span>
+  </div>
+  <nav class="links"><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#plans">Plans</a></nav>
+  <a class="btn-call" href="tel:+19185550171">Call Now</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="badge">24/7 emergency dispatch</div>
+  <h1>No heat at midnight?<br><em data-mock="tagline">We fix it before sunrise.</em></h1>
+  <p class="sub">Licensed HVAC techs, flat-rate pricing quoted before we touch a thing, and a crew that actually answers the phone.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="tel:+19185550171">Call (918) 555-0171</a>
+    <a class="btn-outline" href="#plans">See Maintenance Plans</a>
+  </div>
+</div></section>
+
+<section class="stat-band"><div class="wrap">
+  <div><div class="num">38 min</div><div class="lbl">Avg. arrival</div></div>
+  <div><div class="num">4,900+</div><div class="lbl">Systems serviced</div></div>
+  <div><div class="num">14 yrs</div><div class="lbl">In business</div></div>
+  <div><div class="num">$0</div><div class="lbl">Weekend upcharge</div></div>
+</div></section>
+
+<section class="services" id="services"><div class="wrap">
+  <div class="eyebrow">What we handle</div>
+  <h2>From a dead furnace to a full system swap.</h2>
+  <div class="svc-list">
+    <div class="svc-row"><div class="idx">01</div><div><h3>Emergency No-Heat / No-Cool Repair</h3><p>Diagnosed and quoted same day, most fixes finished same visit.</p></div><div class="price">From $89 diagnostic</div></div>
+    <div class="svc-row"><div class="idx">02</div><div><h3>Furnace &amp; AC Installation</h3><p>Right-sized systems, not the biggest unit we can sell you.</p></div><div class="price">Free estimate</div></div>
+    <div class="svc-row"><div class="idx">03</div><div><h3>Seasonal Tune-Ups</h3><p>25-point inspection before the first heat wave or cold snap hits.</p></div><div class="price">$129/visit</div></div>
+    <div class="svc-row"><div class="idx">04</div><div><h3>Duct &amp; Airflow Correction</h3><p>Fixing the hot/cold room problem most companies never diagnose.</p></div><div class="price">From $240</div></div>
+    <div class="svc-row"><div class="idx">05</div><div><h3>Thermostat &amp; Smart Home Setup</h3><p>Wi-Fi thermostats installed and paired the same visit.</p></div><div class="price">From $175</div></div>
+  </div>
+</div></section>
+
+<section class="season" id="plans"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:var(--amber)">Comfort Club</div>
+    <h2>Two visits a year. Zero surprise repairs.</h2>
+    <p>Members get priority dispatch, 15% off repairs, and a locked-in tune-up price that doesn't creep every renewal.</p>
+    <a class="btn-primary" href="#" style="display:inline-block">Join the Comfort Club</a>
+  </div>
+  <div class="card">
+    <ul>
+      <li><span class="check">&#10003;</span> Spring AC tune-up + fall furnace check</li>
+      <li><span class="check">&#10003;</span> Priority same-day scheduling</li>
+      <li><span class="check">&#10003;</span> 15% off any repair, any time</li>
+      <li><span class="check">&#10003;</span> No overtime charge, ever</li>
+      <li><span class="check">&#10003;</span> Filter reminders by text</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Neighbors say</div>
+  <h2 style="margin-bottom:36px">Real calls, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"AC died during a heat advisory and they had someone out in 40 minutes. Quoted the price before starting, no surprises."</p><div class="who">Dana Whitfield</div><div class="role">Broken Arrow</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Found a cracked heat exchanger our old company missed for two years. Glad we finally switched."</p><div class="who">Marcus Ude</div><div class="role">Jenks</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Tune-up took 40 minutes, tech explained everything he checked, and didn't try to upsell us on anything."</p><div class="who">Renata Kolbe</div><div class="role">Owasso</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Furnace acting up right now?</h2>
+  <a class="btn-primary" href="tel:+19185550171">Call (918) 555-0171</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="color:#fff;margin-bottom:10px" data-mock="name">Ironclad Heating &amp; Air</div>
+    <p style="max-width:28ch">Licensed, bonded, and insured HVAC service across <span data-mock="city">the Tulsa metro</span>.</p>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;margin-bottom:10px">Contact</div>
+    <div><a href="tel:+19185550171" data-mock="phone">(918) 555-0171</a></div>
+    <div style="margin-top:6px"><a href="mailto:dispatch@ironcladhvac.com">dispatch@ironcladhvac.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Ironclad Heating &amp; Air. Licensed &amp; insured &middot; OK HVAC Lic. #H-33018</div>
+</footer>
+
+</body>
+</html>
