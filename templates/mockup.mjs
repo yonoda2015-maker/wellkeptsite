@@ -119,6 +119,18 @@ async function main() {
           if (/@/.test(a.textContent || "")) a.textContent = email;
           emails += 1;
         });
+        // Plain-text emails (no mailto link — e.g. a footer "consult@x.com · phone"
+        // line) are replaced in text nodes so no base-sample address survives.
+        const emailRe = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          if (emailRe.test(node.nodeValue)) {
+            node.nodeValue = node.nodeValue.replace(emailRe, email);
+            emails += 1;
+          }
+          emailRe.lastIndex = 0;
+        }
         counts.email = emails;
         return counts;
       },
