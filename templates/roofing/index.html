@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Granite Ridge Roofing — Storm-Rated Roof Replacement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --slate:#20242b; --slate2:#2b303a; --rust:#c1512f; --rust-d:#9e3f22;
+    --paper:#f2f0ec; --ink:#20242b; --line:#d8d4cb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Source Sans 3',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:Oswald,sans-serif;text-transform:uppercase}
+
+  header.nav{background:var(--slate);color:#fff}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;font-family:Oswald}
+  nav.links{display:flex;gap:28px;font-size:15px;font-weight:600;color:#c7cad0}
+  .btn-call{background:var(--rust);color:#fff;font-weight:700;padding:11px 22px;clip-path:polygon(8px 0,100% 0,100% 100%,0 100%);}
+
+  .hero{position:relative;background:var(--slate);color:#fff;overflow:hidden}
+  .hero .split{display:grid;grid-template-columns:1.2fr .8fr;min-height:520px}
+  .hero-left{padding:80px 60px 80px 24px;position:relative;z-index:2}
+  .hero-left .badge{display:inline-block;background:rgba(193,81,47,.18);border:1px solid var(--rust);color:#ffb499;font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 14px;margin-bottom:22px;text-transform:uppercase}
+  .hero-left h1{font-size:clamp(32px,5vw,54px);line-height:1.06;margin-bottom:20px}
+  .hero-left h1 span{color:var(--rust)}
+  .hero-left p{font-size:17px;color:#c7cad0;max-width:46ch;margin-bottom:28px;font-family:'Source Sans 3'}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{background:var(--rust);color:#fff;font-weight:700;font-size:16px;padding:15px 26px}
+  .btn-outline{border:2px solid rgba(255,255,255,.3);color:#fff;font-weight:700;font-size:16px;padding:13px 24px}
+  .hero-right{background:linear-gradient(135deg,var(--rust) 0%,var(--rust-d) 100%);clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);display:flex;align-items:center;justify-content:center;padding:40px}
+  .badge-shield{background:rgba(0,0,0,.18);border-radius:14px;padding:30px;text-align:center}
+  .badge-shield .num{font-family:Oswald;font-size:64px;font-weight:700;line-height:1}
+  .badge-shield .lbl{font-size:14px;font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+  .badge-shield hr{border:none;border-top:1px solid rgba(255,255,255,.25);margin:18px 0}
+  .badge-shield .mini{font-size:13px;color:#ffe3d8}
+
+  .warranty-bar{background:var(--rust);color:#fff;padding:16px 0;font-weight:600;font-size:14px;text-align:center}
+
+  .services{padding:90px 0 60px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--rust-d);margin-bottom:10px}
+  .services h2{font-size:clamp(28px,3.6vw,42px);max-width:640px;margin-bottom:44px}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:#fff;padding:30px 24px}
+  .svc .n{font-family:Oswald;font-size:34px;color:var(--rust);margin-bottom:14px}
+  .svc h3{font-size:17px;margin-bottom:8px;font-family:'Source Sans 3';text-transform:none;font-weight:700}
+  .svc p{font-size:14px;color:#4c525c}
+
+  .proof{background:var(--slate2);color:#fff;padding:70px 0}
+  .proof .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .proof h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:16px}
+  .proof p{color:#c7cad0;font-size:16px;margin-bottom:8px}
+  .proof-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .proof-stats .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:22px;text-align:center}
+  .proof-stats .num{font-family:Oswald;font-size:36px;color:var(--rust)}
+  .proof-stats .lbl{font-size:13px;color:#c7cad0;margin-top:4px;text-transform:uppercase}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border:1px solid var(--line);padding:26px}
+  .stars{color:var(--rust);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#3a3d44;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#7a7e87}
+
+  .cta-band{background:var(--slate);color:#fff;text-align:center;padding:64px 0}
+  .cta-band h2{font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+
+  footer{background:#181b21;color:#9ba0aa;padding:44px 0 26px;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:30px;padding-top:18px;text-align:center;font-size:13px}
+
+  @media (max-width:900px){
+    .hero .split{grid-template-columns:1fr}
+    .hero-right{clip-path:none;padding:40px 24px}
+    nav.links{display:none}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .proof .wrap{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><path d="M15 4 3 12v14h24V12L15 4z" stroke="#c1512f" stroke-width="2" fill="none"/><path d="M9 26V16l6-4 6 4v10" stroke="#fff" stroke-width="2"/></svg>
+    <span data-mock="name">Granite Ridge Roofing</span>
+  </div>
+  <nav class="links"><a href="#services">Services</a><a href="#proof">Warranty</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-call" href="tel:+18285550193">Free Inspection</a>
+</div></header>
+
+<section class="hero">
+  <div class="wrap split">
+    <div class="hero-left">
+      <div class="badge">GAF Master Elite Certified</div>
+      <h1>A roof built to <span>outlast the storm</span> that took the last one.</h1>
+      <p data-mock="tagline">Full tear-off replacements and insurance claim support from a crew that's been on <span data-mock="city">Asheville</span> rooftops since 2008.</p>
+      <div class="ctas">
+        <a class="btn-primary" href="tel:+18285550193" data-mock="phone">Call (828) 555-0193</a>
+        <a class="btn-outline" href="#services">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="badge-shield">
+        <div class="num">50 yr</div>
+        <div class="lbl">Manufacturer Warranty</div>
+        <hr>
+        <div class="mini">Backed by 1,900+ completed roofs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="warranty-bar">Free storm damage inspection &middot; We handle the insurance paperwork &middot; No payment until the roof is done</div>
+
+<section class="services" id="services"><div class="wrap">
+  <div class="eyebrow">What we build</div>
+  <h2>Every roof type, one crew, one warranty.</h2>
+  <div class="svc-grid">
+    <div class="svc"><div class="n">01</div><h3>Full Roof Replacement</h3><p>Tear-off, deck inspection, and install in 1–2 days for most homes.</p></div>
+    <div class="svc"><div class="n">02</div><h3>Storm Damage Repair</h3><p>Hail and wind repair with documented photos for your claim.</p></div>
+    <div class="svc"><div class="n">03</div><h3>Insurance Claim Support</h3><p>We meet the adjuster on-site so you don't negotiate alone.</p></div>
+    <div class="svc"><div class="n">04</div><h3>Gutter &amp; Flashing</h3><p>Seamless gutters and re-flashing to stop the leaks roofs usually miss.</p></div>
+  </div>
+</div></section>
+
+<section class="proof" id="proof"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:#ffb499">Why homeowners switch</div>
+    <h2>We don't leave until the adjuster and the ladder both agree.</h2>
+    <p>Every install is photographed at deck, underlayment, and final stages — so the warranty paperwork holds up if you ever need it.</p>
+  </div>
+  <div class="proof-stats">
+    <div class="card"><div class="num">1,900+</div><div class="lbl">Roofs completed</div></div>
+    <div class="card"><div class="num">4.9&#9733;</div><div class="lbl">Average rating</div></div>
+    <div class="card"><div class="num">50 yr</div><div class="lbl">Material warranty</div></div>
+    <div class="card"><div class="num">2 day</div><div class="lbl">Avg. install time</div></div>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Homeowners say</div>
+  <h2 style="margin-bottom:36px">Real roofs, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"They met our adjuster on-site and the claim covered more than we expected because of their documentation."</p><div class="who">Colton Rae</div><div class="role">Fletcher, NC</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Full tear-off in a day and a half, and they cleaned every nail out of the yard with a magnet sweep."</p><div class="who">Yolanda Pruitt</div><div class="role">Weaverville, NC</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Found soft decking our last roofer never mentioned. Would have failed within a year if we hadn't switched."</p><div class="who">Devon Ostrander</div><div class="role">Arden, NC</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Storm damage? Get an inspection before you call insurance.</h2>
+  <a class="btn-primary" href="tel:+18285550193">Call (828) 555-0193</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="color:#fff;margin-bottom:10px" data-mock="name">Granite Ridge Roofing</div>
+    <p style="max-width:28ch">GAF Master Elite roofing contractor serving <span data-mock="city">Asheville and the Blue Ridge foothills</span>.</p>
+  </div>
+  <div>
+    <div style="color:#fff;font-weight:700;margin-bottom:10px">Contact</div>
+    <div><a href="tel:+18285550193" data-mock="phone">(828) 555-0193</a></div>
+    <div style="margin-top:6px"><a href="mailto:office@graniteridgeroofing.com">office@graniteridgeroofing.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Granite Ridge Roofing. Licensed &amp; insured &middot; NC Gen. Contractor Lic. #77-2140</div>
+</footer>
+
+</body>
+</html>

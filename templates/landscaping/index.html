@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernhollow Grounds Co. — Landscape &amp; Lawn Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --moss:#2e4a2f; --moss2:#3d5f3d; --clay:#c98a4b; --cream:#f7f4ea; --ink:#233524; --line:#dde3d3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:Fraunces,serif;font-weight:600;line-height:1.1}
+
+  header.nav{padding:20px 0;background:var(--cream)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;font-family:Fraunces}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:600;color:#4a5a48}
+  .btn-primary{background:var(--moss);color:#fff;font-weight:700;padding:12px 22px;border-radius:999px;font-size:14px}
+
+  .hero{padding:40px 0 70px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .hero .badge{display:inline-flex;align-items:center;gap:8px;background:#e7edd9;color:var(--moss);font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;margin-bottom:20px}
+  .hero h1{font-size:clamp(32px,4.6vw,52px);margin-bottom:18px}
+  .hero h1 em{font-style:italic;color:var(--clay)}
+  .hero p.sub{font-size:17px;color:#4a5a48;max-width:44ch;margin-bottom:26px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-outline{border:2px solid var(--moss);color:var(--moss);font-weight:700;padding:11px 22px;border-radius:999px;font-size:14px}
+
+  .compare{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -24px rgba(35,53,36,.35)}
+  .compare-half{height:340px;display:flex;align-items:flex-end;padding:20px;color:#fff;font-weight:700;font-size:14px}
+  .before{background:linear-gradient(160deg,#8a8264,#6d6650)}
+  .after{background:linear-gradient(160deg,#4a7a44,#2e4a2f)}
+  .compare-tag{background:rgba(0,0,0,.35);padding:5px 12px;border-radius:999px;backdrop-filter:blur(2px)}
+  .compare-split{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff}
+
+  .plans{padding:70px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-bottom:10px}
+  .plans h2{font-size:clamp(26px,3.4vw,38px);max-width:600px;margin-bottom:40px}
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .plan{background:var(--cream);border-radius:16px;padding:30px;border:1px solid var(--line)}
+  .plan.mid{background:var(--moss);color:#fff;transform:translateY(-10px)}
+  .plan .season{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-bottom:8px}
+  .plan h3{font-family:'Nunito Sans';font-size:20px;font-weight:700;margin-bottom:8px}
+  .plan .price{font-family:Fraunces;font-size:34px;margin-bottom:14px}
+  .plan ul{list-style:none;font-size:14px}
+  .plan li{padding:6px 0;display:flex;gap:8px}
+
+  .gallery{padding:70px 0}
+  .gallery h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:36px;text-align:center}
+  .g-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .g-tile{border-radius:14px;height:170px}
+  .g1{background:linear-gradient(135deg,#3d5f3d,#233524)}
+  .g2{background:linear-gradient(135deg,#c98a4b,#a86b32)}
+  .g3{background:linear-gradient(135deg,#7a9b5f,#4a7a44)}
+  .g4{background:linear-gradient(135deg,#5f7a52,#2e4a2f)}
+
+  .reviews{padding:70px 0;background:#fff;border-top:1px solid var(--line)}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:var(--cream);border-radius:14px;padding:26px}
+  .stars{color:var(--clay);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#3a4238;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#7c887a}
+
+  .cta-band{background:var(--moss);color:#fff;text-align:center;padding:64px 0;border-radius:24px;margin:60px 24px;max-width:1160px;margin-inline:auto}
+  .cta-band h2{font-size:clamp(24px,3.6vw,36px);margin-bottom:14px}
+  .cta-band .btn-primary{background:var(--clay)}
+
+  footer{padding:44px 0 26px;font-size:14px;color:#5a6a58}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:13px}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    nav.links{display:none}
+    .plan-grid{grid-template-columns:1fr}
+    .plan.mid{transform:none}
+    .g-grid{grid-template-columns:1fr 1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><path d="M15 26c-6-3-9-8-9-13a9 9 0 0 1 18 0c0 5-3 10-9 13z" fill="#2e4a2f"/><path d="M15 26V12" stroke="#f7f4ea" stroke-width="2"/></svg>
+    <span data-mock="name">Fernhollow Grounds Co.</span>
+  </div>
+  <nav class="links"><a href="#plans">Plans</a><a href="#gallery">Our Work</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="tel:+18605550164">Get a Quote</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="badge">&#127807; Serving <span data-mock="city">Farmington Valley</span></div>
+    <h1>A yard that makes you <em>want</em> to be outside.</h1>
+    <p class="sub" data-mock="tagline">Weekly mowing, seasonal design, and full landscape installs — from a crew that treats your yard like it's the one we go home to.</p>
+    <div class="ctas">
+      <a class="btn-primary" href="tel:+18605550164" data-mock="phone">Call (860) 555-0164</a>
+      <a class="btn-outline" href="#plans">See Care Plans</a>
+    </div>
+  </div>
+  <div class="compare">
+    <div class="compare-half before"><span class="compare-tag">Before</span></div>
+    <div class="compare-half after"><span class="compare-tag">After — 6 weeks</span></div>
+    <div class="compare-split"></div>
+  </div>
+</div></section>
+
+<section class="plans" id="plans"><div class="wrap">
+  <div class="eyebrow">Seasonal care</div>
+  <h2>Pick a plan, we handle the calendar.</h2>
+  <div class="plan-grid">
+    <div class="plan">
+      <div class="season">Basic</div>
+      <h3>Mow &amp; Maintain</h3>
+      <div class="price">$65<span style="font-size:15px">/visit</span></div>
+      <ul><li>&#127807; Weekly mow, edge &amp; blow</li><li>&#127807; Spring &amp; fall cleanup</li></ul>
+    </div>
+    <div class="plan mid">
+      <div class="season">Most popular</div>
+      <h3>Full Grounds Care</h3>
+      <div class="price">$149<span style="font-size:15px">/mo</span></div>
+      <ul><li>&#127807; Everything in Basic</li><li>&#127807; Fertilization &amp; weed control</li><li>&#127807; Bed edging &amp; mulch top-off</li></ul>
+    </div>
+    <div class="plan">
+      <div class="season">Design</div>
+      <h3>Landscape Install</h3>
+      <div class="price">Custom quote</div>
+      <ul><li>&#127807; Design consult &amp; 3D layout</li><li>&#127807; Planting, hardscape &amp; lighting</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="gallery" id="gallery"><div class="wrap">
+  <h2>Recent projects</h2>
+  <div class="g-grid">
+    <div class="g-tile g1"></div>
+    <div class="g-tile g2"></div>
+    <div class="g-tile g3"></div>
+    <div class="g-tile g4"></div>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Neighbors say</div>
+  <h2 style="margin-bottom:36px">Real yards, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"They redesigned our front bed in a weekend and it's the first thing neighbors mention now."</p><div class="who">Beatriz Fontaine</div><div class="role">Simsbury, CT</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Same crew every week, always on schedule, and they text a heads up before showing up."</p><div class="who">Oren Vasquez</div><div class="role">Avon, CT</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Fixed a drainage problem two other companies quoted double for. Yard hasn't flooded since."</p><div class="who">Liesel Marchetti</div><div class="role">Canton, CT</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Ready to stop mowing on Saturdays?</h2>
+  <a class="btn-primary" href="tel:+18605550164">Call (860) 555-0164</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Fernhollow Grounds Co.</div>
+    <p style="max-width:28ch">Full-service landscaping and lawn care across <span data-mock="city">the Farmington Valley</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:10px;color:var(--ink)">Contact</div>
+    <div><a href="tel:+18605550164" data-mock="phone">(860) 555-0164</a></div>
+    <div style="margin-top:6px"><a href="mailto:hello@fernhollowgrounds.com">hello@fernhollowgrounds.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Fernhollow Grounds Co. Licensed &amp; insured</div>
+</footer>
+
+</body>
+</html>

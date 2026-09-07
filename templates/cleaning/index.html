@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bright Nest Home Cleaning — Trusted House Cleaners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --teal:#0f7a72; --teal-d:#0b5c56; --mint:#e4f5f2; --paper:#ffffff; --ink:#122423; --line:#e3e8e6; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Manrope,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-weight:800;letter-spacing:-.01em}
+
+  header.nav{padding:20px 0;border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:600;color:#48534f}
+  .btn-primary{background:var(--teal);color:#fff;font-weight:700;padding:12px 22px;border-radius:8px;font-size:14px}
+
+  .hero{padding:60px 0 0}
+  .hero .wrap{text-align:center;max-width:760px}
+  .badge{display:inline-block;background:var(--mint);color:var(--teal-d);font-size:13px;font-weight:700;padding:7px 16px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(32px,5vw,54px);line-height:1.08;margin-bottom:18px}
+  .hero h1 span{color:var(--teal)}
+  .hero p.sub{font-size:17px;color:#4b5652;margin-bottom:30px}
+  .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-outline{border:2px solid var(--line);color:var(--ink);font-weight:700;padding:11px 22px;border-radius:8px;font-size:14px}
+
+  .checklist-band{background:var(--mint);padding:50px 0;margin-top:50px}
+  .checklist-band .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .chk-item{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:600;color:var(--teal-d)}
+  .chk-item svg{flex-shrink:0;margin-top:2px}
+
+  .plans{padding:80px 0}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+  .plans h2{font-size:clamp(28px,3.6vw,40px);max-width:600px;margin-bottom:40px}
+  .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .plan{border:1px solid var(--line);border-radius:14px;padding:28px}
+  .plan.pop{border-color:var(--teal);box-shadow:0 20px 40px -24px rgba(15,122,114,.35)}
+  .plan .tag{font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+  .plan h3{font-size:20px;margin-bottom:8px}
+  .plan .price{font-size:32px;font-weight:800;margin-bottom:16px}
+  .plan ul{list-style:none;font-size:14px;color:#48534f}
+  .plan li{padding:6px 0;display:flex;gap:8px}
+
+  .trust{background:var(--ink);color:#fff;padding:70px 0}
+  .trust .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .trust h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:16px}
+  .trust p{color:#c3d0cd;margin-bottom:8px}
+  .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .trust-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px}
+  .trust-card .num{font-size:28px;font-weight:800;color:#8fe8dc}
+  .trust-card .lbl{font-size:13px;color:#c3d0cd;margin-top:4px}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:var(--mint);border-radius:14px;padding:26px}
+  .stars{color:var(--teal);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#1e332f;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#5c6b67}
+
+  .cta-band{background:var(--teal);color:#fff;text-align:center;padding:64px 0}
+  .cta-band h2{font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+  .cta-band .btn-primary{background:#fff;color:var(--teal-d)}
+
+  footer{padding:44px 0 26px;font-size:14px;color:#5c6b67;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:12px}
+
+  @media (max-width:900px){
+    nav.links{display:none}
+    .checklist-band .wrap{grid-template-columns:1fr 1fr}
+    .plan-grid{grid-template-columns:1fr}
+    .plan.pop{order:-1}
+    .trust .wrap{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" fill="#0f7a72"/><path d="M9 15l4 4 8-8" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span data-mock="name">Bright Nest Home Cleaning</span>
+  </div>
+  <nav class="links"><a href="#plans">Plans</a><a href="#trust">Why Us</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="tel:+16145550158">Get a Free Quote</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="badge">Bonded &amp; background-checked cleaners</div>
+  <h1>A clean house without <span>letting a stranger in</span> feeling.</h1>
+  <p class="sub" data-mock="tagline">Recurring and one-time cleanings across <span data-mock="city">Columbus</span>, with the same trusted cleaner every visit whenever we can.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="tel:+16145550158" data-mock="phone">Call (614) 555-0158</a>
+    <a class="btn-outline" href="#plans">See Pricing</a>
+  </div>
+</div></section>
+
+<section class="checklist-band"><div class="wrap">
+  <div class="chk-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0f7a72"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Fully insured &amp; bonded</div>
+  <div class="chk-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0f7a72"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Background-checked cleaners</div>
+  <div class="chk-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0f7a72"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Bring our own supplies</div>
+  <div class="chk-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#0f7a72"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>100% satisfaction guarantee</div>
+</div></section>
+
+<section class="plans" id="plans"><div class="wrap">
+  <div class="eyebrow">Pricing</div>
+  <h2>Simple plans, no hidden add-on fees.</h2>
+  <div class="plan-grid">
+    <div class="plan">
+      <div class="tag">One-time</div>
+      <h3>Deep Clean</h3>
+      <div class="price">$220</div>
+      <ul><li>Full top-to-bottom deep clean</li><li>Baseboards, blinds &amp; fixtures</li></ul>
+    </div>
+    <div class="plan pop">
+      <div class="tag">Most booked</div>
+      <h3>Bi-Weekly Recurring</h3>
+      <div class="price">$135<span style="font-size:15px">/visit</span></div>
+      <ul><li>Same cleaner every visit</li><li>Kitchen, baths, all living areas</li><li>Reschedule free anytime</li></ul>
+    </div>
+    <div class="plan">
+      <div class="tag">Move</div>
+      <h3>Move In/Out Clean</h3>
+      <div class="price">$275</div>
+      <ul><li>Inside cabinets &amp; appliances</li><li>Move-ready or move-out guarantee</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="trust" id="trust"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:#8fe8dc">Why homeowners trust us</div>
+    <h2>Every cleaner is someone we'd let into our own house.</h2>
+    <p>We run background checks, bond every employee, and back every visit with a 24-hour satisfaction guarantee.</p>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-card"><div class="num">2,300+</div><div class="lbl">Homes cleaned</div></div>
+    <div class="trust-card"><div class="num">4.9&#9733;</div><div class="lbl">Average rating</div></div>
+    <div class="trust-card"><div class="num">100%</div><div class="lbl">Bonded &amp; insured</div></div>
+    <div class="trust-card"><div class="num">24 hr</div><div class="lbl">Satisfaction guarantee</div></div>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Homeowners say</div>
+  <h2 style="margin-bottom:36px">Real homes, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Same cleaner every two weeks for a year now. She knows our house better than we do at this point."</p><div class="who">Simone Adeyemi</div><div class="role">Upper Arlington, OH</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Move-out clean got our full deposit back. Landlord actually commented on it."</p><div class="who">Garrett Nowak</div><div class="role">Grandview Heights, OH</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Missed a spot once and they came back the next morning, no charge, no questions asked."</p><div class="who">Farrah Okonkwo</div><div class="role">Bexley, OH</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Get a quote in under two minutes.</h2>
+  <a class="btn-primary" href="tel:+16145550158">Call (614) 555-0158</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Bright Nest Home Cleaning</div>
+    <p style="max-width:28ch">Bonded &amp; insured home cleaning across <span data-mock="city">Columbus, OH</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:10px;color:var(--ink)">Contact</div>
+    <div><a href="tel:+16145550158" data-mock="phone">(614) 555-0158</a></div>
+    <div style="margin-top:6px"><a href="mailto:hello@brightnestcleaning.com">hello@brightnestcleaning.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Bright Nest Home Cleaning. Bonded &amp; insured</div>
+</footer>
+
+</body>
+</html>

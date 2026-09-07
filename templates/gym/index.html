@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forgeline Strength Club — Coached Training Gym</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#0a0a0a; --lime:#d4ff3f; --gray:#1a1a1a; --paper:#f4f4f2; --line:#26262a; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Work Sans',system-ui,sans-serif;background:var(--ink);color:#fff;line-height:1.55}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.01em;font-weight:400}
+
+  header.nav{padding:22px 0;border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Anton;font-size:22px;letter-spacing:.02em}
+  nav.links{display:flex;gap:30px;font-size:14px;font-weight:600;color:#b8b8b8;text-transform:uppercase;letter-spacing:.03em}
+  .btn-primary{background:var(--lime);color:var(--ink);font-weight:700;padding:12px 24px;font-size:14px;text-transform:uppercase}
+
+  .hero{padding:70px 0 0;position:relative;overflow:hidden}
+  .hero .wrap{text-align:center;position:relative;z-index:2}
+  .hero h1{font-size:clamp(46px,10vw,140px);line-height:.92;margin-bottom:10px}
+  .hero h1 .lime{color:var(--lime)}
+  .hero p.sub{font-size:18px;color:#c9c9c9;max-width:520px;margin:22px auto 32px;font-family:'Work Sans'}
+  .ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+  .btn-outline{border:2px solid #3a3a3a;color:#fff;font-weight:700;padding:13px 26px;font-size:14px;text-transform:uppercase}
+
+  .marquee{background:var(--lime);color:var(--ink);padding:14px 0;overflow:hidden;white-space:nowrap;font-family:Anton;font-size:20px;letter-spacing:.02em}
+  .marquee span{padding:0 24px}
+
+  .stat-band{padding:70px 0;border-bottom:1px solid var(--line)}
+  .stat-band .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:20px}
+  .stat-band .num{font-family:Anton;font-size:52px;color:var(--lime);line-height:1}
+  .stat-band .lbl{font-size:13px;color:#9a9a9a;text-transform:uppercase;letter-spacing:.04em;margin-top:8px}
+
+  .classes{padding:80px 0}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+  .classes h2{font-size:clamp(30px,4.4vw,52px);max-width:700px;margin-bottom:44px}
+  .class-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+  .class-card{background:var(--gray);padding:30px}
+  .class-card .time{font-size:13px;color:var(--lime);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.03em}
+  .class-card h3{font-family:'Work Sans';font-size:19px;font-weight:700;text-transform:none;margin-bottom:8px}
+  .class-card p{font-size:14px;color:#a9a9a9}
+
+  .membership{background:var(--paper);color:var(--ink);padding:80px 0}
+  .membership .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .membership h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:16px}
+  .membership p{color:#4a4a4a;margin-bottom:8px}
+  .m-card{background:var(--ink);color:#fff;border-radius:14px;padding:30px}
+  .m-card .price{font-family:Anton;font-size:48px;color:var(--lime)}
+  .m-card ul{list-style:none;margin-top:18px}
+  .m-card li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .m-card li:last-child{border:none}
+
+  .reviews{padding:80px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:var(--gray);border-radius:10px;padding:26px}
+  .stars{color:var(--lime);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#d3d3d3;margin-bottom:16px}
+  .who{font-weight:700;font-size:14px}
+  .role{font-size:13px;color:#8a8a8a}
+
+  .cta-band{background:var(--lime);color:var(--ink);text-align:center;padding:64px 0}
+  .cta-band h2{font-size:clamp(28px,4.4vw,48px);margin-bottom:16px}
+  .cta-band .btn-primary{background:var(--ink);color:#fff}
+
+  footer{padding:44px 0 26px;font-size:14px;color:#9a9a9a;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:12px}
+
+  @media (max-width:900px){
+    nav.links{display:none}
+    .stat-band .wrap{grid-template-columns:1fr 1fr}
+    .class-grid{grid-template-columns:1fr}
+    .membership .wrap{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><rect x="3" y="13" width="24" height="4" fill="#d4ff3f"/><rect x="1" y="9" width="4" height="12" fill="#fff"/><rect x="25" y="9" width="4" height="12" fill="#fff"/></svg>
+    <span data-mock="name">Forgeline Strength Club</span>
+  </div>
+  <nav class="links"><a href="#classes">Classes</a><a href="#membership">Membership</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="#membership">Free Trial Class</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1>Train <span class="lime">hard.</span><br>Coached, not guessed.</h1>
+  <p class="sub" data-mock="tagline">Small-group strength training in <span data-mock="city">Denver</span> with a real coach watching every rep — not a mirror and a playlist.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="#membership">Start Your Free Class</a>
+    <a class="btn-outline" href="tel:+13035550142" data-mock="phone">Call (303) 555-0142</a>
+  </div>
+</div></section>
+
+<div class="marquee"><span>NO CONTRACTS &middot; REAL COACHES &middot; 6AM–9PM DAILY &middot; NO CONTRACTS &middot; REAL COACHES &middot; 6AM–9PM DAILY &middot;</span></div>
+
+<section class="stat-band"><div class="wrap">
+  <div><div class="num">1,100+</div><div class="lbl">Members coached</div></div>
+  <div><div class="num">14</div><div class="lbl">Classes weekly</div></div>
+  <div><div class="num">9</div><div class="lbl">Certified coaches</div></div>
+  <div><div class="num">4.9</div><div class="lbl">Average rating</div></div>
+</div></section>
+
+<section class="classes" id="classes"><div class="wrap">
+  <div class="eyebrow">This week</div>
+  <h2>Pick a class, show up, we handle the programming.</h2>
+  <div class="class-grid">
+    <div class="class-card"><div class="time">6:00 AM</div><h3>Strength Foundations</h3><p>Barbell fundamentals — squat, press, deadlift, coached in small groups.</p></div>
+    <div class="class-card"><div class="time">12:00 PM</div><h3>Metcon Lunch Hour</h3><p>45-minute conditioning session built for a lunch break, not a lifestyle.</p></div>
+    <div class="class-card"><div class="time">6:00 PM</div><h3>Performance Group</h3><p>Programmed strength and power work for lifters past their first year.</p></div>
+    <div class="class-card"><div class="time">7:00 AM</div><h3>Mobility &amp; Recovery</h3><p>Low-impact session focused on the joints strength training beats up.</p></div>
+    <div class="class-card"><div class="time">5:00 PM</div><h3>Beginner Bootcamp</h3><p>For your first 8 weeks — form-first, no judgment, small class caps.</p></div>
+    <div class="class-card"><div class="time">Open gym</div><h3>Coached Open Floor</h3><p>Come train on your own program with a coach on the floor if you need one.</p></div>
+  </div>
+</div></section>
+
+<section class="membership" id="membership"><div class="wrap">
+  <div>
+    <div class="eyebrow">Membership</div>
+    <h2>One plan. No contract. Cancel anytime.</h2>
+    <p>We'd rather earn a renewal every month than lock you into a year you'll resent by March.</p>
+  </div>
+  <div class="m-card">
+    <div style="font-size:13px;color:#9a9a9a;text-transform:uppercase;letter-spacing:.04em">All-access</div>
+    <div class="price">$129<span style="font-size:16px;color:#fff">/mo</span></div>
+    <ul>
+      <li>Unlimited coached classes</li>
+      <li>Open gym access 6am–9pm</li>
+      <li>Monthly progress check-in</li>
+      <li>No enrollment fee, no contract</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Members say</div>
+  <h2 style="margin-bottom:36px">Real reps, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"First gym where a coach actually corrected my deadlift form instead of just nodding from across the room."</p><div class="who">Iris Kowalczyk</div><div class="role">Member since 2023</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"No contract meant I could try it risk-free. Two years later I've never wanted to cancel."</p><div class="who">Desmond Otieno</div><div class="role">Member since 2024</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Lunch hour class fits my schedule perfectly and I'm never the slowest person in the room, which helps."</p><div class="who">Petra Lindqvist</div><div class="role">Member since 2025</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Your first class is free.</h2>
+  <a class="btn-primary" href="tel:+13035550142">Book It — (303) 555-0142</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Forgeline Strength Club</div>
+    <p style="max-width:28ch">Coached strength training in <span data-mock="city">Denver, CO</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:10px;color:#fff">Contact</div>
+    <div><a href="tel:+13035550142" data-mock="phone">(303) 555-0142</a></div>
+    <div style="margin-top:6px"><a href="mailto:coach@forgelinestrength.com">coach@forgelinestrength.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Forgeline Strength Club</div>
+</footer>
+
+</body>
+</html>

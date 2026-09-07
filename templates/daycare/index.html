@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Acorn Learning Center — Early Childhood Daycare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --yellow:#f9c247; --orange:#f0834a; --sky:#7bc4d6; --paper:#fffbf2; --ink:#3a2e1f; --line:#f0e4c8; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Nunito,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Baloo 2',sans-serif;font-weight:700}
+
+  header.nav{padding:20px 0}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Baloo 2';font-weight:700;font-size:21px}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:700;color:#7a5c3a}
+  .btn-primary{background:var(--orange);color:#fff;font-weight:700;padding:12px 24px;border-radius:999px;font-size:14px}
+
+  .hero{padding:20px 0 60px;position:relative;overflow:hidden}
+  .blob{position:absolute;border-radius:50%;z-index:0;opacity:.5}
+  .b1{width:260px;height:260px;background:var(--yellow);top:-80px;right:-60px}
+  .b2{width:180px;height:180px;background:var(--sky);bottom:-60px;left:-40px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;position:relative;z-index:1}
+  .badge{display:inline-block;background:#fff;border:2px solid var(--yellow);color:#a4650f;font-size:13px;font-weight:700;padding:7px 16px;border-radius:999px;margin-bottom:20px}
+  .hero h1{font-size:clamp(30px,4.6vw,50px);line-height:1.1;margin-bottom:18px}
+  .hero h1 span{color:var(--orange)}
+  .hero p.sub{font-size:17px;color:#6b5a44;max-width:44ch;margin-bottom:26px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-outline{border:2px solid var(--ink);color:var(--ink);font-weight:700;padding:11px 22px;border-radius:999px;font-size:14px}
+  .hero-visual{background:linear-gradient(160deg,var(--sky),#5aa8bc);border-radius:32px 32px 60px 32px;min-height:320px;display:flex;align-items:center;justify-content:center}
+
+  .rooms{padding:70px 0}
+  .eyebrow{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+  .rooms h2{font-size:clamp(26px,3.4vw,38px);max-width:600px;margin-bottom:40px}
+  .room-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .room{border-radius:20px;padding:22px;color:#fff}
+  .r1{background:linear-gradient(160deg,#f9c247,#e0a02c)}
+  .r2{background:linear-gradient(160deg,#f0834a,#d26430)}
+  .r3{background:linear-gradient(160deg,#7bc4d6,#4e9cb0)}
+  .r4{background:linear-gradient(160deg,#a3c97e,#7ba956)}
+  .room .age{font-size:12px;font-weight:700;opacity:.85;text-transform:uppercase;margin-bottom:8px}
+  .room h3{font-size:17px;color:#fff;margin-bottom:6px}
+  .room p{font-size:13px;opacity:.92}
+
+  .safety{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0}
+  .safety .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .safety h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:16px}
+  .safety p{color:#6b5a44;margin-bottom:8px}
+  .safe-list{list-style:none}
+  .safe-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .safe-list li:last-child{border:none}
+  .safe-list .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);margin-top:8px;flex-shrink:0}
+
+  .reviews{padding:70px 0}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:26px}
+  .stars{color:var(--orange);letter-spacing:2px;margin-bottom:12px}
+  .review p{font-size:15px;color:#4a3c28;margin-bottom:16px}
+  .who{font-weight:800;font-size:14px}
+  .role{font-size:13px;color:#8a7458}
+
+  .cta-band{background:var(--yellow);text-align:center;padding:64px 0;border-radius:32px;margin:0 24px 60px;max-width:1140px;margin-inline:auto}
+  .cta-band h2{font-size:clamp(26px,4vw,38px);margin-bottom:14px;color:var(--ink)}
+  .cta-band .btn-primary{background:var(--orange)}
+
+  footer{padding:20px 0 26px;font-size:14px;color:#8a7458}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;text-align:center;font-size:12px}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    nav.links{display:none}
+    .room-grid{grid-template-columns:1fr 1fr}
+    .safety .wrap{grid-template-columns:1fr}
+    .reviews-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="12" r="9" fill="#f0834a"/><path d="M15 20v6M11 26h8" stroke="#7a5c3a" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <span data-mock="name">Little Acorn Learning Center</span>
+  </div>
+  <nav class="links"><a href="#rooms">Programs</a><a href="#safety">Safety</a><a href="#reviews">Reviews</a></nav>
+  <a class="btn-primary" href="tel:+16175550137">Schedule a Tour</a>
+</div></header>
+
+<section class="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="wrap">
+    <div>
+      <div class="badge">&#127793; Now enrolling ages 6 weeks – 5 years</div>
+      <h1>A place your child <span>runs toward</span> in the morning.</h1>
+      <p class="sub" data-mock="tagline">Play-based early learning in <span data-mock="city">Somerville</span>, with a 4:1 teacher ratio and a live daily photo update for every family.</p>
+      <div class="ctas">
+        <a class="btn-primary" href="tel:+16175550137" data-mock="phone">Call (617) 555-0137</a>
+        <a class="btn-outline" href="#rooms">See Our Rooms</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg width="110" height="110" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="12" r="9" fill="#fff"/><path d="M15 20v6M11 26h8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="rooms" id="rooms"><div class="wrap">
+  <div class="eyebrow">Our rooms</div>
+  <h2>A program built around each age group.</h2>
+  <div class="room-grid">
+    <div class="room r1"><div class="age">6 wks – 15 mo</div><h3>Acorn Nursery</h3><p>Individualized feeding and nap schedules, daily photo logs.</p></div>
+    <div class="room r2"><div class="age">16 – 30 mo</div><h3>Sprout Room</h3><p>Sensory play, early language, and gentle potty-training support.</p></div>
+    <div class="room r3"><div class="age">2.5 – 4 yrs</div><h3>Sapling Room</h3><p>Letters, numbers, and structured outdoor play every day.</p></div>
+    <div class="room r4"><div class="age">4 – 5 yrs</div><h3>Oak Pre-K</h3><p>Kindergarten-readiness curriculum with weekly progress notes.</p></div>
+  </div>
+</div></section>
+
+<section class="safety" id="safety"><div class="wrap">
+  <div>
+    <div class="eyebrow">Peace of mind</div>
+    <h2>Safety isn't a policy binder here — it's how we hire.</h2>
+    <p>Every teacher is CPR-certified and background-checked before their first day, not just at renewal.</p>
+  </div>
+  <ul class="safe-list">
+    <li><span class="dot"></span> Keycard entry &amp; sign-in/out tracking</li>
+    <li><span class="dot"></span> 4:1 teacher-to-child ratio, capped</li>
+    <li><span class="dot"></span> Daily photo &amp; nap/meal updates via app</li>
+    <li><span class="dot"></span> CPR &amp; First Aid certified staff</li>
+  </ul>
+</div></section>
+
+<section class="reviews" id="reviews"><div class="wrap">
+  <div class="eyebrow">Parents say</div>
+  <h2 style="margin-bottom:36px">Real families, real reviews.</h2>
+  <div class="reviews-grid">
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Our daughter cried when we picked her up early once because she wasn't done playing. That's how we knew it was the right place."</p><div class="who">Renata Iversen</div><div class="role">Somerville, MA</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"The daily photo updates got us through the first two weeks of separation anxiety. Teachers are genuinely warm."</p><div class="who">Deshawn &amp; Priya Cole</div><div class="role">Medford, MA</div></div>
+    <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>"Pre-K room had our son reading simple words before kindergarten. Structured but still felt like play."</p><div class="who">Wilhelmina Aabo</div><div class="role">Cambridge, MA</div></div>
+  </div>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>Tour us before you decide anything.</h2>
+  <a class="btn-primary" href="tel:+16175550137">Call (617) 555-0137</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div>
+    <div class="brand" style="margin-bottom:10px" data-mock="name">Little Acorn Learning Center</div>
+    <p style="max-width:28ch">Licensed early childhood daycare in <span data-mock="city">Somerville, MA</span>.</p>
+  </div>
+  <div>
+    <div style="font-weight:700;margin-bottom:10px;color:var(--ink)">Contact</div>
+    <div><a href="tel:+16175550137" data-mock="phone">(617) 555-0137</a></div>
+    <div style="margin-top:6px"><a href="mailto:enroll@littleacornlearning.com">enroll@littleacornlearning.com</a></div>
+  </div>
+</div>
+<div class="bottom">&copy; 2026 Little Acorn Learning Center. Licensed childcare facility</div>
+</footer>
+
+</body>
+</html>
