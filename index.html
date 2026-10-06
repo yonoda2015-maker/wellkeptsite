@@ -7,6 +7,17 @@
 <meta name="description" content="Daily backups, security monitoring, and updates for your business website. Not sure what it's built on? Send us the URL and we'll tell you. No contracts, no phone calls required — cancel anytime." />
 <meta property="og:title" content="WellKeptSite — Website Care Plans for Small Business" />
 <meta property="og:description" content="Daily backups, security monitoring, and updates for your business website. No contracts, cancel anytime." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://wellkeptsite.com/" />
+<meta property="og:site_name" content="WellKeptSite" />
+<meta property="og:image" content="https://wellkeptsite.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="WellKeptSite — website care plans for small business, from $99/mo" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="WellKeptSite — Website Care Plans for Small Business" />
+<meta name="twitter:description" content="Daily backups, security monitoring, and updates for your business website. No contracts, cancel anytime." />
+<meta name="twitter:image" content="https://wellkeptsite.com/og-image.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -312,7 +323,7 @@
       <div class="cta-box">
         <h2>Get your free site audit</h2>
         <p class="muted" style="margin:1rem 0 2rem;font-weight:500">Send us your site URL. We'll email back exactly what we found — no obligation, no sales call.</p>
-        <form class="contact-form" action="https://ssgform.com/s/REPLACE_ME" method="post" style="display:grid;gap:1.1rem;position:relative;z-index:1">
+        <form id="audit-form" class="contact-form" style="display:grid;gap:1.1rem;position:relative;z-index:1">
           <div style="display:grid;gap:.4rem">
             <label for="cf-url" style="font-size:.85rem;font-weight:700">Website URL <span style="color:var(--accent)">*</span></label>
             <input id="cf-url" name="url" type="url" required placeholder="https://yourbusiness.com"
@@ -324,10 +335,45 @@
               style="font:inherit;padding:.85rem .9rem;border:2px solid var(--line-strong);border-radius:10px;background:#fff;color:var(--fg)">
           </div>
           <div style="position:absolute;left:-9999px" aria-hidden="true">
-            <label>Leave this field blank<input name="_gotcha" tabindex="-1" autocomplete="off"></label>
+            <label>Leave this field blank<input id="cf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label>
           </div>
-          <button class="btn btn-primary" type="submit" style="justify-self:start">Send me my free audit</button>
+          <button id="audit-submit" class="btn btn-primary" type="submit" style="justify-self:start">Send me my free audit</button>
+          <p id="audit-form-message" class="muted" style="font-size:.85rem;margin:0;display:none"></p>
         </form>
+        <script>
+          document.getElementById('audit-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            var form = e.target;
+            var submitBtn = document.getElementById('audit-submit');
+            var msg = document.getElementById('audit-form-message');
+            var payload = {
+              url: form.url.value,
+              email: form.email.value,
+              _gotcha: form._gotcha.value,
+            };
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending…';
+            try {
+              var res = await fetch('https://dashboard.wellkeptsite.com/api/public/intake', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+              var data = await res.json();
+              if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+              form.style.display = 'none';
+              msg.textContent = "Got it — we'll email your free site audit within 1 business day.";
+              msg.style.display = 'block';
+              msg.style.fontWeight = '700';
+            } catch (err) {
+              msg.textContent = err.message || 'Something went wrong. Please try again.';
+              msg.style.display = 'block';
+              msg.style.color = 'var(--accent2)';
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Send me my free audit';
+            }
+          });
+        </script>
       </div>
     </div>
   </section>
