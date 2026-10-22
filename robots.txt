@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# Per-prospect mockups are private outreach attachments, not public pages
+Disallow: /templates/mockups/
+
+Sitemap: https://wellkeptsite.com/sitemap.xml
