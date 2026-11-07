@@ -1,0 +1,29 @@
+name: security
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  leak-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Scanner self-test (recall / false positives)
+        run: node --test security/scan.test.mjs
+      - name: Scan tracked files
+        run: node security/scan.mjs
+      - name: Scan full git history (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  headers:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check live security headers
+        run: sleep 90 && node security/check-headers.mjs https://wellkeptsite.com/

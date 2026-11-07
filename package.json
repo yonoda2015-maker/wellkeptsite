@@ -3,7 +3,11 @@
   "private": true,
   "description": "Dev-only tooling for generating LP template screenshots. Not used by the deployed static site.",
   "scripts": {
-    "screenshot": "node templates/screenshot.mjs"
+    "screenshot": "node templates/screenshot.mjs",
+    "security:scan": "node security/scan.mjs",
+    "security:test": "node --test security/scan.test.mjs",
+    "security:headers": "node security/check-headers.mjs https://wellkeptsite.com/",
+    "security:install-hook": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "playwright": "^1.63.0"
