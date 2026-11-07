@@ -1,0 +1,3 @@
+#!/bin/sh
+# Blocks commits that contain secrets or personal data. Enable once: npm run security:install-hook
+node security/scan.mjs --staged || exit 1

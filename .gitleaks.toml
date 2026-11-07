@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Scanner self-test fixtures contain deliberate fake secrets"
+paths = ['''^security/scan\.test\.mjs$''']
