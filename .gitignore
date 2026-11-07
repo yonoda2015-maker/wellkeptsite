@@ -1,3 +1,7 @@
 .vercel
 .env*
 node_modules
+
+# Per-prospect mockups contain prospect contact details; keep them in the private dashboard repo
+templates/mockups/*
+!templates/mockups/.gitkeep
