@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 22
       - name: Scanner self-test (recall / false positives)
-        run: node --test security/scan.test.mjs
+        run: node --test security/scan.test.mjs .claude/hooks/leak-guard.test.mjs
       - name: Scan tracked files
         run: node security/scan.mjs
       - name: Scan full git history (gitleaks)

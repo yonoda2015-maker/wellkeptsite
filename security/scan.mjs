@@ -97,7 +97,7 @@ export function scanFiles(files) {
   const findings = [];
   for (const f of files) {
     if (FORBIDDEN_FILES.some(re => re.test(f))) findings.push({ file: f, line: 0, rule: 'forbidden-file', match: f });
-    if (f === 'security/scan.test.mjs') continue; // contains deliberate fake leaks
+    if (f === 'security/scan.test.mjs' || f === '.claude/hooks/leak-guard.test.mjs') continue; // deliberate fake leaks
     if (!existsSync(f) || statSync(f).isDirectory() || BINARY.has(extname(f).toLowerCase()) || f.endsWith('package-lock.json')) continue;
     findings.push(...scanText(readFileSync(f, 'utf8'), f));
   }
